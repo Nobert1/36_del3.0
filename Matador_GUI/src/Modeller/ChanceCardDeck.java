@@ -1,4 +1,4 @@
-package Modeller;
+package src.Modeller;
 
 import java.util.Random;
 

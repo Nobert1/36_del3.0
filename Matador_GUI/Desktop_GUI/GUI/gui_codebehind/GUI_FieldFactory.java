@@ -1,15 +1,15 @@
-package gui_codebehind;
+package Desktop_GUI.GUI.gui_codebehind;
 
 import java.awt.Color;
-import gui_fields.GUI_Brewery;
-import gui_fields.GUI_Chance;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Jail;
-import gui_fields.GUI_Refuge;
-import gui_fields.GUI_Shipping;
-import gui_fields.GUI_Start;
-import gui_fields.GUI_Street;
-import gui_fields.GUI_Tax;
+import Desktop_GUI.GUI.gui_fields.GUI_Brewery;
+import Desktop_GUI.GUI.gui_fields.GUI_Chance;
+import Desktop_GUI.GUI.gui_fields.GUI_Field;
+import Desktop_GUI.GUI.gui_fields.GUI_Jail;
+import Desktop_GUI.GUI.gui_fields.GUI_Refuge;
+import Desktop_GUI.GUI.gui_fields.GUI_Shipping;
+import Desktop_GUI.GUI.gui_fields.GUI_Start;
+import Desktop_GUI.GUI.gui_fields.GUI_Street;
+import Desktop_GUI.GUI.gui_fields.GUI_Tax;
 
 /**
  * Creates all the fields

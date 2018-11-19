@@ -1,9 +1,9 @@
-package gui_fields;
+package Desktop_GUI.GUI.gui_fields;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import gui_codebehind.Observable;
-import gui_resources.Attrs;
+import Desktop_GUI.GUI.gui_codebehind.Observable;
+import Desktop_GUI.GUI.gui_resources.Attrs;
 
 /**
  * Player entity

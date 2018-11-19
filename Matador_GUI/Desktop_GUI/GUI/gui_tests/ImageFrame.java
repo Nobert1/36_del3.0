@@ -1,4 +1,4 @@
-package gui_tests;
+package Desktop_GUI.GUI.gui_tests;
 
 import java.awt.Component;
 import java.awt.Font;

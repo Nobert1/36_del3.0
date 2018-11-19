@@ -1,12 +1,12 @@
-package gui_fields;
+package Desktop_GUI.GUI.gui_fields;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
-import gui_codebehind.Observable;
-import gui_codebehind.SwingComponentFactory;
-import gui_resources.Attrs;
+import Desktop_GUI.GUI.gui_codebehind.Observable;
+import Desktop_GUI.GUI.gui_codebehind.SwingComponentFactory;
+import Desktop_GUI.GUI.gui_resources.Attrs;
 
 /**
  * @author Ronnie 

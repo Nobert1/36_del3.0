@@ -1,12 +1,11 @@
-package Modeller;
-import gui_fields.GUI_Board;
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Player;
-import gui_main.GUI;
-import gui_main.*;
-import gui_fields.GUI_Board;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
+package src.Modeller;
+import Desktop_GUI.GUI.gui_fields.GUI_Board;
+import Desktop_GUI.GUI.gui_fields.GUI_Car;
+import Desktop_GUI.GUI.gui_fields.GUI_Player;
+import Desktop_GUI.GUI.gui_main.GUI;
+import Desktop_GUI.GUI.gui_fields.GUI_Board;
+import Desktop_GUI.GUI.gui_fields.GUI_Field;
+import Desktop_GUI.GUI.gui_fields.GUI_Player;
 import sun.awt.SunHints;
 
 import java.awt.Color;
@@ -78,6 +77,10 @@ public class Main {
         GUI_Player currentplayer = (GUI_Player) playerlist.get(0);
 
         //Game loop that currently never ends
+
+
+
+
         while (true) {
 
         //Player 1 turn

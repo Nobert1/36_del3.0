@@ -1,4 +1,4 @@
-package gui_fields;
+package Desktop_GUI.GUI.gui_fields;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -10,9 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-import gui_codebehind.GUI_Center;
-import gui_codebehind.SwingComponentFactory;
-import gui_resources.Attrs;
+import Desktop_GUI.GUI.gui_codebehind.GUI_Center;
+import Desktop_GUI.GUI.gui_codebehind.SwingComponentFactory;
+import Desktop_GUI.GUI.gui_resources.Attrs;
 
 public abstract class GUI_Field {
     public static final int FIELDWIDTH = 63;

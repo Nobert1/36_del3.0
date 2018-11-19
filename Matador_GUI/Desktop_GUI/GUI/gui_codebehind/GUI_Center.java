@@ -1,4 +1,4 @@
-package gui_codebehind;
+package Desktop_GUI.GUI.gui_codebehind;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -9,10 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import gui_fields.GUI_Board;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_resources.Attrs;
+import Desktop_GUI.GUI.gui_fields.GUI_Board;
+import Desktop_GUI.GUI.gui_fields.GUI_Field;
+import Desktop_GUI.GUI.gui_fields.GUI_Player;
+import Desktop_GUI.GUI.gui_resources.Attrs;
 
 public final class GUI_Center{
 	private static GUI_Center center;

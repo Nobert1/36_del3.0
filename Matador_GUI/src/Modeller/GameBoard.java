@@ -1,5 +1,5 @@
 /*
-package Modeller;
+package src.Modeller;
 
 public class GameBoard {
 

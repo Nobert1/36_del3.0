@@ -1,4 +1,4 @@
-package gui_codebehind;
+package Desktop_GUI.GUI.gui_codebehind;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

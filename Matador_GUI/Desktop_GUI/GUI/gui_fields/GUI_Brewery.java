@@ -1,11 +1,11 @@
-package gui_fields;
+package Desktop_GUI.GUI.gui_fields;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import gui_codebehind.GUI_Center;
-import gui_codebehind.SwingComponentFactory;
-import gui_resources.Attrs;
+import Desktop_GUI.GUI.gui_codebehind.GUI_Center;
+import Desktop_GUI.GUI.gui_codebehind.SwingComponentFactory;
+import Desktop_GUI.GUI.gui_resources.Attrs;
 
 public final class GUI_Brewery extends GUI_Ownable {
     private static final int TOPHEIGHT = 31;

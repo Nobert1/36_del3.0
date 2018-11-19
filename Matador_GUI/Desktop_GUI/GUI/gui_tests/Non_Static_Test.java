@@ -1,6 +1,6 @@
-package gui_tests;
+package Desktop_GUI.GUI.gui_tests;
 
-import gui_main.GUI;
+import Desktop_GUI.GUI.gui_main.GUI;
 
 public class Non_Static_Test {
     

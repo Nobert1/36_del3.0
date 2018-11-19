@@ -1,9 +1,9 @@
-package gui_fields;
+package Desktop_GUI.GUI.gui_fields;
 
 import java.awt.Color;
 import javax.swing.JLabel;
-import gui_codebehind.GUI_Center;
-import gui_codebehind.SwingComponentFactory;
+import Desktop_GUI.GUI.gui_codebehind.GUI_Center;
+import Desktop_GUI.GUI.gui_codebehind.SwingComponentFactory;
 
 public final class GUI_Tax extends GUI_Field {
     private static final int TITLEHEIGHT = 47;

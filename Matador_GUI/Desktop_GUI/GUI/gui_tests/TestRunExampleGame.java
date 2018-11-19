@@ -1,9 +1,9 @@
-package gui_tests;
+package Desktop_GUI.GUI.gui_tests;
 
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Ownable;
-import gui_fields.GUI_Player;
-import gui_main.GUI;
+import Desktop_GUI.GUI.gui_fields.GUI_Field;
+import Desktop_GUI.GUI.gui_fields.GUI_Ownable;
+import Desktop_GUI.GUI.gui_fields.GUI_Player;
+import Desktop_GUI.GUI.gui_main.GUI;
 
 
 /**

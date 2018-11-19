@@ -1,14 +1,14 @@
-package gui_tests;
+package Desktop_GUI.GUI.gui_tests;
 
 import java.awt.Color;
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Ownable;
-import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
-import gui_fields.GUI_Car.Pattern;
-import gui_fields.GUI_Car.Type;
-import gui_main.GUI;
+import Desktop_GUI.GUI.gui_fields.GUI_Car;
+import Desktop_GUI.GUI.gui_fields.GUI_Field;
+import Desktop_GUI.GUI.gui_fields.GUI_Ownable;
+import Desktop_GUI.GUI.gui_fields.GUI_Player;
+import Desktop_GUI.GUI.gui_fields.GUI_Street;
+import Desktop_GUI.GUI.gui_fields.GUI_Car.Pattern;
+import Desktop_GUI.GUI.gui_fields.GUI_Car.Type;
+import Desktop_GUI.GUI.gui_main.GUI;
 
 public class Test {
     private GUI gui = new GUI();

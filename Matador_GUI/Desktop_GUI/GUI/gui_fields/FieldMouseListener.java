@@ -1,10 +1,10 @@
-package gui_fields;
+package Desktop_GUI.GUI.gui_fields;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Timer;
 import java.util.TimerTask;
-import gui_codebehind.GUI_Center;
+import Desktop_GUI.GUI.gui_codebehind.GUI_Center;
 
 /**
  * Listens to mouse action on fields    

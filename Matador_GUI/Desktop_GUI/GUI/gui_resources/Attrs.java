@@ -1,4 +1,4 @@
-package gui_resources;
+package Desktop_GUI.GUI.gui_resources;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

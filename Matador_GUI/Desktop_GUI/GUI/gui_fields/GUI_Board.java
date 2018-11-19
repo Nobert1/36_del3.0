@@ -1,4 +1,4 @@
-package gui_fields;
+package Desktop_GUI.GUI.gui_fields;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -16,12 +16,12 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import gui_codebehind.GUI_Center;
-import gui_codebehind.JLabelRotatable;
-import gui_codebehind.Observer;
-import gui_codebehind.SwingComponentFactory;
-import gui_fields.GUI_Player.iPlayerValidator;
-import gui_resources.Attrs;
+import Desktop_GUI.GUI.gui_codebehind.GUI_Center;
+import Desktop_GUI.GUI.gui_codebehind.JLabelRotatable;
+import Desktop_GUI.GUI.gui_codebehind.Observer;
+import Desktop_GUI.GUI.gui_codebehind.SwingComponentFactory;
+import Desktop_GUI.GUI.gui_fields.GUI_Player.iPlayerValidator;
+import Desktop_GUI.GUI.gui_resources.Attrs;
 
 /**
  * The board

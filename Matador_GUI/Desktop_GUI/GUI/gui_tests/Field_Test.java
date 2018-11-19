@@ -1,10 +1,10 @@
-package gui_tests;
+package Desktop_GUI.GUI.gui_tests;
 
 import java.awt.Color;
-import gui_codebehind.GUI_FieldFactory;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_main.GUI;
+import Desktop_GUI.GUI.gui_codebehind.GUI_FieldFactory;
+import Desktop_GUI.GUI.gui_fields.GUI_Field;
+import Desktop_GUI.GUI.gui_fields.GUI_Player;
+import Desktop_GUI.GUI.gui_main.GUI;
 
 public class Field_Test {
     

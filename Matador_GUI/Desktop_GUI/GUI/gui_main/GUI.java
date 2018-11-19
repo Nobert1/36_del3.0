@@ -1,11 +1,11 @@
-package gui_main;
+package Desktop_GUI.GUI.gui_main;
 
 import java.awt.Color;
-import gui_codebehind.GUI_BoardController;
-import gui_codebehind.GUI_FieldFactory;
-import gui_fields.GUI_Board;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
+import Desktop_GUI.GUI.gui_codebehind.GUI_BoardController;
+import Desktop_GUI.GUI.gui_codebehind.GUI_FieldFactory;
+import Desktop_GUI.GUI.gui_fields.GUI_Board;
+import Desktop_GUI.GUI.gui_fields.GUI_Field;
+import Desktop_GUI.GUI.gui_fields.GUI_Player;
 
 /**
  * Provides easy access to the GUI features. Se javadoc at: 
