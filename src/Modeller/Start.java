@@ -1,4 +1,4 @@
-package src.Modeller;
+package Modeller;
 
 public class Start extends Squares {
     public Start(int position, String name) {
