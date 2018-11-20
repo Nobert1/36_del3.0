@@ -1,4 +1,6 @@
-package Modeller;
+import Controllers.GameBoard;
+import Models.ChanceCardDeck;
+import Models.Dice;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
@@ -12,12 +14,14 @@ import java.util.Random;
 public class Main {
 
 
-   // public Main() { new GUI()}
+   //public Main() { new GUI()}
 
     public static void main(String[] args) {
+        GameBoard game = new GameBoard();
+        game.startGame();
 
         // Creates the variables needed for the game to run. The list contains all the player objects that are gonna be created.
-        List<Object> playerlist = new ArrayList<>();
+        /*List<Object> playerlist = new ArrayList<>();
         Random random = new Random();
         Dice die1 = new Dice();
 
@@ -29,9 +33,6 @@ public class Main {
         ChanceCardDeck deck = new ChanceCardDeck();
 
         int players;
-
-        GUI gui = new GUI();
-
 
 
         // Enters number of players (have to be made into a method for later)
@@ -160,8 +161,9 @@ public class Main {
 
         }
 
-    }
+    }*/
 
     }
 
 
+}

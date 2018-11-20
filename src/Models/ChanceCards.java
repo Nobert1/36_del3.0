@@ -1,4 +1,4 @@
-package Modeller;
+package Models;
 
 public class ChanceCards {
 

@@ -1,11 +1,11 @@
-package Modeller;
+package Models;
 
-public class Squares {
+public class Fields {
 
     int position;
     String name;
 
-    public Squares(int position, String name) {
+    public Fields(int position, String name) {
 
         this.position = position;
         this.name = name;

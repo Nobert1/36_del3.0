@@ -1,18 +1,18 @@
-package Modeller;
+package Models;
 
-public class Properties extends Squares {
+public class Properties extends Fields {
 
     int rent;
     int price;
     String colour;
     public boolean owned;
 
-public Properties(int position, String name, int rent, int price, String colour, boolean owned) {
+public Properties(int position, String name, int rent, int price, String colour) {
         super(position, name);
     this.rent = rent;
     this.price = price;
     this.colour = colour;
-    this.owned = owned;
+    this.owned = false;
 }
 
     @Override

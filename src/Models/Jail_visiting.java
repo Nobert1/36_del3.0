@@ -1,8 +1,8 @@
-package Modeller;
+package Models;
 
-public class Jail_visiting extends Modeller.Squares {
+public class Jail_visiting extends Fields {
 
-    Modeller.Player player = new Player("");
+    Models.Player player = new Player("");
 
     private int position;
     private int jailtime;
