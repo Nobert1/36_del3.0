@@ -1,16 +1,12 @@
-package Modeller;
+package Models;
 
 import Models.BankAccount;
 import Models.ChanceCards;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-<<<<<<< HEAD:src/Models/ChanceCardDeck.java
 
 
-=======
-import Modeller.Main;
 import java.util.Scanner;
->>>>>>> pushfra02:Matador_GUI/src/Modeller/ChanceCardDeck.java
 import java.util.Random;
 
 public class ChanceCardDeck {

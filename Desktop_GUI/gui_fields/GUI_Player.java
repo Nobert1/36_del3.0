@@ -32,17 +32,11 @@ public class GUI_Player extends Observable{
 		this.balance = balance;
 		this.car = car;
 		this.id = nextId++;
-<<<<<<< HEAD:Desktop_GUI/gui_fields/GUI_Player.java
-		this.placement = 0;
-=======
 		this.placement = placement;
->>>>>>> pushfra02:Matador_GUI/Desktop_GUI/gui_fields/GUI_Player.java
 	}
 	//Getters
 
-	public int getPlacement() {
-		return placement;
-	}
+
 	public int getNumber(){ return this.number; }
 	public String getName(){ return this.name; }
 	public int getBalance(){ return this.balance; }
@@ -51,7 +45,10 @@ public class GUI_Player extends Observable{
 	protected BufferedImage getImage() { return this.car.getImage(); }
     public GUI_Car getCar() { return car; }
     protected int getId(){ return id; }
-	
+	public int getPlacement() {
+		return placement;
+	}
+
 	//Setters
     protected void setNumber(int number) { this.number = number; }
     public boolean setName(String name){
@@ -69,9 +66,8 @@ public class GUI_Player extends Observable{
 	    notifyObservers();
 	}
 	public void setPlacement(int placement) {
-		this.placement = placement;
+		this.placement = placement % 24;
 	}
-
 	// Mandatory
 	@Override
 	public int hashCode() {
@@ -116,11 +112,5 @@ public class GUI_Player extends Observable{
     }
 
 
-	public int getPlacement() {
-		return placement;
-	}
 
-	public void setPlacement(int placement) {
-		this.placement = placement % 24;
-	}
 }
