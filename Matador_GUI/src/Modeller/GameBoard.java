@@ -13,13 +13,13 @@ public class GameBoard {
                 board[0] = new Start(0, "start");
                 board[1] = new Properties(1, "Gatekjøkkenet \n Burgerbaren", 1,  3, "Brown", false);
                 board[2] = new Properties(2, "Pizzahuset \n Pizzeriaet", 1, 3, "Brown", false);
-                board[3] = new Chance_Square( 3, "Sjanse \n chance");
+                board[3] = new Modeller.Chance_Square( 3, "Sjanse \n chance");
                 board[4] = new Properties(4, "Godtebutikken \n slikbutikken", 1, 3, "Lightblue", false);
                 board[5] = new Properties(5, " Iskiosken \n Iskiosken", 1, 3, "Lightblue", false);
                 board[6] = new Jail_visiting(6, "Visting prison", 0);
                 board[7] = new Properties(7, "Museet \n Museet", 1, 3, "pink", false);
                 board[8] = new Properties(8, "Bibloteket", 1, 3, "pink", false);
-                board[9] = new Chance_Square(9, "Chancen");
+                board[9] = new Modeller.Chance_Square(9, "Chancen");
                 board[10] = new
                 board[11] = new
                 board[12] = new

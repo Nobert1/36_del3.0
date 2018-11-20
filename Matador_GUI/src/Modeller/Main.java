@@ -3,19 +3,7 @@ import gui_fields.GUI_Board;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-import gui_main.*;
-import gui_fields.GUI_Board;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import sun.awt.SunHints;
-
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -30,9 +18,6 @@ import java.util.Scanner;
 
 
 public class Main {
-
-    ChanceCardDeck deck = new ChanceCardDeck();
-
     public Main() {
         new GUI();
     }
@@ -43,6 +28,8 @@ public class Main {
         List<Object> playerlist = new ArrayList<>();
         Random random = new Random();
         Dice die1 = new Dice();
+        ChanceCardDeck deck = new ChanceCardDeck();
+        GUI gui = new GUI();
 
         int tempfield_position0 = 0;
         int tempfield_position1 = 0;
@@ -51,10 +38,6 @@ public class Main {
         int field_position = 0;
 
         int players;
-
-        GUI gui = new GUI();
-
-
 
         // Enters number of players (have to be made into a method for later)
         while (true) {
@@ -129,7 +112,6 @@ public class Main {
 
             gui.showMessage("You rolled " + die1.getValue());
 
-
             gui.getFields()[field_position].setCar(currentplayer, false);
             // Removes the car from the current position on the board
 
@@ -143,11 +125,11 @@ public class Main {
             gui.getFields()[field_position].setCar(currentplayer, true);
             // Places the car on the new position on the board.
 
-            //if (field_position == 3 || field_position == 9|| field_position == 15|| field_position == 22) { continue; }
+            if (field_position == 3 || field_position == 9|| field_position == 15|| field_position == 22) { continue; }
             // Function to check if the car is currently on any chancecard spot currently fcks up the program even though it does nothing
             // It has a weird effect on the variables, it produces multiple cars even though the method body only consists of continue.
 
-
+                gui.displayChanceCard(deck.DrawCard(currentplayer).getDescription());
 
             //Saves location of the player till it's their turn agian.
 
@@ -163,11 +145,8 @@ public class Main {
             } else if (currentplayer == playerlist.get(3)) {
                         tempfield_position3 = field_position;
             }
-
         }
-
     }
-
     }
 
 

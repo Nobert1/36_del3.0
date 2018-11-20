@@ -1,9 +1,16 @@
 package Modeller;
 
+import gui_fields.GUI_Player;
+import gui_main.GUI;
+import Modeller.Main;
+
 import java.util.Random;
 
 public class ChanceCardDeck {
     private ChanceCards[] Deck;
+    private GUI gui;
+    private GUI_Player gui_player;
+    private BankAccount bankAccount;
 
     private final int maxValue = 20;
 
@@ -49,12 +56,12 @@ public class ChanceCardDeck {
             if (Cardtemp[pos] == null) {
                 Cardtemp[pos] = this.Deck[shifts];
                 shifts++;
-            }
-        }
-        this.Deck = Cardtemp;
-    }
 
-    public ChanceCards DrawCard() {
+            }
+            this.Deck = Cardtemp;
+        }
+    }
+    public ChanceCards DrawCard(GUI_Player currentplayer) {
         ChanceCards[] korttemp = this.Deck;
         ChanceCards firstCardKort = this.Deck[0];
 
@@ -62,17 +69,23 @@ public class ChanceCardDeck {
             this.Deck[i] = korttemp[(i + 1) % 20];
         }
         Deck[19] = firstCardKort;
-        return firstCardKort;
-        /*switch (Deck[19].getNumber()) {
+
+        switch (Deck[19].getNumber()) {
             case 1:
                 break;
             case 2:
+                gui.getFields()[0].setCar(currentplayer, true);
+                bankAccount.deposit(2);
+                System.out.println("din nye balance er nu" + bankAccount.getBalance());
                 break;
             case 3:
                 break;
             case 4:
                 break;
             case 5:
+
+                bankAccount.withdraw(2);
+                System.out.println("din nye balance er nu" + bankAccount.getBalance());
                 break;
             case 6:
                 break;
@@ -104,8 +117,10 @@ public class ChanceCardDeck {
                 break;
             case 20:
                 break;
-        } */
         }
+        return firstCardKort;
+
+    }
 
     public String toString() {
         String output = "";

@@ -1,17 +1,14 @@
 package Modeller;
 
 public class ChanceCards {
-
     private String Description;
     private String name;
     private int number;
 
     public ChanceCards(String Description, String name, int number) {
-
         this.Description = Description;
         this.name = name;
         this.number = number;
-
     }
 
 
