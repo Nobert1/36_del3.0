@@ -7,6 +7,9 @@ public class Dice {
     private final int maxValue = 6;
     private int value;
 
+    public void setValue(int value) {
+        this.value = value;
+    }
 
     public Dice() {
         value = 1;
