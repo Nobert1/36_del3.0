@@ -1,4 +1,4 @@
-package Dgui_tests;
+package gui_tests;
 
 import java.awt.Color;
 import gui_fields.GUI_Car;
@@ -131,7 +131,7 @@ public class Test {
 		gui.addPlayer(tricia);
 		
 		GUI_Car car4 = new GUI_Car(new Color(160, 32, 240), Color.YELLOW, Type.CAR, Pattern.CHECKERED);
-		marvin = new GUI_Player("Marvin", 1000, car4); 
+		marvin = new GUI_Player("Marvin", 1000, car4);
 		gui.addPlayer(marvin);
 		
 		GUI_Car car5 = new GUI_Car(Color.BLACK, Color.WHITE, Type.CAR, Pattern.DOTTED);
