@@ -4,11 +4,17 @@ import Models.BankAccount;
 import Models.ChanceCards;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
+<<<<<<< HEAD:src/Models/ChanceCardDeck.java
 
 
+=======
+import Modeller.Main;
+import java.util.Scanner;
+>>>>>>> pushfra02:Matador_GUI/src/Modeller/ChanceCardDeck.java
 import java.util.Random;
 
 public class ChanceCardDeck {
+    Scanner scan = new Scanner(System.in);
     private ChanceCards[] Deck;
     private GUI gui;
     private GUI_Player gui_player;
@@ -41,7 +47,7 @@ public class ChanceCardDeck {
         Deck[18] = new ChanceCards("Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE",19);
         Deck[19] = new ChanceCards("Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE",20);
 
-        Shufflecards();
+        //Shufflecards();
 
         //Konstruktøren skal muligvis have fjernet sit navn og tilføjet en int værdi i stedet som vi kan bruge i case systemmet.
     }
@@ -63,31 +69,64 @@ public class ChanceCardDeck {
             this.Deck = Cardtemp;
         }
     }
-    public ChanceCards DrawCard(GUI_Player currentplayer) {
-        ChanceCards[] korttemp = this.Deck;
+    public ChanceCards DrawCard(GUI_Player currentplayer, GUI gui) {
+
+        /*ChanceCards[] korttemp = this.Deck;
         ChanceCards firstCardKort = this.Deck[0];
 
         for (int i = 0; i < Deck.length; i++) {
             this.Deck[i] = korttemp[(i + 1) % 20];
         }
         Deck[19] = firstCardKort;
+        */
 
-        switch (Deck[19].getNumber()) {
+        switch (Deck[2].getNumber()) {
             case 1:
+
                 break;
             case 2:
                 gui.getFields()[0].setCar(currentplayer, true);
-                bankAccount.deposit(2);
-                System.out.println("din nye balance er nu" + bankAccount.getBalance());
+                int newBalance = currentplayer.getBalance() + 2;
+                currentplayer.setBalance(newBalance);
+                System.out.println("din nye balance er nu" + currentplayer.getBalance());
                 break;
             case 3:
+                String arr1[] = {"1" , "2" , "3", "4", "5"};
+                String userin = gui.getUserButtonPressed("How many fields do you want to move?",arr1);
+                switch (userin) {
+                    case "1":
+                        gui.getFields()[currentplayer.getPlacement()].setCar(currentplayer,false);
+                        gui.getFields()[currentplayer.getPlacement() + 1].setCar(currentplayer,true);
+                        break;
+                    case "2":
+                        gui.getFields()[currentplayer.getPlacement()].setCar(currentplayer,false);
+                        currentplayer.setPlacement(currentplayer.getPlacement()+2);
+                        System.out.println(currentplayer.getPlacement());
+                        gui.getFields()[(currentplayer.getPlacement())].setCar(currentplayer,true);
+
+                        break;
+                    case "3":
+                        gui.getFields()[currentplayer.getPlacement()].setCar(currentplayer,false);
+                        gui.getFields()[currentplayer.getPlacement() + 3].setCar(currentplayer,true);
+                        break;
+                    case "4":
+                        gui.getFields()[currentplayer.getPlacement()].setCar(currentplayer,false);
+                        gui.getFields()[currentplayer.getPlacement() + 4].setCar(currentplayer,true);
+                        break;
+                    case "5":
+                        gui.getFields()[currentplayer.getPlacement()].setCar(currentplayer,false);
+                        gui.getFields()[currentplayer.getPlacement() + 5].setCar(currentplayer,true);
+                        break;
+                }
                 break;
             case 4:
                 break;
             case 5:
-
-                bankAccount.withdraw(2);
-                System.out.println("din nye balance er nu" + bankAccount.getBalance());
+                gui.getFields()[currentplayer.getPlacement()].setCar(currentplayer,false);
+                gui.getFields()[0].setCar(currentplayer, true);
+                int newBalance1 = currentplayer.getBalance() - 2;
+                currentplayer.setBalance(newBalance1);
+                System.out.println("din nye balance er nu" + currentplayer.getBalance());
                 break;
             case 6:
                 break;
@@ -97,7 +136,11 @@ public class ChanceCardDeck {
                 break;
             case 9:
                 break;
+
+            // moves the player to strandpromonaden.
             case 10:
+                gui.getFields()[currentplayer.getPlacement()].setCar(currentplayer,false);
+                gui.getFields()[23].setCar(currentplayer, true);
                 break;
             case 11:
                 break;
@@ -110,6 +153,8 @@ public class ChanceCardDeck {
             case 15:
                 break;
             case 16:
+                int newBalance2 = currentplayer.getBalance() + 2;
+                currentplayer.setBalance(newBalance2);
                 break;
             case 17:
                 break;
@@ -120,7 +165,8 @@ public class ChanceCardDeck {
             case 20:
                 break;
         }
-        return firstCardKort;
+        return Deck[2];
+        //return firstCardKort;
 
     }
 

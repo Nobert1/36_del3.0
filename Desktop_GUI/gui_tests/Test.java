@@ -119,23 +119,23 @@ public class Test {
 		gui.addPlayer(arthur);
 		
 		GUI_Car car1 = new GUI_Car(Color.MAGENTA, Color.BLUE, Type.TRACTOR, Pattern.DOTTED);
-		ford = new GUI_Player("Ford Prefect", 1000, car1);
+		ford = new GUI_Player("Ford Prefect", 1000, car1,0);
 		gui.addPlayer(ford);
 		
 		GUI_Car car2 = new GUI_Car(Color.BLACK, Color.RED, Type.UFO, Pattern.ZEBRA);
-		zaphod = new GUI_Player("Zaphod Beeblebrox", 100000, car2);
+		zaphod = new GUI_Player("Zaphod Beeblebrox", 100000, car2,0);
 		gui.addPlayer(zaphod);
 		
 		GUI_Car car3 = new GUI_Car(Color.DARK_GRAY, Color.CYAN, Type.RACECAR, Pattern.HORIZONTAL_LINE);
-		tricia = new GUI_Player("Tricia McMillan", 100000, car3);
+		tricia = new GUI_Player("Tricia McMillan", 100000, car3,0);
 		gui.addPlayer(tricia);
 		
 		GUI_Car car4 = new GUI_Car(new Color(160, 32, 240), Color.YELLOW, Type.CAR, Pattern.CHECKERED);
-		marvin = new GUI_Player("Marvin", 1000, car4);
+		marvin = new GUI_Player("Marvin", 1000, car4,0);
 		gui.addPlayer(marvin);
 		
 		GUI_Car car5 = new GUI_Car(Color.BLACK, Color.WHITE, Type.CAR, Pattern.DOTTED);
-		slart = new GUI_Player("Slartibartfast", 100000, car5);
+		slart = new GUI_Player("Slartibartfast", 100000, car5,0);
 		gui.addPlayer(slart);
 		
 		dt = new GUI_Player("Deep Thought", 100000);

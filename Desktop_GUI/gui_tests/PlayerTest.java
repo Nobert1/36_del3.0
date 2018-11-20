@@ -11,11 +11,11 @@ public class PlayerTest {
         GUI gui = new GUI();
         
         GUI_Car car1 = new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.RACECAR, GUI_Car.Pattern.HORIZONTAL_GRADIANT);
-        GUI_Player player1 = new GUI_Player("Sebastian Vettel", 1000, car1);
+        GUI_Player player1 = new GUI_Player("Sebastian Vettel", 1000, car1,0);
         gui.addPlayer(player1);
         
         GUI_Car car2 = new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.RACECAR, GUI_Car.Pattern.HORIZONTAL_GRADIANT);
-        GUI_Player player2 = new GUI_Player("Michael Schumacher", 1000, car2);
+        GUI_Player player2 = new GUI_Player("Michael Schumacher", 1000, car2,0);
         gui.addPlayer(player2);
         
         

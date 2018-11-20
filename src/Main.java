@@ -24,6 +24,12 @@ public class Main {
         /*List<Object> playerlist = new ArrayList<>();
         Random random = new Random();
         Dice die1 = new Dice();
+<<<<<<< HEAD:src/Main.java
+=======
+        die1.setValue(3);
+        ChanceCardDeck deck = new ChanceCardDeck();
+        GUI gui = new GUI();
+>>>>>>> pushfra02:Matador_GUI/src/Modeller/Main.java
 
         int tempfield_position0 = 0;
         int tempfield_position1 = 0;
@@ -110,12 +116,14 @@ public class Main {
             gui.showMessage("Roll the dice " + currentplayer.getName());
 
             // Variabels for the die's, use dice class instead.
-            die1.roll();
+            //die1.roll();
             int b = random.nextInt(6) + 1;
 
             // Displays the dices on the board.
 
-            gui.setDice(die1.getValue(), b);
+            //gui.setDice(die1.getValue(), b);
+            gui.setDice(3,3);
+            System.out.println("Jeg slog 3 og 3");
 
             gui.showMessage("You rolled " + die1.getValue());
 
@@ -132,6 +140,7 @@ public class Main {
 
             gui.getFields()[field_position].setCar(currentplayer, true);
             // Places the car on the new position on the board.
+<<<<<<< HEAD:src/Main.java
 
             if (field_position == 3 || field_position == 9|| field_position == 15|| field_position == 21) {
 
@@ -144,6 +153,15 @@ public class Main {
 
 
 
+=======
+            System.out.println(field_position);
+            if (field_position == 3 || field_position == 9|| field_position == 15|| field_position == 22) {
+                // Function to check if the car is currently on any chancecard spot currently fcks up the program even though it does nothing
+                // It has a weird effect on the variables, it produces multiple cars even though the method body only consists of continue.
+                System.out.println("Hej Anders");
+                gui.displayChanceCard(deck.DrawCard(currentplayer, gui).getDescription());
+            }
+>>>>>>> pushfra02:Matador_GUI/src/Modeller/Main.java
             //Saves location of the player till it's their turn agian.
 
                    if (currentplayer == playerlist.get(0)) {
