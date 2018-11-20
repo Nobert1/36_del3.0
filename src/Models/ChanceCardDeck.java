@@ -1,8 +1,10 @@
 package Modeller;
 
+import Models.BankAccount;
+import Models.ChanceCards;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-import Modeller.Main;
+
 
 import java.util.Random;
 

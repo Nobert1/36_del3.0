@@ -1,4 +1,4 @@
-package gui_tests;
+/*package gui_tests;
 
 import java.awt.Color;
 import gui_fields.GUI_Car;
@@ -314,3 +314,4 @@ public class Test {
 	    s40.setHotel(false);
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package gui_tests;
+/*ackage gui_tests;
 
 import java.awt.Color;
 import gui_fields.GUI_Car;
@@ -41,3 +41,4 @@ public class PlayerTest {
         player2.setBalance(99999);
     }
 }
+*/

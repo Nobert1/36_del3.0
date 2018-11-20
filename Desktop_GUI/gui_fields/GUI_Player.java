@@ -16,21 +16,23 @@ public class GUI_Player extends Observable{
 	private GUI_Car car;
 	private static int nextId = 0;
     private int id;
+    private int placement;
 	
 	public static final int ICON_WIDTH = 41;
 	public static final int ICON_HEIGHT = 22;
 
 	public GUI_Player(String name){
-	    this(name, 1000, new GUI_Car());
+	    this(name, 1000, new GUI_Car(),0);
 	}
 	public GUI_Player(String name, int balance){
-	    this(name, balance, new GUI_Car());
+	    this(name, balance, new GUI_Car(),0);
 	}
-	public GUI_Player(String name, int balance, GUI_Car car){
+	public GUI_Player(String name, int balance, GUI_Car car, int placement){
 		this.name = name;
 		this.balance = balance;
 		this.car = car;
 		this.id = nextId++;
+		this.placement = 0;
 	}
 	//Getters
 	public int getNumber(){ return this.number; }
@@ -102,6 +104,13 @@ public class GUI_Player extends Observable{
         return "GUI_Player [number=" + number + ", name=" + name + ", balance="
             + balance + ", car=" + car + "]";
     }
-	
-	
+
+
+	public int getPlacement() {
+		return placement;
+	}
+
+	public void setPlacement(int placement) {
+		this.placement = placement % 24;
+	}
 }

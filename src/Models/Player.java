@@ -7,6 +7,8 @@ public class Player {
     private String name;
     private BankAccount account;
     private boolean inJail;
+    private boolean isBroke;
+    private int currentPosition;
 
 
     public Player(String name) {
@@ -14,7 +16,11 @@ public class Player {
         this.name = name;
         this.account = new BankAccount(0);
         this.inJail = false;
+        this.isBroke = false;
+        this.currentPosition = 0;
+
     }
+
 
     public String getName() {
         return this.name;
@@ -25,18 +31,28 @@ public class Player {
         return account;
     }
 
-    public void getInJail(){
+    public void isInJail(){
         inJail = true;
     }
 
-    public void getFree(){
+    public void isFree(){
         inJail = false;
     }
 
-    public void add(String navn, int players){
-        new GUI_Player(name, 24-2*players);
-
+    public void isBroke() {
+        isBroke = true;
     }
+
+    public int getCurrentPosition(){
+        return currentPosition;
+    }
+
+    public int setCurrentposition(int newPosition){
+        currentPosition = newPosition;
+        return currentPosition;
+    }
+
+
 
 
 }
