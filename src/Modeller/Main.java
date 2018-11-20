@@ -1,6 +1,9 @@
 package Modeller;
+import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,7 +11,6 @@ import java.util.Random;
 
 public class Main {
 
-    //ChanceCardDeck deck = new ChanceCardDeck();
 
    // public Main() { new GUI()}
 
@@ -24,6 +26,7 @@ public class Main {
         int tempfield_position2 = 0;
         int tempfield_position3 = 0;
         int field_position = 0;
+        ChanceCardDeck deck = new ChanceCardDeck();
 
         int players;
 
@@ -43,8 +46,15 @@ public class Main {
 
         // then produces the number of players, probably made into the same method as the above.
         for (int i = 0; i < players; i++) {
+            String color = gui.getUserString("What color would you like?");
             String name = gui.getUserString("What would you like your name to be?");
+
+
             playerlist.add(new GUI_Player(name, 24-2*players));
+            String Cartype = gui.getUserString("What car would you like? Pick between \n TRACTOR, UFO, RACECAR, CAR - Type in everything in caps");
+            GUI_Car Car = new GUI_Car(Color.BLACK, Color.BLUE, GUI_Car.Type.getTypeFromString(Cartype), GUI_Car.Pattern.DOTTED);
+
+
             gui.getFields()[0].setCar((GUI_Player) playerlist.get(i), true);
         }
 
@@ -122,7 +132,12 @@ public class Main {
             gui.getFields()[field_position].setCar(currentplayer, true);
             // Places the car on the new position on the board.
 
-            //if (field_position == 3 || field_position == 9|| field_position == 15|| field_position == 22) { continue; }
+            if (field_position == 3 || field_position == 9|| field_position == 15|| field_position == 21) {
+
+                gui.displayChanceCard(deck.DrawCard().getDescription());
+
+
+            }
             // Function to check if the car is currently on any chancecard spot currently fcks up the program even though it does nothing
             // It has a weird effect on the variables, it produces multiple cars even though the method body only consists of continue.
 
