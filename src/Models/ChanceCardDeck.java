@@ -67,14 +67,14 @@ public class ChanceCardDeck {
     }
     public ChanceCards DrawCard(GUI_Player currentplayer, GUI gui) {
 
-        /*ChanceCards[] korttemp = this.Deck;
+        ChanceCards[] korttemp = this.Deck;
         ChanceCards firstCardKort = this.Deck[0];
 
         for (int i = 0; i < Deck.length; i++) {
             this.Deck[i] = korttemp[(i + 1) % 20];
         }
         Deck[19] = firstCardKort;
-        */
+
 
         switch (Deck[2].getNumber()) {
             case 1:

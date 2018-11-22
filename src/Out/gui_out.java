@@ -13,6 +13,7 @@ public class gui_out {
     private GUI_Player[] gui_Players;
     private GUI_BoardController bc;
 
+
    /* public void startScreen() {
 
         GUI_Field[] fields = GUI_FieldFactory.makeFieldsJuniorMatador();
