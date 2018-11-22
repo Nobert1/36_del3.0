@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.ChanceCardDeck;
 import Models.Dice;
 import Models.Fields;
 import Models.Player;
@@ -21,6 +22,7 @@ public class GameBoard{
     private GUI_Player[] guiArray;
     private Player[] playerArray;
     private GUI_Player currentPlayer;
+    private ChanceCardDeck chanceCardDeck;
 
 
     public GameBoard(){
@@ -30,10 +32,6 @@ public class GameBoard{
         this.players = setPlayers();
         this.guiArray = new GUI_Player[players];
         this.playerArray = new Player[players];
-
-
-
-
     }
 
     public void startGame(){
@@ -88,7 +86,6 @@ return players;
 
     public void playerTurn(){
 
-
         gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
         die.roll();
         gui.setDie(die.getValue());
@@ -102,6 +99,9 @@ return players;
         currentPlayer.setPlacement(currentPlayer.getPlacement() + die.getValue());
         gui.getFields()[currentPlayer.getPlacement()].setCar(currentPlayer, true);
 
+       /* if(currentPlayer.getPlacement() == 3) {
+            currentPlayer.DrawCard();
+        }*/
 
         getPlayerTurn();
 
