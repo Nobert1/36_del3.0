@@ -1,38 +1,36 @@
 package Controllers;
 
-import Models.ChanceCardDeck;
 import Models.Dice;
 import Models.Fields;
 import Models.Player;
-import Out.gui_out;
-import gui_codebehind.GUI_BoardController;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class GameBoard{
 
     private GUI gui;
-    private Fields[] fields;
     private Dice die;
     private int players;
     private GUI_Player[] guiArray;
     private Player[] playerArray;
     private GUI_Player currentPlayer;
-    private ChanceCardDeck chanceCardDeck;
+    private Player player;
+    private Fields[] fields;
 
 
     public GameBoard(){
         this.gui = new GUI();
-        this.fields = new Fields[24];
         this.die = new Dice();
         this.players = setPlayers();
         this.guiArray = new GUI_Player[players];
         this.playerArray = new Player[players];
+        fields = Fields.makeFields();
+
     }
+
 
     public void startGame(){
         setPlayerNames();
@@ -72,19 +70,20 @@ return players;
                 case"Blue": c = Color.BLUE;
                     break;
                 default: c = Color.BLACK;
-
             }
             GUI_Car Car = new GUI_Car(c, c, GUI_Car.Type.getTypeFromString(a), GUI_Car.Pattern.DOTTED);
             GUI_Player spiller = new GUI_Player(name, 24-2*players, Car, 0);
             guiArray[i] = spiller;
-            gui.getFields()[0].setCar((GUI_Player) guiArray[i], true);
+            gui.getFields()[0].setCar(guiArray[i], true);
             gui.addPlayer(spiller);
 
         }
         currentPlayer = guiArray[0];
+        player = playerArray[0];
     }
 
     public void playerTurn(){
+
 
         gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
         die.roll();
@@ -99,9 +98,15 @@ return players;
         currentPlayer.setPlacement(currentPlayer.getPlacement() + die.getValue());
         gui.getFields()[currentPlayer.getPlacement()].setCar(currentPlayer, true);
 
-       /* if(currentPlayer.getPlacement() == 3) {
-            currentPlayer.DrawCard();
-        }*/
+        player.setCurrentposition(currentPlayer.getPlacement());
+
+        applySquareLogic();
+        //getPlayerTurn();
+    }
+    public void applySquareLogic() {
+
+        int i = currentPlayer.getPlacement();
+        fields[i].FieldFunctionality();
 
         getPlayerTurn();
 
@@ -110,15 +115,19 @@ return players;
     public void getPlayerTurn(){
         if (currentPlayer == guiArray[0]) {
             currentPlayer = guiArray[1];
+                player = playerArray[1];
 
         } else if (currentPlayer == guiArray[1]) {
             currentPlayer = guiArray[2%guiArray.length];
+             player = playerArray[2%playerArray.length];
 
         } else if (currentPlayer == guiArray[2]) {
             currentPlayer = guiArray[3%guiArray.length];
+             player = playerArray[3%playerArray.length];
 
         } else if (currentPlayer == guiArray[3]) {
             currentPlayer = guiArray[0];
+                player = playerArray[0];
         }
     playerTurn();
     }

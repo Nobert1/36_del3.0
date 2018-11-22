@@ -5,5 +5,12 @@ public class Start extends Fields {
         super(position, name);
     }
 
+    @Override
+    public void FieldFunctionality() {
 
+    }
 }
+
+/**
+ Den her klasse skal nok slettes, start har ingen funktionalitet i sig selv - Gustav.
+ */

@@ -23,4 +23,8 @@ public class Jail_visiting extends Fields {
 
     }
 
+    @Override
+    public void FieldFunctionality() {
+
+    }
 }
