@@ -1,19 +1,16 @@
 package Models;
+
 import Models.BankAccount;
 import Models.ChanceCards;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
+
+
 import java.util.Scanner;
 import java.util.Random;
 
-/**
- * Currently still needs some work, how we implement it in the Gameboard also needs some looking at before we
- * continue with writing methods. We may need to make the instance static like we did with the Board instance of the Fields class.
- * - comment by Gustav
- */
-
 public class ChanceCardDeck {
-
+    Scanner scan = new Scanner(System.in);
     private ChanceCards[] Deck;
     private GUI gui;
     private GUI_Player gui_player;
@@ -46,7 +43,7 @@ public class ChanceCardDeck {
         Deck[18] = new ChanceCards("Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE",19);
         Deck[19] = new ChanceCards("Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE",20);
 
-        Shufflecards();
+        //Shufflecards();
 
         //Konstruktøren skal muligvis have fjernet sit navn og tilføjet en int værdi i stedet som vi kan bruge i case systemmet.
     }
