@@ -1,23 +1,12 @@
 import Controllers.GameBoard;
 
-import Models.Dice;
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Player;
-import gui_main.GUI;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-
 public class Main {
 
 
    //public Main() { new GUI()}
 
     public static void main(String[] args) {
-        GameBoard game = new GameBoard();
+        GameBoard game = GameBoard.getINSTANS();
         game.startGame();
 
         // Creates the variables needed for the game to run. The list contains all the player objects that are gonna be created.
