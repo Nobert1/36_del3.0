@@ -1,5 +1,7 @@
 package Models;
 
+import Controllers.GameBoard;
+
 public class Jail_visiting extends Fields {
 
     Models.Player player = new Player("");
@@ -7,6 +9,8 @@ public class Jail_visiting extends Fields {
     private int position;
     private int jailtime;
     private String name;
+    private GameBoard gb = GameBoard.getINSTANS();
+
 
     public Jail_visiting(int position, String name, int jailtime) {
         super(position, name);
@@ -25,6 +29,12 @@ public class Jail_visiting extends Fields {
 
     @Override
     public void FieldFunctionality() {
+
+    }
+    @Override
+    public void OutputToGUI(){
+        gb.gui.showMessage(toString());
+
 
     }
 }
