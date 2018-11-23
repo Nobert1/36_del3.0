@@ -11,6 +11,7 @@ import java.awt.*;
 
 public class GameBoard{
 
+    private static final GameBoard INSTANS = new GameBoard();
     private GUI gui;
     private Dice die;
     private int players;
@@ -21,19 +22,21 @@ public class GameBoard{
     private Fields[] fields;
 
 
-    public GameBoard(){
+
+    private GameBoard(){
         this.gui = new GUI();
         this.die = new Dice();
         this.players = setPlayers();
         this.guiArray = new GUI_Player[players];
         this.playerArray = new Player[players];
-        fields = Fields.makeFields();
+
 
     }
 
 
     public void startGame(){
         setPlayerNames();
+        fields = Fields.makeFields();
         playerTurn();
 
     }
@@ -48,7 +51,7 @@ public class GameBoard{
             }
         }
 
-return players;
+        return players;
     }
 
     public void setPlayerNames(){
@@ -115,22 +118,31 @@ return players;
     public void getPlayerTurn(){
         if (currentPlayer == guiArray[0]) {
             currentPlayer = guiArray[1];
-                player = playerArray[1];
+            player = playerArray[1];
 
         } else if (currentPlayer == guiArray[1]) {
             currentPlayer = guiArray[2%guiArray.length];
-             player = playerArray[2%playerArray.length];
+            player = playerArray[2%playerArray.length];
 
         } else if (currentPlayer == guiArray[2]) {
             currentPlayer = guiArray[3%guiArray.length];
-             player = playerArray[3%playerArray.length];
+            player = playerArray[3%playerArray.length];
 
         } else if (currentPlayer == guiArray[3]) {
             currentPlayer = guiArray[0];
-                player = playerArray[0];
+            player = playerArray[0];
         }
-    playerTurn();
+        playerTurn();
     }
 
 
+    public static GameBoard getINSTANS() {
+        return INSTANS;
+    }
+
+    public GUI_Player getCurrentPlayer(){
+        return currentPlayer;
+    }
+
 }
+
