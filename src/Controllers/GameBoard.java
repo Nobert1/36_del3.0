@@ -12,14 +12,14 @@ import java.awt.*;
 public class GameBoard{
 
     private static final GameBoard INSTANS = new GameBoard();
-    private GUI gui;
+    public GUI gui;
     private Dice die;
     private int players;
     private GUI_Player[] guiArray;
     private Player[] playerArray;
     private GUI_Player currentPlayer;
     private Player player;
-    private Fields[] fields;
+    private static final Fields[] fields = Fields.getFields();
 
 
 
@@ -36,7 +36,7 @@ public class GameBoard{
 
     public void startGame(){
         setPlayerNames();
-        fields = Fields.makeFields();
+        //fields = Fields.makeFields();
         playerTurn();
 
     }
@@ -57,7 +57,7 @@ public class GameBoard{
     public void setPlayerNames(){
         for (int i = 0; i < players; i++) {
             String name = gui.getUserString("What would you like your name to be?");
-            playerArray[i] = new Player("player" + i);
+            playerArray[i] = new Player(name);
             String[] arr = {"CAR", "RACECAR", "UFO", "TRACTOR"};
             String a = gui.getUserButtonPressed("Which icon would you like to have?", arr);
             String[] arr1 = {"White", "Black", "Red", "Blue"};
@@ -109,6 +109,7 @@ public class GameBoard{
     public void applySquareLogic() {
 
         int i = currentPlayer.getPlacement();
+        fields[i].OutputToGUI();
         fields[i].FieldFunctionality();
 
         getPlayerTurn();
@@ -140,8 +141,16 @@ public class GameBoard{
         return INSTANS;
     }
 
+    public static Fields[] getFIELD(){
+        return fields;
+    }
+
     public GUI_Player getCurrentPlayer(){
         return currentPlayer;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
 }

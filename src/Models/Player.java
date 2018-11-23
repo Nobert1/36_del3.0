@@ -48,7 +48,7 @@ public class Player {
     }
 
     public int setCurrentposition(int newPosition){
-        currentPosition = newPosition;
+        currentPosition = newPosition %  24;
         return currentPosition;
     }
 
