@@ -5,7 +5,7 @@ import Controllers.GameBoard;
 
 public class Start extends Fields {
 
-    private GameBoard gb = GameBoard.getINSTANS();
+    private GameBoard gb = GameBoard.getInstance();
 
     public Start(int position, String name) {
         super(position, name);
@@ -16,8 +16,7 @@ public class Start extends Fields {
     @Override
     public void FieldFunctionality() {
 
-        int i = gb.getCurrentPlayer().getBalance() + 2;
-        gb.getCurrentPlayer().setBalance(i);
+
     }
 
     @Override
@@ -27,7 +26,10 @@ public class Start extends Fields {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Youlanded" + getPosition() + "which is the " + getName() + "Square";
+    }
 }
 
 /**

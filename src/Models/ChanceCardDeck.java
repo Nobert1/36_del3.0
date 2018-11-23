@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class ChanceCardDeck {
-    Scanner scan = new Scanner(System.in);
+
     private ChanceCards[] Deck;
     private GUI gui;
     private GUI_Player gui_player;
@@ -43,7 +43,7 @@ public class ChanceCardDeck {
         Deck[18] = new ChanceCards("Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE",19);
         Deck[19] = new ChanceCards("Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE",20);
 
-        //Shufflecards();
+        Shufflecards();
 
         //Konstruktøren skal muligvis have fjernet sit navn og tilføjet en int værdi i stedet som vi kan bruge i case systemmet.
     }

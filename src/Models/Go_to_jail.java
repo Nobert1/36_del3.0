@@ -5,7 +5,7 @@ import gui_fields.GUI_Player;
 public class Go_to_jail extends Fields {
 
 
-    private GameBoard gb = GameBoard.getINSTANS();
+    private GameBoard gb = GameBoard.getInstance();
     int jailtime;
 
 
@@ -27,5 +27,10 @@ public class Go_to_jail extends Fields {
         gb.gui.showMessage(toString());
 
 
+    }
+
+    @Override
+    public String toString() {
+        return "You landed on number " + getPosition() + "You are going to jail :/";
     }
 }

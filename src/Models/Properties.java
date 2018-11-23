@@ -1,8 +1,7 @@
 package Models;
 
 import Controllers.GameBoard;
-
-import java.lang.reflect.Field;
+import gui_fields.GUI_Player;
 
 
 public class Properties extends Fields {
@@ -12,8 +11,8 @@ public class Properties extends Fields {
     String colour;
     public boolean owned;
     private Player owner;
-    private GameBoard gb = GameBoard.getINSTANS();
-    private Fields[] fields = GameBoard.getFIELD();
+    private GameBoard gb = GameBoard.getInstance();
+    private Board fields = gb.getFIELDSINSTANS();
 
 
 
@@ -23,8 +22,6 @@ public class Properties extends Fields {
     this.price = price;
     this.colour = colour;
     this.owned = false;
-   // this.gb = new GameBoard();
-
 
 
 }
@@ -32,20 +29,23 @@ public class Properties extends Fields {
     @Override
     public String toString() {
         if(this.owned){
-            return "You landed on square " + this.position + " which is owned by " + this.owner.getName() + " the rent is " + this.price + " dollar(s).";
+            return "You landed on square " + this.position + " which is owned by " + this.owner.getName() +
+                    " the rent is " + this.price + " dollar(s).";
         } else
         return "You landed on square " + this.position + " the price is " + this.price + " dollar(s).";
     }
     public void setOwned(boolean owned) {
 
-        this.owned = owned;
+        this.owned = true;
         setOwner();
+
     }
 
     public void setOwner(){
         this.owner = gb.getPlayer();
-        int newBalance = gb.getCurrentPlayer().getBalance() - getPrice();
-        gb.getCurrentPlayer().setBalance(newBalance);
+        int newBalance = gb.getCurrentGUIPlayer().getBalance() - getPrice();
+        gb.getCurrentGUIPlayer().setBalance(newBalance);
+        this.name += "\n" + getOwner();
     }
 
     public Player getOwner(){
@@ -53,37 +53,41 @@ public class Properties extends Fields {
   }
 
     public int getPrice() {
-        return price;
+        return this.price;
     }
 
-    //man skal betale dobblet hvis man ejer to af samme farve)
+    //man skal betale dobblet hvis man ejer to af samme farve
     public void payRent(){
         int counter = 0;
         Properties[] propArray = new Properties[16];
-        for (int i = 0; i < fields.length; i++) {
-            String s1 = String.valueOf(fields[i].getClass());
+        int newPrice = getPrice();
 
-            if (fields[i].getClass() == fields[getPosition()].getClass()) {
 
-                propArray[counter] = (Properties) fields[i];
+        /*for (int i = 0; i < 24; i++) {
+
+            if (fields.getField(gb.getCurrentGUIPlayer().getPlacement()).getClass() == fields.getField(i).getClass()) {
+
+                propArray[counter] = (Properties) fields.getField(i);
                 counter++;
+
             }
         }
 
-        int newPrice = getPrice();
 
-        if(propArray[gb.getPlayer().getCurrentPosition()].getOwner() == propArray[gb.getPlayer().getCurrentPosition()+1].getOwner() ||
+        if  (propArray[gb.getPlayer().getCurrentPosition()].getOwner() == propArray[gb.getPlayer().getCurrentPosition()+1].getOwner() ||
                 propArray[gb.getPlayer().getCurrentPosition()].getOwner() == propArray[gb.getPlayer().getCurrentPosition()-1].getOwner()){
             newPrice = getPrice() * 2;
             gb.gui.showMessage("Because " + getOwner() + " owns both properties the rent is doubled");
-        }
+        }*/
 
-        int newBalance = gb.getPlayer().getAccount().getBalance() - newPrice;
-        gb.getCurrentPlayer().setBalance(newBalance);
-        int newBalance1 = owner.getAccount().getBalance() + newPrice;
-        owner.getAccount().setBalance(newBalance1);
-        gb.getCurrentPlayer().setBalance(newBalance1);
-    }
+        gb.getPlayer().getAccount().withdraw(newPrice);
+
+        owner.getAccount().deposit(newPrice);
+
+
+
+            }
+
 
     public String getColour() {
         return colour;
@@ -97,7 +101,6 @@ public class Properties extends Fields {
             setOwned(true);
         } else {
             payRent();
-
         }
 
     }
@@ -108,6 +111,7 @@ public class Properties extends Fields {
 
 
     }
+
 
 }
 
