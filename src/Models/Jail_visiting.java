@@ -9,7 +9,7 @@ public class Jail_visiting extends Fields {
     private int position;
     private int jailtime;
     private String name;
-    private GameBoard gb = GameBoard.getINSTANS();
+    private GameBoard gb = GameBoard.getInstance();
 
 
     public Jail_visiting(int position, String name, int jailtime) {
@@ -37,4 +37,10 @@ public class Jail_visiting extends Fields {
 
 
     }
+
+    @Override
+    public String toString() {
+    return "You landed on number " + getPosition() + "Luckily you are just visiting";
+    }
+
 }
