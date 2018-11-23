@@ -5,19 +5,26 @@ import Controllers.GameBoard;
 
 public class Start extends Fields {
 
-   // private GameBoard gb;
+    private GameBoard gb = GameBoard.getINSTANS();
 
     public Start(int position, String name) {
         super(position, name);
-        //this.gb = new GameBoard();
+
 
     }
 
     @Override
     public void FieldFunctionality() {
 
-      //  int i = gb.getCurrentPlayer().getBalance() + 2;
-       // gb.getCurrentPlayer().setBalance(i);
+        int i = gb.getCurrentPlayer().getBalance() + 2;
+        gb.getCurrentPlayer().setBalance(i);
+    }
+
+    @Override
+    public void OutputToGUI(){
+        gb.gui.showMessage(toString());
+
+
     }
 
 
