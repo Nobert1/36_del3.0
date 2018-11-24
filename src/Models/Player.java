@@ -3,6 +3,12 @@ package Models;
 import Controllers.GameBoard;
 import gui_fields.GUI_Player;
 
+/**
+ * Player class is working very well at the moment. All of the logic GUI_Player used to have is passed on to this class.
+ * GUI_Player now uses Player as it's information expert.
+ * - comment by Gustav
+ */
+
 public class Player {
 
     private String name;
@@ -34,23 +40,26 @@ public class Player {
         return account;
     }
 
-    public void isInJail(){
-        inJail = true;
-    }
-
-    public void isFree(){
-        inJail = false;
-    }
-
-    public void isBroke() {
-        isBroke = true;
-    }
 
     public int getCurrentPosition(){
         return currentPosition;
     }
+    public boolean getInJail() {
+        return this.inJail;
+    }
 
     public void setCurrentPosition(int currentPosition) {
         this.currentPosition = currentPosition;
+    }
+
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
+    }
+
+    public void setBroke(boolean broke) {
+        isBroke = broke;
+    }
+    public boolean getBroke() {
+        return this.isBroke;
     }
 }

@@ -1,7 +1,10 @@
 package Models;
-
 import Controllers.GameBoard;
 
+/**
+ * Also relatively simple class. The only special thing about it is the polymorphic methods.
+ * - comment by Gustav
+ */
 public class Chance_Square extends Fields {
 
 

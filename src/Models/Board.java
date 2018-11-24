@@ -1,6 +1,11 @@
 
 package Models;
-import Controllers.GameBoard;
+
+/**
+ * Only way i could figure out how to pass a board instance to the Gameboard class was by making this class and making the call static.
+ * Took me three fucking hours so no messing around.
+ * - comment by Gustav
+ */
 
 public class Board {
 
@@ -9,7 +14,7 @@ public class Board {
     public Board() {
 
         fields = new Fields[24];
-        fields[0] = new Start(0, "start");
+        fields[0] = new FunctionlessSquare(0, "start");
         fields[1] = new Properties(1, "GATEKJØKKENET \n BURGERBAREN", 1, "BROWN");
         fields[2] = new Properties(2, "Pizzahuset \n Pizzeriaet", 1, "BROWN");
         fields[3] = new Chance_Square(3, "Chancen");
@@ -21,7 +26,7 @@ public class Board {
         fields[9] = new Chance_Square(9, "Try your luck");
         fields[10] = new Properties(10, "Rullebretparken \n Skateparken", 2, "Orange");
         fields[11] = new Properties(11, "Svømmebassenget \n Swimmingpoolen", 2, "Orange");
-        fields[12] = new Start(12, "Parkering");
+        fields[12] = new FunctionlessSquare(12, "Parkering");
         fields[13] = new Properties(13, "Spillehallen \n Spillehallen", 3, "red");
         fields[14] = new Properties(14, "Kinoen \n Biografen", 3, "red");
         fields[15] = new Chance_Square(15, "Chancesquare");
