@@ -104,9 +104,14 @@ public class GameBoard {
     public void movePlayer() {
 
         gui.getFields()[currentGUIPlayer.getPlacement()].setCar(currentGUIPlayer, false);
-        player.setCurrentposition(player.getCurrentPosition() + die.getValue());
+
+        player.setCurrentPosition(player.getCurrentPosition() + die.getValue());
+
         checkforStart();
-        gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, true);
+
+        currentGUIPlayer.setPlacement(player.getCurrentPosition());
+
+        gui.getFields()[currentGUIPlayer.getPlacement()].setCar(currentGUIPlayer, true);
 
 
         applySquareLogic();
@@ -117,12 +122,14 @@ public class GameBoard {
     public void applySquareLogic() {
 
         int i = currentGUIPlayer.getPlacement();
-        //BOARDINSTANS[i].getFields();
+
         FIELDSINSTANS.getField(i).OutputToGUI();
         FIELDSINSTANS.getField(i).FieldFunctionality();
 
-        getPlayerTurn();
+        gui.showMessage("The current players balance is == " + player.getAccount().getBalance());
         updatePlayerBalances();
+
+        getPlayerTurn();
     }
 
     public void getPlayerTurn() {
@@ -146,12 +153,20 @@ public class GameBoard {
     }
 
 
+    /**
+     * Getters for the other classes to use.
+     * @return
+     */
     public GUI_Player getCurrentGUIPlayer() {
         return currentGUIPlayer;
     }
 
     public Player getPlayer() {
         return player;
+    }
+
+    public int getPlayers() {
+        return players;
     }
 
     public Board getFIELDSINSTANS() {
@@ -161,6 +176,11 @@ public class GameBoard {
     public static GameBoard getInstance() {
         return Instans;
     }
+    public GUI_Player[] getGuiArray() {
+        return guiArray;
+    }
+
+
 
     public String print() {
         String output = "";
@@ -170,9 +190,6 @@ public class GameBoard {
         return output;
     }
 
-    public GUI_Player[] getGuiArray() {
-        return guiArray;
-    }
 
     public void updatePlayerBalances() {
 
@@ -181,9 +198,9 @@ public class GameBoard {
     }
 
     public void checkforStart() {
-        if (player.getCurrentPosition() > 24) {
+        if (player.getCurrentPosition() > 23) {
             player.getAccount().deposit(2);
-            player.setCurrentposition(player.getCurrentPosition() % 24);
+            player.setCurrentPosition(player.getCurrentPosition() % 24);
         }
     }
     }
