@@ -1,8 +1,13 @@
 package Models;
-
 import Controllers.GameBoard;
 import gui_fields.GUI_Player;
 
+
+/**
+ * Atm this class is a litle bit messy, it needs some cleaning up after we figure out what to do with double rent.
+ * Everything else is working like a german machine.
+ * - comment by Gustav
+ */
 
 public class Properties extends Fields {
 
@@ -44,7 +49,7 @@ public class Properties extends Fields {
     public void setOwner(){
         this.owner = gb.getPlayer();
         gb.getPlayer().getAccount().withdraw(getPrice());
-        //this.name += "\n" + getOwner();
+
     }
 
     public Player getOwner(){
@@ -83,12 +88,11 @@ public class Properties extends Fields {
             gb.gui.showMessage("Because " + getOwner() + " owns both properties the rent is doubled");
         }*/
 
-        gb.getPlayer().getAccount().withdraw(newPrice);
-
         owner.getAccount().deposit(newPrice);
 
+        gb.getPlayer().getAccount().withdraw(newPrice);
 
-            }
+    }
 
 
     public String getColour() {

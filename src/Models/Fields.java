@@ -1,11 +1,12 @@
 package Models;
 
-import Controllers.GameBoard;
-import gui_codebehind.GUI_FieldFactory;
-import gui_fields.GUI_Field;
-import gui_main.GUI;
 
-import java.lang.reflect.Field;
+/**
+ * Currently abstract and working as nice as it feels to wipe your ass with silk.
+ * The to String method is probably not needed and perhaps the getFields method, since they are actually rarely used.
+ * They are actually only used in the method that tries to double the rent, and that is not really working to hot.
+ * - comment by Gustav
+ */
 
 public abstract class Fields  {
 
@@ -23,18 +24,13 @@ public abstract class Fields  {
 
     }
 
-    public Fields() {
-
-        makeFields();
-
-        }
 
 
     public Fields[] getFields() {
         return fields;
     }
 
-
+@Override
     public String toString() {
         String o = "";
         for (int i = 0; i < fields.length; i++) {
@@ -61,7 +57,7 @@ public abstract class Fields  {
     public Fields[] makeFields() {
 
         fields = new Fields[24];
-        fields[0] = new Start(0, "start");
+        fields[0] = new FunctionlessSquare(0, "start");
         fields[1] = new Properties(1, "GATEKJØKKENET \n BURGERBAREN", 1, "BROWN");
         fields[2] = new Properties(2, "Pizzahuset \n Pizzeriaet", 1, "BROWN");
         fields[3] = new Chance_Square(3, "Chancen");
@@ -73,7 +69,7 @@ public abstract class Fields  {
         fields[9] = new Chance_Square(9, "Try your luck");
         fields[10] = new Properties(10, "Rullebretparken \n Skateparken", 2, "Orange");
         fields[11] = new Properties(11, "Svømmebassenget \n Swimmingpoolen", 2, "Orange");
-        fields[12] = new Start(12, "Parkering");
+        fields[12] = new FunctionlessSquare(12, "Parkering");
         fields[13] = new Properties(13, "Spillehallen \n Spillehallen", 3, "red");
         fields[14] = new Properties(14, "Kinoen \n Biografen", 3, "red");
         fields[15] = new Chance_Square(15, "Chancesquare");

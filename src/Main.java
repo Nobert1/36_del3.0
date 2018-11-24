@@ -2,7 +2,11 @@ import Controllers.GameBoard;
 
 public class Main {
 
-
+    /**
+     * Nothing much to be said.
+     * - comment by Gustav
+     * @param args
+     */
    //public Main() { new GUI()}
 
     public static void main(String[] args) {
