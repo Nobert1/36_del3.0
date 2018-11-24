@@ -1,13 +1,16 @@
 package Models;
-
 import Models.BankAccount;
 import Models.ChanceCards;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-
-
 import java.util.Scanner;
 import java.util.Random;
+
+/**
+ * Currently still needs some work, how we implement it in the Gameboard also needs some looking at before we
+ * continue with writing methods. We may need to make the instance static like we did with the Board instance of the Fields class.
+ * - comment by Gustav
+ */
 
 public class ChanceCardDeck {
 

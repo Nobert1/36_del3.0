@@ -1,5 +1,9 @@
 package Models;
 
+/**
+ * Very simple class, probably finished
+ * - comment by Gustav
+ */
 public class ChanceCards {
     private String Description;
     private String name;
