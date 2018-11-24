@@ -1,60 +1,17 @@
+
 package Models;
 
-
 /**
- * Currently abstract and working as nice as it feels to wipe your ass with silk.
- * The to String method is probably not needed and perhaps the getFields method, since they are actually rarely used.
- * They are actually only used in the method that tries to double the rent, and that is not really working to hot.
+ * Only way i could figure out how to pass a board instance to the Gameboard class was by making this class and making the call static.
+ * Took me three fucking hours so no messing around.
  * - comment by Gustav
  */
 
-public abstract class Fields  {
+public class Board {
 
-    protected int position;
-    protected String name;
     private Fields[] fields;
-    //private Fields[] FIELDINSTANS = GameBoard.getFIELDINSTANS();
 
-
-
-    public Fields(int position, String name) {
-
-        this.position = position;
-        this.name = name;
-
-    }
-
-
-
-    public Fields[] getFields() {
-        return fields;
-    }
-
-@Override
-    public String toString() {
-        String o = "";
-        for (int i = 0; i < fields.length; i++) {
-            o += fields[i].getName() + "\n";
-        }
-        return o;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-
-    public abstract void FieldFunctionality();
-
-    public abstract void OutputToGUI();
-
-
-
-    public Fields[] makeFields() {
+    public Board() {
 
         fields = new Fields[24];
         fields[0] = new FunctionlessSquare(0, "start");
@@ -81,15 +38,23 @@ public abstract class Fields  {
         fields[21] = new Chance_Square(21, "Try your luck");
         fields[22] = new Properties(22, "Vannlandet  \n Vandlandet", 4, "DARK BLUE");
         fields[23] = new Properties(23, "Strandpromenaden  \n Strandpromenaden", 4, "DARK BLUE");
-        return fields;
 
     }
 
 
-    public void setFields(Fields[] fields) {
-        this.fields = fields;
+    public Fields getField(int position) {
+        return fields[position];
+    }
+
+    public String toString() {
+        String o = "";
+        for (int i = 0; i < fields.length; i++) {
+            o += fields[i].getName() + "\n";
+        }
+        return o;
     }
 }
+
 
 
 
