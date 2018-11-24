@@ -1,6 +1,13 @@
 package Controllers;
 
 import Models.*;
+
+import Models.ChanceCardDeck;
+import Models.Dice;
+import Models.Fields;
+import Models.Player;
+import Out.gui_out;
+import gui_codebehind.GUI_BoardController;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
@@ -27,6 +34,10 @@ public class GameBoard {
     public GUI gui;
     private Dice die;
     private int players;
+    private GUI_Player[] guiArray;
+    private Player[] playerArray;
+    private GUI_Player currentPlayer;
+    private ChanceCardDeck chanceCardDeck;
 
     public GUI_Player[] guiArray;
     private Player[] playerArray;
@@ -48,12 +59,11 @@ public class GameBoard {
         this.guiArray = new GUI_Player[players];
         this.playerArray = new Player[players];
 
-
     }
 
 
     public void startGame() {
-
+  
         setPlayerNames();
         playerTurn();
     }
@@ -120,6 +130,8 @@ public class GameBoard {
 
 
         gui.showMessage("It is " + currentGUIPlayer.getName() + "'s turn. Press enter to roll the dice.");
+        gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
+      
         die.roll();
         gui.setDie(die.getValue());
         movePlayer();
@@ -146,6 +158,7 @@ public class GameBoard {
 
         gui.getFields()[currentGUIPlayer.getPlacement()].setCar(currentGUIPlayer, true);
         gui.displayChanceCard();
+       
 
 
         applySquareLogic();
