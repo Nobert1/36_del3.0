@@ -1,5 +1,6 @@
 package Models;
 
+import Controllers.GameBoard;
 import gui_fields.GUI_Player;
 
 public class Player {
@@ -9,12 +10,14 @@ public class Player {
     private boolean inJail;
     private boolean isBroke;
     private int currentPosition;
+    private GameBoard gb = GameBoard.getInstance();
+
 
 
     public Player(String name) {
 
         this.name = name;
-        this.account = new BankAccount(0);
+        this.account = new BankAccount(24-2*gb.getPlayers());
         this.inJail = false;
         this.isBroke = false;
         this.currentPosition = 0;
@@ -47,13 +50,7 @@ public class Player {
         return currentPosition;
     }
 
-    public int setCurrentposition(int newPosition){
-
-        currentPosition = newPosition %  24;
-        return currentPosition;
+    public void setCurrentPosition(int currentPosition) {
+        this.currentPosition = currentPosition;
     }
-
-
-
-
 }

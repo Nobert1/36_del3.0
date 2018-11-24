@@ -43,9 +43,8 @@ public class Properties extends Fields {
 
     public void setOwner(){
         this.owner = gb.getPlayer();
-        int newBalance = gb.getCurrentGUIPlayer().getBalance() - getPrice();
-        gb.getCurrentGUIPlayer().setBalance(newBalance);
-        this.name += "\n" + getOwner();
+        gb.getPlayer().getAccount().withdraw(getPrice());
+        //this.name += "\n" + getOwner();
     }
 
     public Player getOwner(){
@@ -63,19 +62,23 @@ public class Properties extends Fields {
         int newPrice = getPrice();
 
 
+        /**
+         * Den her fremgangsmåde virker ikke og det kommer den nok hellere ikke til. For nu tror jeg ikke det er
+         * der hvor vi skal lægge vores tid. Den .getclass funktion vi kalder ved vi i bund og grund ikke hvad gør
+         * og jeg tror heller ikke den kommer til at kunne gøre noget fedt.
+         */
         /*for (int i = 0; i < 24; i++) {
-
-            if (fields.getField(gb.getCurrentGUIPlayer().getPlacement()).getClass() == fields.getField(i).getClass()) {
+            //if (fields.getField(i).getClass() == Properties.class) {
+            if(fields.getField(gb.getPlayer().getCurrentPosition()).getClass() == fields.getField(i).getClass()) {
 
                 propArray[counter] = (Properties) fields.getField(i);
                 counter++;
 
-            }
-        }
+            } }
 
 
         if  (propArray[gb.getPlayer().getCurrentPosition()].getOwner() == propArray[gb.getPlayer().getCurrentPosition()+1].getOwner() ||
-                propArray[gb.getPlayer().getCurrentPosition()].getOwner() == propArray[gb.getPlayer().getCurrentPosition()-1].getOwner()){
+                propArray[gb.getPlayer().getCurrentPosition()].getOwner() == propArray[gb.getPlayer().getCurrentPosition()-1].getOwner()) {
             newPrice = getPrice() * 2;
             gb.gui.showMessage("Because " + getOwner() + " owns both properties the rent is doubled");
         }*/
@@ -83,7 +86,6 @@ public class Properties extends Fields {
         gb.getPlayer().getAccount().withdraw(newPrice);
 
         owner.getAccount().deposit(newPrice);
-
 
 
             }
