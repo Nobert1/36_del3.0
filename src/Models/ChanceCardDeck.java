@@ -1,4 +1,5 @@
 package Models;
+import Controllers.GameBoard;
 import Models.BankAccount;
 import Models.ChanceCards;
 import gui_fields.GUI_Player;
@@ -20,7 +21,7 @@ public class ChanceCardDeck {
     private ChanceCards[] Deck;
     private GUI gui;
     private GUI_Player gui_player;
-
+    private GameBoard gb = new GameBoard().getInstance();
     private final int maxValue = 20;
 
 
@@ -71,7 +72,7 @@ public class ChanceCardDeck {
     }
 
 
-    public ChanceCards DrawCard(GUI_Player currentplayer, GUI gui) {
+    public ChanceCards DrawCard() {
         ChanceCards[] korttemp = this.Deck;
         ChanceCards firstCardKort = this.Deck[0];
 
@@ -86,9 +87,9 @@ public class ChanceCardDeck {
                 break;
             case 2:
                 //Move to START and recive 2$
-                gui.getFields()[0].setCar(currentplayer, false);
-                currentplayer.setBalance(currentplayer.getBalance() + 2);
-                gui.getFields()[0].setCar(currentplayer, true);
+                gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
+                gb.getCurrentGUIPlayer().setBalance(gb.getCurrentGUIPlayer().getBalance() + 2);
+                gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
                 break;
             case 3:
                 // Move up to 5 fields forward
@@ -96,26 +97,26 @@ public class ChanceCardDeck {
                 String userIn = gui.getUserButtonPressed("How many fields do you want to move forward?", arr1);
                 switch (userIn) {
                     case "1":
-                        gui.getFields()[0].setCar(currentplayer, false);
-                        currentplayer.setPlacement(currentplayer.getPlacement() + 1);
-                        gui.getFields()[0].setCar(currentplayer, true);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
+                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 1);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
                         break;
                     case "2":
-                        gui.getFields()[0].setCar(currentplayer, false);
-                        currentplayer.setPlacement(currentplayer.getPlacement() + 2);
-                        gui.getFields()[0].setCar(currentplayer, true);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
+                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 2);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
                     case "3":
-                        gui.getFields()[0].setCar(currentplayer, false);
-                        currentplayer.setPlacement(currentplayer.getPlacement() + 3);
-                        gui.getFields()[0].setCar(currentplayer, true);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
+                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 3);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
                     case "4":
-                        gui.getFields()[0].setCar(currentplayer, false);
-                        currentplayer.setPlacement(currentplayer.getPlacement() + 4);
-                        gui.getFields()[0].setCar(currentplayer, true);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
+                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 4);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
                     case "5":
-                        gui.getFields()[0].setCar(currentplayer, false);
-                        currentplayer.setPlacement(currentplayer.getPlacement() + 5);
-                        gui.getFields()[0].setCar(currentplayer, true);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
+                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 5);
+                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
                 }
                 break;
             case 4:
@@ -123,20 +124,20 @@ public class ChanceCardDeck {
             case 5:
                 // Move 1 square forward or take another card
                 String arr2[] = {"Move","Draw"};
-                gui.getUserButtonPressed("Choose one: move one field forward or draw another card", arr2);
-                if(arr2.equals("move")) {
-                    gui.getFields()[0].setCar(currentplayer, false);
-                    currentplayer.setPlacement(currentplayer.getPlacement() + 1);
-                    gui.getFields()[currentplayer.getPlacement()].setCar(currentplayer, false);
+                String answer1 = gui.getUserButtonPressed("Choose one: move one field forward or draw another card", arr2);
+                if(answer1.equals("move")) {
+                    gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
+                    gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 1);
+                    gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), false);
                 } else {
-                    DrawCard(currentplayer, gui);
+                    DrawCard();
                 }
                 break;
             case 6:
                 break;
             case 7:
                 // You ate too much candy, pay 2$ to the bank
-                currentplayer.setBalance(currentplayer.getBalance() + 2);
+                gb.getCurrentGUIPlayer().setBalance(gb.getCurrentGUIPlayer().getBalance() + 2);
                 break;
             case 8:
 
@@ -145,8 +146,8 @@ public class ChanceCardDeck {
                 break;
             case 10:
                 // Move to Strandpromenaden
-                gui.getFields()[0].setCar(currentplayer, false);
-                gui.getFields()[23].setCar(currentplayer, true);
+                gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
+                gui.getFields()[23].setCar(gb.getCurrentGUIPlayer(), true);
                 break;
             case 11:
                 break;
