@@ -20,11 +20,9 @@ public class Dice {
     }
     public int roll() {
         value = random.nextInt(maxValue) + 1;
-        return this.value;
-    }
+        return this.value; }
 
     public int getValue() {
         return value;
     }
-
 }

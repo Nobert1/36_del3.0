@@ -24,6 +24,7 @@ import java.awt.*;
 public class GameBoard {
 
     private static GameBoard Instans = new GameBoard();
+    private static final Board FIELDSINSTANS = new Board();
     public GUI gui;
     private Dice die;
     private int players;
@@ -32,7 +33,6 @@ public class GameBoard {
     private Player[] playerArray;
     private GUI_Player currentGUIPlayer;
     private Player player;
-    private static final Board FIELDSINSTANS = new Board();
 // Board skal være statisk ellers får vi en exception der hedder Initalization. Dvs at det board er ikke oprettet når programmet gerne
     // Vil benytte sig af det, der er muligvis et fix.
 
@@ -98,8 +98,9 @@ public class GameBoard {
                 case "Blue":
                     c = Color.BLUE;
                     break;
-                default:
-                    c = Color.BLACK;
+                    default:
+                        c = Color.BLACK;
+                        break;
             }
             GUI_Car Car = new GUI_Car(c, c, GUI_Car.Type.getTypeFromString(a), GUI_Car.Pattern.DOTTED);
             GUI_Player spiller = new GUI_Player(name, 24 - 2 * players, Car, 0);
@@ -119,6 +120,7 @@ public class GameBoard {
     public void playerTurn() {
 
 
+
         gui.showMessage("It is " + currentGUIPlayer.getName() + "'s turn. Press enter to roll the dice.");
         die.roll();
         gui.setDie(die.getValue());
@@ -131,22 +133,15 @@ public class GameBoard {
      */
     public void movePlayer() {
 
-        if (player.getInJail() == true) {
-            player.setInJail(false);
-            gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment");
-        } else
 
-            gui.getFields()[currentGUIPlayer.getPlacement()].setCar(currentGUIPlayer, false);
+
+        gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, false);
 
         player.setCurrentPosition(player.getCurrentPosition() + die.getValue());
 
         checkforStart();
 
-        currentGUIPlayer.setPlacement(player.getCurrentPosition());
-
-        gui.getFields()[currentGUIPlayer.getPlacement()].setCar(currentGUIPlayer, true);
-        gui.displayChanceCard();
-
+        gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, true);
 
         applySquareLogic();
 
@@ -157,7 +152,7 @@ public class GameBoard {
      */
     public void applySquareLogic() {
 
-        int i = currentGUIPlayer.getPlacement();
+        int i = player.getCurrentPosition();
 
         FIELDSINSTANS.getField(i).OutputToGUI();
         FIELDSINSTANS.getField(i).FieldFunctionality();
@@ -165,6 +160,7 @@ public class GameBoard {
         updatePlayerBalances();
         CheckforBroke();
         getPlayerTurn();
+
     }
 
     /** Sets the current player object to a new player, so we can switch turns
@@ -188,47 +184,6 @@ public class GameBoard {
             player = playerArray[0];
         }
         playerTurn();
-    }
-
-
-    /**
-     * Getters for the other classes to use when they refer to the board.
-     * - comment by Gustav
-     */
-    public GUI_Player getCurrentGUIPlayer() {
-        return currentGUIPlayer;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public int getPlayers() {
-        return players;
-    }
-
-    public Board getFIELDSINSTANS() {
-        return FIELDSINSTANS;
-    }
-
-    public static GameBoard getInstance() {
-        return Instans;
-    }
-
-    public GUI_Player[] getGuiArray() {
-        return guiArray;
-    }
-
-    /** Print statement for test purposes, probably have to be deleted.
-     * - comment by Gustav
-     */
-
-    public String print() {
-        String output = "";
-        for (int i = 0; i < getGuiArray().length; i++) {
-            output += guiArray[i].getName() + "\n";
-        }
-        return output;
     }
 
     /** Method to sync the balance in the GUI with the actual players balance.
@@ -276,9 +231,36 @@ public class GameBoard {
                 gui.close();
                 System.exit(0);
 
-            }
+                } } }
+
+    /** Checks for in Jail, setup so it's ready for the chancecard.
+     * - comment by Gustav
+     */
+    public void checkforInJail() {
+        if (player.getInJail() == true && player.getJailFreecard() == true) {
+            player.setJailFreecard(false);
         }
-    }
+        else if (player.getInJail() == true) {
+            player.setInJail(false);
+            gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment");
+            getPlayerTurn();
+        } }
+
+    /**
+     * Getters for the other classes to use when they refer to the board.
+     * - comment by Gustav
+     */
+    public GUI_Player getCurrentGUIPlayer() { return currentGUIPlayer; }
+
+    public Player getPlayer() { return player; }
+
+    public int getPlayers() { return players; }
+
+    public Board getFIELDSINSTANS() { return FIELDSINSTANS; }
+
+    public static GameBoard getInstance() { return Instans; }
+
+    public GUI_Player[] getGuiArray() { return guiArray; }
 }
 
 

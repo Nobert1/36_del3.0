@@ -20,7 +20,7 @@ public class Board {
         fields[3] = new Chance_Square(3, "Chancen");
         fields[4] = new Properties(4, "Godtebutikken \n Slikbutikken", 1, "Lightblue");
         fields[5] = new Properties(5, "ISKIOSKEN \n ISKIOSKEN", 1, "Lightblue");
-        fields[6] = new Jail_visiting(6, "Jail", 1);
+        fields[6] = new FunctionlessSquare(6, "Jail");
         fields[7] = new Properties(7, "Museet \n Museet", 2, "PINK");
         fields[8] = new Properties(8, "Bibloteket \n Bibloteket", 2, "PINK");
         fields[9] = new Chance_Square(9, "Try your luck");
@@ -32,7 +32,7 @@ public class Board {
         fields[15] = new Chance_Square(15, "Chancesquare");
         fields[16] = new Properties(16, "Leketøjsbutikken \n Legetøjsbutikken", 3, "YElLOW");
         fields[17] = new Properties(17, "Dyrebutikken \n Dyerhandlen", 3, "YElLOW");
-        fields[18] = new Go_to_jail(18, "Go to prison", 1);
+        fields[18] = new Go_to_jail(18, "Go to prison");
         fields[19] = new Properties(19, "Bowlinghallen \n Bowlinghallen", 4, "GREEN");
         fields[20] = new Properties(20, "Zoologisk have \n Zoo", 4, "GREEN");
         fields[21] = new Chance_Square(21, "Try your luck");
@@ -42,9 +42,7 @@ public class Board {
     }
 
 
-    public Fields getField(int position) {
-        return fields[position];
-    }
+    public Fields getField(int position) { return fields[position]; }
 
     public String toString() {
         String o = "";
