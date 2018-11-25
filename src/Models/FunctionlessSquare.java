@@ -13,28 +13,26 @@ public class FunctionlessSquare extends Fields {
 
     public FunctionlessSquare(int position, String name) {
         super(position, name);
-
-
     }
 
     @Override
-    public void FieldFunctionality() {
-
-    }
+    public void FieldFunctionality() {}
 
     @Override
     public void OutputToGUI(){
         gb.gui.showMessage(toString());
-
-
     }
 
     @Override
     public String toString() {
-        if (getPosition() == 0)
-        return "You landed" + getPosition() + "which is the start square, and it does litterally nowt";
+        if (getPosition() == 0) {
+        return "You landed on " + gb.getPlayer().getCurrentPosition()+ " which is the start square, and it does litterally nowt"; }
+
+        else if (getPosition() == 6){
+            return "You landed on " + gb.getPlayer().getCurrentPosition() + " which is the visting jail square, and it does litterally nowt"; }
+
         else {
-            return "You landed" + getPosition() + "which is the parkering square, and it also does litterally nowt";
-        }
+            return "You landed on " + gb.getPlayer().getCurrentPosition() + " which is the parking square, and it also does litterally nowt"; }
+
     }
 }

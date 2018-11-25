@@ -38,10 +38,7 @@ public class BankAccount {
     }
 
     // standard method for returning balance.
-    public int getBalance() {
-        return this.balance;
-
-    }
+    public int getBalance() { return this.balance; }
 
     public void setBalance(int balance) {
         this.balance = balance;
