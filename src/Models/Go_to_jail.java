@@ -36,7 +36,7 @@ public class Go_to_jail extends Fields {
 
     @Override
     public String toString() {
-        return "You landed on number " + getPosition() + "You are going to jail :/";
+        return "You landed on number " + getPosition() + "· You are going to jail :/";
     }
 
 }

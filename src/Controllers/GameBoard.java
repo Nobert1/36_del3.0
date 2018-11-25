@@ -133,16 +133,9 @@ public class GameBoard {
      */
     public void movePlayer() {
 
-
-
         gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, false);
-
-        player.setCurrentPosition(player.getCurrentPosition() + die.getValue());
-
-        checkforStart();
-
+        player.setCurrentPosition((player.getCurrentPosition() + die.getValue())%24);
         gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, true);
-
         applySquareLogic();
 
     }
@@ -157,8 +150,10 @@ public class GameBoard {
         FIELDSINSTANS.getField(i).OutputToGUI();
         FIELDSINSTANS.getField(i).FieldFunctionality();
 
+
         updatePlayerBalances();
         CheckforBroke();
+        checkforInJail();
         getPlayerTurn();
 
     }
@@ -197,16 +192,26 @@ public class GameBoard {
 
     /** Method to check if the player passed start
      * - comment by Gustav
+     * Updated so it shows message and does it if you pass or are on go.
+     * - Alex
      */
     public void checkforStart() {
-        if (player.getCurrentPosition() > 23) {
+        if (player.getCurrentPosition()+ die.getValue() >= 24 && player.getCurrentPosition() > 18) {
+            if(player.getCurrentPosition() == 0){
+                gui.showMessage("You landed on start so you collect 2 dollars!");
+            } else {
+                gui.showMessage("You passed go. Collect 2 dollars.");
+            }
             player.getAccount().deposit(2);
             player.setCurrentPosition(player.getCurrentPosition() % 24);
+            //getPlayerTurn();
         }
     }
 
     /** Looks for a winner.
      * - comment by Gustav
+     * Have added that if player 1 is the winner it can find his name
+     * - Alex
      */
     public void CheckforBroke() {
         String Winner = "";
@@ -221,7 +226,7 @@ public class GameBoard {
                 for (int i = 1; i < playerArray.length; i++) {
                     if (playerArray[i].getAccount().getBalance() > playerArray[i - 1].getAccount().getBalance()) {
                         Winner = playerArray[i].getName();
-                    }
+                    } else Winner = playerArray[0].getName();
                 }
 
                 gui.showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner +"! HUGE CONGRATS MAN");
@@ -235,16 +240,22 @@ public class GameBoard {
 
     /** Checks for in Jail, setup so it's ready for the chancecard.
      * - comment by Gustav
+     * Have added messages and that it costs 1 dollar to get out of jail
+     * - Alex
      */
     public void checkforInJail() {
         if (player.getInJail() == true && player.getJailFreecard() == true) {
+            gui.showMessage("You use your get out jail free card and are released next turn!");
             player.setJailFreecard(false);
         }
         else if (player.getInJail() == true) {
             player.setInJail(false);
-            gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment");
+            gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment\n" +
+                                  "You will be released next turn and it will cost you 1 dollar.");
+            getPlayer().getAccount().withdraw(1);
             getPlayerTurn();
-        } }
+        }
+    }
 
     /**
      * Getters for the other classes to use when they refer to the board.
