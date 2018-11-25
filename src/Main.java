@@ -2,12 +2,18 @@ import Controllers.GameBoard;
 
 public class Main {
 
-
+    /**
+     * Nothing much to be said.
+     * - comment by Gustav
+     * @param args
+     */
    //public Main() { new GUI()}
 
     public static void main(String[] args) {
-        GameBoard game = GameBoard.getINSTANS();
+
+        GameBoard game = GameBoard.getInstance();
         game.startGame();
+
 
         // Creates the variables needed for the game to run. The list contains all the player objects that are gonna be created.
         /*List<Object> playerlist = new ArrayList<>();

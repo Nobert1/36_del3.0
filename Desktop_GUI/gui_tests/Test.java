@@ -62,7 +62,7 @@ public class Test {
 //		gui.setDescriptionText(
 //			3,
 //			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ac libero lorem. Aliquam ligula mauris, luctus interdum malesuada non, adipiscing ut mauris.");
-//		gui.setTitleText(34, "Start");
+//		gui.setTitleText(34, "FunctionlessSquare");
 //		gui.setSubText(1, "Daniel2");
 //		gui.setDescriptionText(
 //			1,
@@ -73,7 +73,7 @@ public class Test {
 //		String desc = "description";
 //		String sub = "subtext";
 //		String title = "title";
-//		// Start - 1
+//		// FunctionlessSquare - 1
 //		fieldNr = 34;
 //		gui.setDescriptionText(fieldNr, desc + fieldNr);
 //		gui.setSubText(fieldNr, sub + fieldNr);

@@ -1,6 +1,10 @@
 package Models;
-
 import java.util.Random;
+
+/**
+ * Finished class, nothing needed here
+ * - comment by Gustav
+ */
 
 public class Dice {
     Random random = new Random();

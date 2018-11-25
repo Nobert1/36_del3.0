@@ -1,11 +1,22 @@
 package Models;
+import Models.BankAccount;
+import Models.ChanceCards;
+import gui_fields.GUI_Player;
+import gui_main.GUI;
 
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.util.Random;
 
+/**
+ * Currently still needs some work, how we implement it in the Gameboard also needs some looking at before we
+ * continue with writing methods. We may need to make the instance static like we did with the Board instance of the Fields class.
+ * - comment by Gustav
+ */
+
 public class ChanceCardDeck {
+
     private ChanceCards[] Deck;
     private GUI gui;
     private GUI_Player gui_player;
@@ -59,6 +70,7 @@ public class ChanceCardDeck {
         this.Deck = Cardtemp;
     }
 
+
     public ChanceCards DrawCard(GUI_Player currentplayer, GUI gui) {
         ChanceCards[] korttemp = this.Deck;
         ChanceCards firstCardKort = this.Deck[0];
@@ -67,6 +79,7 @@ public class ChanceCardDeck {
             this.Deck[i] = korttemp[(i + 1) % 20];
         }
         Deck[19] = firstCardKort;
+
 
         switch (Deck[19].getNumber()) {
             case 1:
