@@ -6,6 +6,8 @@ import Controllers.GameBoard;
  * not possible to definitly subject for deletion.
  * - comment by Gustav
  */
+
+
 public class Jail_visiting extends Fields {
 
     private int position;

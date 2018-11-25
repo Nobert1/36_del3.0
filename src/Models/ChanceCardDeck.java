@@ -7,7 +7,6 @@ import gui_main.GUI;
 
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-
 import java.util.Random;
 
 /**
@@ -21,7 +20,7 @@ public class ChanceCardDeck {
     private ChanceCards[] Deck;
     private GUI gui;
     private GUI_Player gui_player;
-    private GameBoard gb = new GameBoard().getInstance();
+    private GameBoard gb = GameBoard.getInstance();
     private final int maxValue = 20;
 
 
@@ -84,6 +83,7 @@ public class ChanceCardDeck {
 
         switch (Deck[19].getNumber()) {
             case 1:
+                // Give this card to the CAR and draw one more chancecard. CAR: On your next turn you have to move to any free square, and buy it. If none of the squares are free you have to buy one from another player
                 break;
             case 2:
                 //Move to START and recive 2$
@@ -92,34 +92,11 @@ public class ChanceCardDeck {
                 gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
                 break;
             case 3:
-                // Move up to 5 fields forward
-                String arr1[] = {"1","2","3","4","5"};
-                String userIn = gui.getUserButtonPressed("How many fields do you want to move forward?", arr1);
-                switch (userIn) {
-                    case "1":
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
-                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 1);
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
-                        break;
-                    case "2":
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
-                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 2);
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
-                    case "3":
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
-                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 3);
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
-                    case "4":
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
-                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 4);
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
-                    case "5":
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
-                        gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 5);
-                        gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), true);
-                }
+                //Move up to 5 fields forward
+                move2();
                 break;
             case 4:
+                // Move to an orange square, if the field is not owned you get it for free, otherwise you have to pay the owner rent
                 break;
             case 5:
                 // Move 1 square forward or take another card
@@ -134,44 +111,109 @@ public class ChanceCardDeck {
                 }
                 break;
             case 6:
+                // Give this card to the ship, and take another one. SHIP: on your next turn you have to sail to any unowned square and buy it. If all of the squares are owned you have to buy one from antoher player
                 break;
             case 7:
                 // You ate too much candy, pay 2$ to the bank
                 gb.getCurrentGUIPlayer().setBalance(gb.getCurrentGUIPlayer().getBalance() + 2);
                 break;
             case 8:
-
+                // Move to an orange or green square. If no one owns it you get it for free, else you have to play rent to the owner
                 break;
             case 9:
+                // Move to an lightblue square, if no one owns it you get it for free! otherwise you have to pay rent to the owner
                 break;
             case 10:
-                // Move to Strandpromenaden
-                gui.getFields()[0].setCar(gb.getCurrentGUIPlayer(), false);
-                gui.getFields()[23].setCar(gb.getCurrentGUIPlayer(), true);
+                //You are released without any cost, keep this card until you need it.
                 break;
             case 11:
+                // Move to Strandpromenaden
+                move1(23);
                 break;
             case 12:
+                //Give this card to the CAT and draw another one. CAT: On your next turn sneak onto any square and buy it. If all squares are owned you have to buy one from another player
                 break;
             case 13:
+                //Give this card to the DOG and draw another one. DOG: On your next turn jump onto any square and buy it. If all squares are owned you have to buy one from another player
                 break;
             case 14:
+                // It's your birthday! Everyone gives you 1$
                 break;
             case 15:
+                // Move to a pink or darkblue square, if no one owns the square you get it for free! Otherwise you have to pay the owner rent
                 break;
             case 16:
+                // You have made all of your homework, recive 2$ from the bank
+                gb.getCurrentGUIPlayer().setBalance(gb.getCurrentGUIPlayer().getBalance() + 2);
                 break;
             case 17:
+                // Move to a red square, if no one owns it you get it for free! Otherwise you have to pay the owner rent.
+                String redField[] = {gb.getFields()[13].getName(), gb.getFields()[14].getName()};
+                String answer2 = gui.getUserButtonPressed("Choose a field to land on: " + gb.getFields()[4].getName() + " eller " + gb.getFields()[5].getName(), redField);
+                // skal have skrevet en metode som der skal tjekke om feltet er ledigt, så give feltet til spilleren, ellers betale husleje.
                 break;
             case 18:
+                // Move to the skate park to do the perfect grind! If no one owns it you get it for free, otherwise pay the owner rent
+
                 break;
             case 19:
+                // Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.
+                String lbrField[] = {gb.getFields()[13].getName(), gb.getFields()[14].getName(), gb.getFields()[4].getName(), gb.getFields()[5].getName()};
+                String answer3 = gui.getUserButtonPressed("Choose a field to land on: " + gb.getFields()[13].getName() + " , " + gb.getFields()[14].getName() + " , " + gb.getFields()[4].getName() + " eller " + gb.getFields()[5].getName(), lbrField);
+                // skal have skrevet en metode som der skal tjekke om feltet er ledigt, så give feltet til spilleren, ellers betale husleje.
                 break;
             case 20:
+                // Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay the owner rent.
+                String byField[] = {gb.getFields()[1].getName(), gb.getFields()[2].getName(), gb.getFields()[16].getName(), gb.getFields()[17].getName()};
+                String answer4 = gui.getUserButtonPressed("Choose a field to land on: " + gb.getFields()[1].getName() + " , " + gb.getFields()[2].getName() + " , " + gb.getFields()[16].getName() + " eller " + gb.getFields()[17].getName(), byField);
+                // skal have skrevet en metode som der skal tjekke om feltet er ledigt, så give feltet til spilleren, ellers betale husleje.
                 break;
         }
         return firstCardKort;
     }
+
+
+
+    public int move1(int i) {
+        gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), false);
+        gui.getFields()[i].setCar(gb.getCurrentGUIPlayer(), true);
+        return i;
+    }
+
+    public void move2() {
+        // Move up to 5 fields forward
+        String arr1[] = {"1","2","3","4","5"};
+        String userIn = gui.getUserButtonPressed("How many fields do you want to move forward?", arr1);
+        switch (userIn) {
+            case "1":
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), false);
+                gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 1);
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), true);
+                break;
+            case "2":
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), false);
+                gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 2);
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), true);
+                break;
+            case "3":
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), false);
+                gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 3);
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), true);
+                break;
+            case "4":
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), false);
+                gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 4);
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), true);
+                break;
+            case "5":
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), false);
+                gb.getCurrentGUIPlayer().setPlacement(gb.getCurrentGUIPlayer().getPlacement() + 5);
+                gui.getFields()[gb.getCurrentGUIPlayer().getPlacement()].setCar(gb.getCurrentGUIPlayer(), true);
+                break;
+        }
+    }
+
+
 
     public String toString() {
         String output = "";

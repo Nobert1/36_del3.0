@@ -24,13 +24,11 @@ public abstract class Fields  {
 
     }
 
-
-
     public Fields[] getFields() {
         return fields;
     }
 
-@Override
+    @Override
     public String toString() {
         String o = "";
         for (int i = 0; i < fields.length; i++) {

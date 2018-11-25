@@ -31,6 +31,7 @@ import java.awt.*;
 public class GameBoard {
 
     private static GameBoard Instans = new GameBoard();
+    private static final Board FIELDSINSTANS = new Board();
     public GUI gui;
     private Dice die;
     private int players;
@@ -38,12 +39,10 @@ public class GameBoard {
     private Player[] playerArray;
     private GUI_Player currentPlayer;
     private ChanceCardDeck chanceCardDeck;
-
-    public GUI_Player[] guiArray;
-    private Player[] playerArray;
+    private Fields[] fields;
     private GUI_Player currentGUIPlayer;
     private Player player;
-    private static final Board FIELDSINSTANS = new Board();
+
 // Board skal være statisk ellers får vi en exception der hedder Initalization. Dvs at det board er ikke oprettet når programmet gerne
     // Vil benytte sig af det, der er muligvis et fix.
 
@@ -51,14 +50,13 @@ public class GameBoard {
      * Creates the gameboard instance.
      * - comment by Gustav
      */
-    public GameBoard() {
-
-        this.gui = new GUI();
-        this.die = new Dice();
-        this.players = setPlayers();
-        this.guiArray = new GUI_Player[players];
-        this.playerArray = new Player[players];
-
+    private GameBoard() {
+        gui = new GUI();
+        die = new Dice();
+        players = setPlayers();
+        guiArray = new GUI_Player[players];
+        playerArray = new Player[players];
+        // makeFields();
     }
 
 
@@ -159,8 +157,6 @@ public class GameBoard {
         gui.getFields()[currentGUIPlayer.getPlacement()].setCar(currentGUIPlayer, true);
         gui.displayChanceCard();
        
-
-
         applySquareLogic();
 
     }
@@ -203,6 +199,35 @@ public class GameBoard {
         playerTurn();
     }
 
+   /* public Fields[] makeFields() {
+
+        fields = new Fields[24];
+        fields[0] = new FunctionlessSquare(0, "start");
+        fields[1] = new Properties(1, "GATEKJØKKENET \n BURGERBAREN", 1, "BROWN");
+        fields[2] = new Properties(2, "Pizzahuset \n Pizzeriaet", 1, "BROWN");
+        fields[3] = new Chance_Square(3, "Chancen");
+        fields[4] = new Properties(4, "Godtebutikken \n Slikbutikken", 1, "Lightblue");
+        fields[5] = new Properties(5, "ISKIOSKEN \n ISKIOSKEN", 1, "Lightblue");
+        //fields[6] = new Jail_visiting(6, "Jail", 1);
+        fields[7] = new Properties(7, "Museet \n Museet", 2, "PINK");
+        fields[8] = new Properties(8, "Bibloteket \n Bibloteket", 2, "PINK");
+        fields[9] = new Chance_Square(9, "Try your luck");
+        fields[10] = new Properties(10, "Rullebretparken \n Skateparken", 2, "Orange");
+        fields[11] = new Properties(11, "Svømmebassenget \n Swimmingpoolen", 2, "Orange");
+        fields[12] = new FunctionlessSquare(12, "Parkering");
+        fields[13] = new Properties(13, "Spillehallen \n Spillehallen", 3, "red");
+        fields[14] = new Properties(14, "Kinoen \n Biografen", 3, "red");
+        fields[15] = new Chance_Square(15, "Chancesquare");
+        fields[16] = new Properties(16, "Leketøjsbutikken \n Legetøjsbutikken", 3, "YElLOW");
+        fields[17] = new Properties(17, "Dyrebutikken \n Dyerhandlen", 3, "YElLOW");
+        fields[18] = new Go_to_jail(18, "Go to prison", 1);
+        fields[19] = new Properties(19, "Bowlinghallen \n Bowlinghallen", 4, "GREEN");
+        fields[20] = new Properties(20, "Zoologisk have \n Zoo", 4, "GREEN");
+        fields[21] = new Chance_Square(21, "Try your luck");
+        fields[22] = new Properties(22, "Vannlandet  \n Vandlandet", 4, "DARK BLUE");
+        fields[23] = new Properties(23, "Strandpromenaden  \n Strandpromenaden", 4, "DARK BLUE");
+        return fields;
+    }*/
 
     /**
      * Getters for the other classes to use when they refer to the board.
@@ -230,6 +255,10 @@ public class GameBoard {
 
     public GUI_Player[] getGuiArray() {
         return guiArray;
+    }
+
+    public Fields[] getFields() {
+        return fields;
     }
 
     /** Print statement for test purposes, probably have to be deleted.

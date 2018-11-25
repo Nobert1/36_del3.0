@@ -1,7 +1,7 @@
 package Models;
 import Controllers.GameBoard;
 import gui_fields.GUI_Player;
-
+import java.util.Random;
 
 /**
  * Atm this class is a litle bit messy, it needs some cleaning up after we figure out what to do with double rent.
@@ -17,15 +17,15 @@ public class Properties extends Fields {
     public boolean owned;
     private Player owner;
     private GameBoard gb = GameBoard.getInstance();
-    private Board fields = gb.getFIELDSINSTANS();
+    // private Board fields = gb.getFIELDSINSTANS();
 
 
 
-    public Properties(int position, String name, int price, String colour) {
+    public Properties(int position, String name, int price, String color) {
         super(position, name);
 
     this.price = price;
-    this.colour = colour;
+    this.colour = color;
     this.owned = false;
 
 
