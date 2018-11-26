@@ -1,6 +1,13 @@
 package Models;
-
+import Controllers.GameBoard;
 import gui_fields.GUI_Player;
+
+
+/**
+ * Atm this class is a litle bit messy, it needs some cleaning up after we figure out what to do with double rent.
+ * Everything else is working like a german machine.
+ * - comment by Gustav
+ */
 
 public class Properties extends Fields {
 
@@ -8,89 +15,102 @@ public class Properties extends Fields {
     int price;
     String colour;
     public boolean owned;
-    private String owner;
-    private GUI_Player gui_player;
-    private BankAccount bankAccount;
-    private Player[] playerarray;
-    private Player player;
-    private GUI_Player[] guiArray;
+    private Player owner;
+    private GameBoard gb = GameBoard.getInstance();
 
 
 
-    public Properties(int position, String name, int price, String colour, String owner) {
+
+    public Properties(int position, String name, int price, String colour) {
         super(position, name);
 
     this.price = price;
     this.colour = colour;
     this.owned = false;
-    this.owner = owner;
 
 
 }
-
+//behøver vi fortælle spilleren hvilken farve de har landet på? selv en som mig der er farveblind kan godt se om de hører sammen eller ey
     @Override
     public String toString() {
-        return " The square is placed at " + this.position + " the price/rent is " + this.price
-                + " and the colour of the property is " + this.colour;
+        if(this.owned){
+            return "You landed on square " + this.position + " which is owned by " + this.owner.getName() +
+                    " the rent is " + this.price + " dollar(s).";
+        } else
+        return "You landed on square " + this.position + " the price is " + this.price + " dollar(s).";
     }
     public void setOwned(boolean owned) {
 
         this.owned = true;
-        setOwner(this.player.getName());
-
+        setOwner();
 
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
-        this.player.getAccount().withdraw(getPrice());
+    public void setOwner(){
+        this.owner = gb.getPlayer();
+        gb.getPlayer().getAccount().withdraw(getPrice());
+
     }
 
-    public String getOwner() {
+    public Player getOwner(){
         return owner;
-    }
-
-    /**
-     * The below method has a small problem in the sense that it checks for player names.
-     * If mulitiple people have the same name it's gonna deposit into all players of the same name.
-     * If it is made to break after the first deposit it may not have deposited themoney into the correct account.
-     * Perhaps changes have to be made.
-     * - Gustav
-     */
-    public void GetRent() {
-        for (int i = 0; i < playerarray.length; i++) {
-            if (playerarray[i].getName().equals(this.getOwner())) {
-                guiArray[i].setBalance(playerarray[i].getAccount().deposit(getPrice()));
-                playerarray[i].getAccount().deposit(getPrice());
-
-            } } }
-
-            public void PayRent() {
-
-            this.player.getAccount().withdraw(getPrice());
-
-            }
-
-
+  }
 
     public int getPrice() {
-        return price;
+        return this.price;
+    }
+
+    //man skal betale dobblet hvis man ejer to af samme farve
+    public void payRent(){
+        int counter = 0;
+        Properties[] propArray = new Properties[16];
+        int newPrice = getPrice();
+        /**
+         * Den her fremgangsmåde virker ikke og det kommer den nok hellere ikke til. For nu tror jeg ikke det er
+         * der hvor vi skal lægge vores tid. Den .getclass funktion vi kalder ved vi i bund og grund ikke hvad gør
+         * og jeg tror heller ikke den kommer til at kunne gøre noget fedt.
+         */
+        for (int i = 0; i < 24; i++) {
+            if (gb.getFIELDSINSTANS().getField(i).getClass() == Properties.class) {
+                propArray[counter] = (Properties) gb.getFIELDSINSTANS().getField(i);
+                counter++;
+            }
+        }
+            newPrice = getPrice() * 2;
+            gb.gui.showMessage("Because " + getOwner() + " owns both properties the rent is doubled");
+
+
+        owner.getAccount().deposit(newPrice);
+
+        gb.getPlayer().getAccount().withdraw(newPrice);
+
+    }
+
+
+    public String getColour() {
+        return colour;
     }
 
     @Override
     public void FieldFunctionality() {
 
+
         if (!this.owned) {
             setOwned(true);
-
         } else {
-
-            GetRent();
-            PayRent();
-
+            payRent();
         }
 
     }
+
+    @Override
+    public void OutputToGUI(){
+    gb.gui.showMessage(toString());
+
+
+    }
+
+
 }
 
 

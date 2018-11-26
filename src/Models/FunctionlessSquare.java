@@ -25,10 +25,10 @@ public class FunctionlessSquare extends Fields {
 
     @Override
     public String toString() {
-        if (getPosition() == 0) {
+        if (gb.getPlayer().getCurrentPosition() == 0) {
         return "You landed on " + gb.getPlayer().getCurrentPosition()+ ", the start square."; }
 
-        else if (getPosition() == 6){
+        else if (gb.getPlayer().getCurrentPosition() == 6){
             return "You landed on " + gb.getPlayer().getCurrentPosition() + " which is the visiting jail square, and it does literally nowt"; }
 
         else {

@@ -23,8 +23,8 @@ import java.awt.*;
  */
 public class GameBoard {
 
-    private static GameBoard Instans = new GameBoard();
-    private static final Board FIELDSINSTANS = new Board();
+    private static final GameBoard Instans = new GameBoard();
+    private static Board FIELDSINSTANS = new Board();
     public GUI gui;
     private Dice die;
     private int players;
