@@ -243,9 +243,9 @@ public class GameBoard {
      * - Alex
      */
     public void checkforInJail() {
-        if (player.getInJail() == true && player.getJailFreecard() == true) {
+        if (player.getInJail() == true && player.getJailCard() == true) {
             gui.showMessage("You use your get out jail free card and are released next turn!");
-            player.setJailFreecard(false);
+            player.setJailCard(false);
         }
         else if (player.getInJail() == true) {
             player.setInJail(false);

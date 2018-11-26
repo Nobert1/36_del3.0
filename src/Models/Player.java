@@ -17,7 +17,7 @@ public class Player {
     private boolean isBroke;
     private int currentPosition;
     private GameBoard gb = GameBoard.getInstance();
-    private boolean JailFreecard;
+    private boolean JailCard;
 
 
 
@@ -28,7 +28,7 @@ public class Player {
         this.inJail = false;
         this.isBroke = false;
         this.currentPosition = 0;
-        this.JailFreecard = false;
+        this.JailCard = false;
 
     }
 
@@ -36,29 +36,37 @@ public class Player {
     public String getName() {
         return this.name;
     }
+
+
     public BankAccount getAccount() {
         return account;
     }
+
+
     public int getCurrentPosition(){
         return currentPosition;
     }
     public boolean getInJail() {
         return this.inJail;
     }
-    public boolean getBroke() {
-        return this.isBroke;
-    }
-    public boolean getJailFreecard() {return this.JailFreecard;}
-
 
     public void setCurrentPosition(int currentPosition) {
         this.currentPosition = currentPosition;
     }
-    public void setInJail(boolean inJail) { this.inJail = inJail; }
+
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
+    }
+
     public void setBroke(boolean broke) {
         isBroke = broke;
     }
-    public void setJailFreecard(boolean jailFreecard) { JailFreecard = jailFreecard; }
+    public boolean getBroke() {
+        return this.isBroke;
+    }
 
-
+    public void setJailCard(boolean jailCard) { JailCard = jailCard; }
+    public boolean getJailCard() {
+        return this.JailCard;
+    }
 }

@@ -22,6 +22,5 @@ class ChanceCardDeckTest {
     @org.junit.jupiter.api.Test
     void drawCard() {
         ChanceCardDeck deck1 = new ChanceCardDeck();
-
     }
 }
