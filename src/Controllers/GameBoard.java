@@ -1,13 +1,6 @@
 package Controllers;
 
 import Models.*;
-
-import Models.ChanceCardDeck;
-import Models.Dice;
-import Models.Fields;
-import Models.Player;
-import Out.gui_out;
-import gui_codebehind.GUI_BoardController;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
@@ -30,19 +23,16 @@ import java.awt.*;
  */
 public class GameBoard {
 
-    private static GameBoard Instans = new GameBoard();
-    private static final Board FIELDSINSTANS = new Board();
+    private static final GameBoard Instans = new GameBoard();
+    private static Board FIELDSINSTANS = new Board();
     public GUI gui;
     private Dice die;
     private int players;
-    private GUI_Player[] guiArray;
+
+    public GUI_Player[] guiArray;
     private Player[] playerArray;
-    private GUI_Player currentPlayer;
-    private ChanceCardDeck chanceCardDeck;
-    private Fields[] fields;
     private GUI_Player currentGUIPlayer;
     private Player player;
-
 // Board skal være statisk ellers får vi en exception der hedder Initalization. Dvs at det board er ikke oprettet når programmet gerne
     // Vil benytte sig af det, der er muligvis et fix.
 
@@ -50,18 +40,20 @@ public class GameBoard {
      * Creates the gameboard instance.
      * - comment by Gustav
      */
-    private GameBoard() {
-        gui = new GUI();
-        die = new Dice();
-        players = setPlayers();
-        guiArray = new GUI_Player[players];
-        playerArray = new Player[players];
-        // makeFields();
+    public GameBoard() {
+
+        this.gui = new GUI();
+        this.die = new Dice();
+        this.players = setPlayers();
+        this.guiArray = new GUI_Player[players];
+        this.playerArray = new Player[players];
+
+
     }
 
 
     public void startGame() {
-  
+
         setPlayerNames();
         playerTurn();
     }
@@ -106,8 +98,9 @@ public class GameBoard {
                 case "Blue":
                     c = Color.BLUE;
                     break;
-                default:
-                    c = Color.BLACK;
+                    default:
+                        c = Color.BLACK;
+                        break;
             }
             GUI_Car Car = new GUI_Car(c, c, GUI_Car.Type.getTypeFromString(a), GUI_Car.Pattern.DOTTED);
             GUI_Player spiller = new GUI_Player(name, 24 - 2 * players, Car, 0);
@@ -127,9 +120,8 @@ public class GameBoard {
     public void playerTurn() {
 
 
-        gui.showMessage("It is " + currentGUIPlayer.getName() + "'s turn. Press enter to roll the dice.");
-        gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
-      
+
+        gui.showMessage("It is " + player.getName() + "'s turn. Press enter to roll the dice.");
         die.roll();
         gui.setDie(die.getValue());
         movePlayer();
@@ -141,22 +133,10 @@ public class GameBoard {
      */
     public void movePlayer() {
 
-        if (player.getInJail() == true) {
-            player.setInJail(false);
-            gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment");
-        } else
-
-            gui.getFields()[currentGUIPlayer.getPlacement()].setCar(currentGUIPlayer, false);
-
+        gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, false);
         player.setCurrentPosition(player.getCurrentPosition() + die.getValue());
-
         checkforStart();
-
-        currentGUIPlayer.setPlacement(player.getCurrentPosition());
-
-        gui.getFields()[currentGUIPlayer.getPlacement()].setCar(currentGUIPlayer, true);
-        gui.displayChanceCard();
-       
+        gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, true);
         applySquareLogic();
 
     }
@@ -166,14 +146,17 @@ public class GameBoard {
      */
     public void applySquareLogic() {
 
-        int i = currentGUIPlayer.getPlacement();
+        int i = player.getCurrentPosition();
 
         FIELDSINSTANS.getField(i).OutputToGUI();
         FIELDSINSTANS.getField(i).FieldFunctionality();
 
+
         updatePlayerBalances();
         CheckforBroke();
+        checkforInJail();
         getPlayerTurn();
+
     }
 
     /** Sets the current player object to a new player, so we can switch turns
@@ -199,80 +182,6 @@ public class GameBoard {
         playerTurn();
     }
 
-   /* public Fields[] makeFields() {
-
-        fields = new Fields[24];
-        fields[0] = new FunctionlessSquare(0, "start");
-        fields[1] = new Properties(1, "GATEKJØKKENET \n BURGERBAREN", 1, "BROWN");
-        fields[2] = new Properties(2, "Pizzahuset \n Pizzeriaet", 1, "BROWN");
-        fields[3] = new Chance_Square(3, "Chancen");
-        fields[4] = new Properties(4, "Godtebutikken \n Slikbutikken", 1, "Lightblue");
-        fields[5] = new Properties(5, "ISKIOSKEN \n ISKIOSKEN", 1, "Lightblue");
-        //fields[6] = new Jail_visiting(6, "Jail", 1);
-        fields[7] = new Properties(7, "Museet \n Museet", 2, "PINK");
-        fields[8] = new Properties(8, "Bibloteket \n Bibloteket", 2, "PINK");
-        fields[9] = new Chance_Square(9, "Try your luck");
-        fields[10] = new Properties(10, "Rullebretparken \n Skateparken", 2, "Orange");
-        fields[11] = new Properties(11, "Svømmebassenget \n Swimmingpoolen", 2, "Orange");
-        fields[12] = new FunctionlessSquare(12, "Parkering");
-        fields[13] = new Properties(13, "Spillehallen \n Spillehallen", 3, "red");
-        fields[14] = new Properties(14, "Kinoen \n Biografen", 3, "red");
-        fields[15] = new Chance_Square(15, "Chancesquare");
-        fields[16] = new Properties(16, "Leketøjsbutikken \n Legetøjsbutikken", 3, "YElLOW");
-        fields[17] = new Properties(17, "Dyrebutikken \n Dyerhandlen", 3, "YElLOW");
-        fields[18] = new Go_to_jail(18, "Go to prison", 1);
-        fields[19] = new Properties(19, "Bowlinghallen \n Bowlinghallen", 4, "GREEN");
-        fields[20] = new Properties(20, "Zoologisk have \n Zoo", 4, "GREEN");
-        fields[21] = new Chance_Square(21, "Try your luck");
-        fields[22] = new Properties(22, "Vannlandet  \n Vandlandet", 4, "DARK BLUE");
-        fields[23] = new Properties(23, "Strandpromenaden  \n Strandpromenaden", 4, "DARK BLUE");
-        return fields;
-    }*/
-
-    /**
-     * Getters for the other classes to use when they refer to the board.
-     * - comment by Gustav
-     */
-    public GUI_Player getCurrentGUIPlayer() {
-        return currentGUIPlayer;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public int getPlayers() {
-        return players;
-    }
-
-    public Board getFIELDSINSTANS() {
-        return FIELDSINSTANS;
-    }
-
-    public static GameBoard getInstance() {
-        return Instans;
-    }
-
-    public GUI_Player[] getGuiArray() {
-        return guiArray;
-    }
-
-    public Fields[] getFields() {
-        return fields;
-    }
-
-    /** Print statement for test purposes, probably have to be deleted.
-     * - comment by Gustav
-     */
-
-    public String print() {
-        String output = "";
-        for (int i = 0; i < getGuiArray().length; i++) {
-            output += guiArray[i].getName() + "\n";
-        }
-        return output;
-    }
-
     /** Method to sync the balance in the GUI with the actual players balance.
      * - comment by Gustav
      */
@@ -284,16 +193,24 @@ public class GameBoard {
 
     /** Method to check if the player passed start
      * - comment by Gustav
+     * Updated so it shows message and does it if you pass or are on go.
+     * - Alex
      */
     public void checkforStart() {
         if (player.getCurrentPosition() > 23) {
             player.getAccount().deposit(2);
             player.setCurrentPosition(player.getCurrentPosition() % 24);
+            if(player.getCurrentPosition() == 0){
+                gui.showMessage("You are landing on go. Collect 2 dollars.");
+            } else {
+                gui.showMessage("You are passing go. Collect 2 dollars.");
+            }
         }
     }
-
     /** Looks for a winner.
      * - comment by Gustav
+     * Have added that if player 1 is the winner it can find his name
+     * - Alex
      */
     public void CheckforBroke() {
         String Winner = "";
@@ -308,19 +225,52 @@ public class GameBoard {
                 for (int i = 1; i < playerArray.length; i++) {
                     if (playerArray[i].getAccount().getBalance() > playerArray[i - 1].getAccount().getBalance()) {
                         Winner = playerArray[i].getName();
-                    }
+                    } else Winner = playerArray[0].getName();
                 }
 
-                gui.showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner +"! HUGE CONGRATS MAN");
+                gui.showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner + "! HUGE CONGRATS MAN");
 
                 // Closes GUI then terminates the program.
 
                 gui.close();
                 System.exit(0);
 
-            }
+                } } }
+
+    /** Checks for in Jail, setup so it's ready for the chancecard.
+     * - comment by Gustav
+     * Have added messages and that it costs 1 dollar to get out of jail
+     * - Alex
+     */
+    public void checkforInJail() {
+        if (player.getInJail() == true && player.getJailCard() == true) {
+            gui.showMessage("You use your get out jail free card and are released next turn!");
+            player.setJailCard(false);
+        }
+        else if (player.getInJail() == true) {
+            player.setInJail(false);
+            gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment\n" +
+                                  "You will be released next turn and it will cost you 1 dollar.");
+            getPlayer().getAccount().withdraw(1);
+            getPlayerTurn();
         }
     }
+
+    /**
+     * Getters for the other classes to use when they refer to the board.
+     * - comment by Gustav
+     */
+    public GUI_Player getCurrentGUIPlayer() { return currentGUIPlayer; }
+
+    public Player getPlayer() { return player; }
+
+    public int getPlayers() { return players; }
+
+    public Board getFIELDSINSTANS() { return FIELDSINSTANS; }
+
+    public static GameBoard getInstance() { return Instans; }
+
+    public GUI_Player[] getGuiArray() { return guiArray; }
 }
 
 

@@ -66,7 +66,7 @@ public class GUI_Player extends Observable{
 	    notifyObservers();
 	}
 	public void setPlacement(int placement) {
-		this.placement = placement; //= placement % 24;
+		this.placement = placement;
 	}
 	// Mandatory
 	@Override

@@ -15,7 +15,6 @@ public class ChanceCards {
         this.number = number;
     }
 
-
     public String toString() {
         return this.Description + " " + this.name + "\n";
     }
@@ -31,4 +30,5 @@ public class ChanceCards {
     public String getDescription() {
         return Description;
     }
+
 }

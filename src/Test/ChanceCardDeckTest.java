@@ -1,4 +1,4 @@
-package Test;
+/*package Test;
 import Models.ChanceCardDeck;
 import Models.ChanceCards;
 
@@ -22,6 +22,5 @@ class ChanceCardDeckTest {
     @org.junit.jupiter.api.Test
     void drawCard() {
         ChanceCardDeck deck1 = new ChanceCardDeck();
-
     }
-}
+}*/
