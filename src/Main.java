@@ -1,4 +1,5 @@
 import Controllers.GameBoard;
+import gui_main.GUI;
 
 public class Main {
 
@@ -7,7 +8,8 @@ public class Main {
      * - comment by Gustav
      * @param args
      */
-   //public Main() { new GUI()}
+
+    // public Main() { new GUI()}
 
     public static void main(String[] args) {
 
