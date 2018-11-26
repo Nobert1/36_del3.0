@@ -228,7 +228,7 @@ public class GameBoard {
                     } else Winner = playerArray[0].getName();
                 }
 
-                gui.showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner +"! HUGE CONGRATS MAN");
+                gui.showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner + "! HUGE CONGRATS MAN");
 
                 // Closes GUI then terminates the program.
 

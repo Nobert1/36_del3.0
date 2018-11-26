@@ -1,4 +1,4 @@
-package Test;
+/*package Test;
 import Models.ChanceCardDeck;
 import Models.ChanceCards;
 
@@ -23,4 +23,4 @@ class ChanceCardDeckTest {
     void drawCard() {
         ChanceCardDeck deck1 = new ChanceCardDeck();
     }
-}
+}*/
