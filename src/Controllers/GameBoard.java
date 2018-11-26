@@ -121,7 +121,7 @@ public class GameBoard {
 
 
 
-        gui.showMessage("It is " + currentGUIPlayer.getName() + "'s turn. Press enter to roll the dice.");
+        gui.showMessage("It is " + player.getName() + "'s turn. Press enter to roll the dice.");
         die.roll();
         gui.setDie(die.getValue());
         movePlayer();
@@ -134,7 +134,8 @@ public class GameBoard {
     public void movePlayer() {
 
         gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, false);
-        player.setCurrentPosition((player.getCurrentPosition() + die.getValue())%24);
+        player.setCurrentPosition(player.getCurrentPosition() + die.getValue());
+        checkforStart();
         gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, true);
         applySquareLogic();
 
@@ -196,18 +197,16 @@ public class GameBoard {
      * - Alex
      */
     public void checkforStart() {
-        if (player.getCurrentPosition()+ die.getValue() >= 24 && player.getCurrentPosition() > 18) {
-            if(player.getCurrentPosition() == 0){
-                gui.showMessage("You landed on start so you collect 2 dollars!");
-            } else {
-                gui.showMessage("You passed go. Collect 2 dollars.");
-            }
+        if (player.getCurrentPosition() > 23) {
             player.getAccount().deposit(2);
             player.setCurrentPosition(player.getCurrentPosition() % 24);
-            //getPlayerTurn();
+            if(player.getCurrentPosition() == 0){
+                gui.showMessage("You are landing on go. Collect 2 dollars.");
+            } else {
+                gui.showMessage("You are passing go. Collect 2 dollars.");
+            }
         }
     }
-
     /** Looks for a winner.
      * - comment by Gustav
      * Have added that if player 1 is the winner it can find his name

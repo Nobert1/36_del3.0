@@ -26,13 +26,13 @@ public class FunctionlessSquare extends Fields {
     @Override
     public String toString() {
         if (getPosition() == 0) {
-        return "You landed on " + gb.getPlayer().getCurrentPosition()+ " which is the start square, and it does litterally nowt"; }
+        return "You landed on " + gb.getPlayer().getCurrentPosition()+ ", the start square."; }
 
         else if (getPosition() == 6){
-            return "You landed on " + gb.getPlayer().getCurrentPosition() + " which is the visting jail square, and it does litterally nowt"; }
+            return "You landed on " + gb.getPlayer().getCurrentPosition() + " which is the visiting jail square, and it does literally nowt"; }
 
         else {
-            return "You landed on " + gb.getPlayer().getCurrentPosition() + " which is the parking square, and it also does litterally nowt"; }
+            return "You landed on " + gb.getPlayer().getCurrentPosition() + " which is the parking square, and it also does literally nowt"; }
 
     }
 }
