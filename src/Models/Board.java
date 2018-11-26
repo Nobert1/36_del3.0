@@ -42,6 +42,7 @@ public class Board {
     }
 
 
+
     public Fields getField(int position) { return fields[position]; }
 
     public String toString() {

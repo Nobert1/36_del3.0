@@ -24,15 +24,15 @@ import java.awt.*;
 public class GameBoard {
 
     private static final GameBoard Instans = new GameBoard();
-    private static Board FIELDSINSTANS = new Board();
+    private static Board FI = new Board();
     public GUI gui;
     private Dice die;
     private int players;
-
     public GUI_Player[] guiArray;
     private Player[] playerArray;
     private GUI_Player currentGUIPlayer;
     private Player player;
+
 // Board skal være statisk ellers får vi en exception der hedder Initalization. Dvs at det board er ikke oprettet når programmet gerne
     // Vil benytte sig af det, der er muligvis et fix.
 
@@ -41,13 +41,11 @@ public class GameBoard {
      * - comment by Gustav
      */
     public GameBoard() {
-
-        this.gui = new GUI();
-        this.die = new Dice();
-        this.players = setPlayers();
-        this.guiArray = new GUI_Player[players];
-        this.playerArray = new Player[players];
-
+        gui = new GUI();
+        die = new Dice();
+        players = setPlayers();
+        guiArray = new GUI_Player[players];
+        playerArray = new Player[players];
 
     }
 
@@ -148,8 +146,8 @@ public class GameBoard {
 
         int i = player.getCurrentPosition();
 
-        FIELDSINSTANS.getField(i).OutputToGUI();
-        FIELDSINSTANS.getField(i).FieldFunctionality();
+        FI.getField(i).OutputToGUI();
+        FI.getField(i).FieldFunctionality();
 
 
         updatePlayerBalances();
@@ -266,7 +264,7 @@ public class GameBoard {
 
     public int getPlayers() { return players; }
 
-    public Board getFIELDSINSTANS() { return FIELDSINSTANS; }
+    public Board getFI() { return FI; }
 
     public static GameBoard getInstance() { return Instans; }
 
