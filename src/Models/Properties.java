@@ -13,19 +13,19 @@ public class Properties extends Fields {
 
 
     int price;
-    String colour;
+    int sisterIndex;
     public boolean owned;
     private Player owner;
     private GameBoard gb = GameBoard.getInstance();
-    private Board fields = gb.getFIELDSINSTANS();
 
 
 
-    public Properties(int position, String name, int price, String colour) {
+
+    public Properties(int position, String name, int price, int sisterIndex) {
         super(position, name);
 
     this.price = price;
-    this.colour = colour;
+    this.sisterIndex = sisterIndex;
     this.owned = false;
 
 
@@ -62,42 +62,46 @@ public class Properties extends Fields {
 
     //man skal betale dobblet hvis man ejer to af samme farve
     public void payRent(){
+        boolean ownsAll = false;
         int counter = 0;
         Properties[] propArray = new Properties[16];
-        int newPrice = getPrice();
-
-
+        int priceCounter = 0;
         /**
          * Den her fremgangsmåde virker ikke og det kommer den nok hellere ikke til. For nu tror jeg ikke det er
          * der hvor vi skal lægge vores tid. Den .getclass funktion vi kalder ved vi i bund og grund ikke hvad gør
          * og jeg tror heller ikke den kommer til at kunne gøre noget fedt.
          */
         /*for (int i = 0; i < 24; i++) {
-            //if (fields.getField(i).getClass() == Properties.class) {
-            if(fields.getField(gb.getPlayer().getCurrentPosition()).getClass() == fields.getField(i).getClass()) {
+            if (gb.getFIELDSINSTANS().getField(i).getClass().isInstance(Properties.class)) {
+                //if ((Object) gb.getFIELDSINSTANS().getField(i).getClass() instanceof Properties) {
 
-                propArray[counter] = (Properties) fields.getField(i);
+                    propArray[counter] = (Properties) gb.getFIELDSINSTANS().getField(i);
                 counter++;
 
-            } }
-
-
-        if  (propArray[gb.getPlayer().getCurrentPosition()].getOwner() == propArray[gb.getPlayer().getCurrentPosition()+1].getOwner() ||
-                propArray[gb.getPlayer().getCurrentPosition()].getOwner() == propArray[gb.getPlayer().getCurrentPosition()-1].getOwner()) {
-            newPrice = getPrice() * 2;
+            }
+            int propArrayPlayerPos = gb.getPlayer().getCurrentPosition() - gb.getPlayer().getCurrentPosition()/3;
+            for (int j = 0; j < propArray.length; j++) {
+                if (propArray[j].getSisterIndex() ==
+                        ((Properties) gb.getFIELDSINSTANS().getField(gb.getPlayer().getCurrentPosition())).getSisterIndex()) {
+                    if (propArray[j].getOwner() == propArray[propArrayPlayerPos].getOwner()) {
+                        priceCounter++;
+                    }
+                }
+            }
+        }
+        if (priceCounter == 2) {
+            ownsAll = true;
             gb.gui.showMessage("Because " + getOwner() + " owns both properties the rent is doubled");
         }*/
 
-        owner.getAccount().deposit(newPrice);
+        owner.getAccount().deposit((ownsAll ? 2 * getPrice() : getPrice()));
 
-        gb.getPlayer().getAccount().withdraw(newPrice);
+        gb.getPlayer().getAccount().withdraw(ownsAll ? 2 * getPrice() : getPrice());
 
     }
 
 
-    public String getColour() {
-        return colour;
-    }
+
 
     @Override
     public void FieldFunctionality() {
@@ -109,6 +113,10 @@ public class Properties extends Fields {
             payRent();
         }
 
+    }
+
+    public int getSisterIndex() {
+        return sisterIndex;
     }
 
     @Override

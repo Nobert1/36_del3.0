@@ -17,6 +17,7 @@ public class Player {
     private boolean isBroke;
     private int currentPosition;
     private GameBoard gb = GameBoard.getInstance();
+    private boolean JailCard;
 
 
 
@@ -27,6 +28,7 @@ public class Player {
         this.inJail = false;
         this.isBroke = false;
         this.currentPosition = 0;
+        this.JailCard = false;
 
     }
 
@@ -61,5 +63,10 @@ public class Player {
     }
     public boolean getBroke() {
         return this.isBroke;
+    }
+
+    public void setJailCard(boolean jailCard) { JailCard = jailCard; }
+    public boolean getJailCard() {
+        return this.JailCard;
     }
 }

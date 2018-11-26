@@ -13,14 +13,12 @@ public class Go_to_jail extends Fields {
     private GameBoard gb = GameBoard.getInstance();
     int jailtime;
     private Player player = gb.getPlayer();
-    private Board fields = gb.getFIELDSINSTANS();
     private GUI_Player currentGUIPlayer = gb.getCurrentGUIPlayer();
 
 
 
-    public Go_to_jail(int position, String name, int jailtime) {
+    public Go_to_jail(int position, String name) {
         super(position, name);
-        this.jailtime = jailtime;
     }
 
 
@@ -50,6 +48,6 @@ public class Go_to_jail extends Fields {
 
     @Override
     public String toString() {
-        return "You landed on number " + getPosition() + "You are going to jail :/";
+        return "You landed on number " + getPosition() + "· You are going to jail :/";
     }
 }
