@@ -20,6 +20,7 @@ public class Player {
     private boolean JailCard;
     private boolean payNothing;
 
+
     public Player(String name) {
 
         this.name = name;
