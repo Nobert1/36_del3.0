@@ -95,6 +95,7 @@ public class GameBoard {
         logic.CheckforBroke();
         handler.updatePlayerBalances();
         logic.getPlayerTurn();
+        movePlayer();
 
 
     }
