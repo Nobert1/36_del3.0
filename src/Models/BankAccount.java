@@ -29,7 +29,7 @@ public class BankAccount {
 
         this.balance -= amount;
         if (balance < 1) {
-            gb.getPlayer().setBroke(true);
+            gb.getCurrentPlayer().setBroke(true);
             return balance;
 
         } else {

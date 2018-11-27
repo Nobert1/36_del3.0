@@ -12,7 +12,7 @@ public class Go_to_jail extends Fields {
 
     private GameBoard gb = GameBoard.getInstance();
     int jailtime;
-    private Player player = gb.getPlayer();
+    private Player player = gb.getCurrentPlayer();
     private GUI_Player currentGUIPlayer = gb.getCurrentGUIPlayer();
 
 
@@ -27,13 +27,10 @@ public class Go_to_jail extends Fields {
 
 
         gb.gui.getFields()[18].setCar(gb.getCurrentGUIPlayer(), false);
-
-        gb.getPlayer().setCurrentPosition(6);
+        gb.getCurrentPlayer().setCurrentPosition(6);
         gb.getCurrentGUIPlayer().setPlacement(6);
-
         gb.gui.getFields()[6].setCar(gb.getCurrentGUIPlayer(), true);
-
-        gb.getPlayer().setInJail(true);
+        gb.getCurrentPlayer().setInJail(true);
 
 
     }
