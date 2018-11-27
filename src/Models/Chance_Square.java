@@ -17,8 +17,7 @@ public class Chance_Square extends Fields {
 
     @Override
     public void FieldFunctionality() {
-
-        int i = 1+1;
+        gb.getDC().drawCard();
 
     }
 

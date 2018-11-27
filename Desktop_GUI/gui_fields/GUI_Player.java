@@ -16,26 +16,25 @@ public class GUI_Player extends Observable{
 	private GUI_Car car;
 	private static int nextId = 0;
     private int id;
-    private int placement;
-
-	private boolean payNothing;
 	
 	public static final int ICON_WIDTH = 41;
 	public static final int ICON_HEIGHT = 22;
 
 	public GUI_Player(String name){
-	    this(name, 1000, new GUI_Car(),0);
+	    this(name, 1000, new GUI_Car());
 	}
 	public GUI_Player(String name, int balance){
-	    this(name, balance, new GUI_Car(),0);
+	    this(name, balance, new GUI_Car());
 	}
-	public GUI_Player(String name, int balance, GUI_Car car, int placement){
+	public GUI_Player(String name, int balance, GUI_Car car){
 		this.name = name;
 		this.balance = balance;
 		this.car = car;
 		this.id = nextId++;
-		this.placement = placement;
+
 	}
+
+
 	//Getters
 
 
@@ -47,9 +46,6 @@ public class GUI_Player extends Observable{
 	protected BufferedImage getImage() { return this.car.getImage(); }
     public GUI_Car getCar() { return car; }
     protected int getId(){ return id; }
-	public int getPlacement() {
-		return placement;
-	}
 
 	//Setters
     protected void setNumber(int number) { this.number = number; }
@@ -66,9 +62,6 @@ public class GUI_Player extends Observable{
 	public void setBalance(int balance){ 
 	    this.balance = balance;
 	    notifyObservers();
-	}
-	public void setPlacement(int placement) {
-		this.placement = placement;
 	}
 	// Mandatory
 	@Override
@@ -101,24 +94,13 @@ public class GUI_Player extends Observable{
 		return true;
 	}
 	
-	
 	public interface iPlayerValidator{ public boolean checkName(String name); }
 	private iPlayerValidator validator = null;
 	protected void setValidator(iPlayerValidator validator){ this.validator = validator; }
-    
 	
 	@Override
     public String toString() {
         return "GUI_Player [number=" + number + ", name=" + name + ", balance="
             + balance + ", car=" + car + "]";
     }
-
-	public boolean isPayNothing() {
-		return payNothing;
-	}
-
-	public void setPayNothing(boolean payNothing) {
-		this.payNothing = payNothing;
-	}
-
 }

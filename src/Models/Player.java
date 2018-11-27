@@ -18,8 +18,7 @@ public class Player {
     private int currentPosition;
     private GameBoard gb = GameBoard.getInstance();
     private boolean JailCard;
-
-
+    private boolean payNothing;
 
     public Player(String name) {
 
@@ -31,7 +30,6 @@ public class Player {
         this.JailCard = false;
 
     }
-
 
     public String getName() {
         return this.name;
@@ -68,5 +66,13 @@ public class Player {
     public void setJailCard(boolean jailCard) { JailCard = jailCard; }
     public boolean getJailCard() {
         return this.JailCard;
+    }
+
+    public boolean isPayNothing() {
+        return payNothing;
+    }
+
+    public void setPayNothing(boolean payNothing) {
+        this.payNothing = payNothing;
     }
 }
