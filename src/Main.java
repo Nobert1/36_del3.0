@@ -12,7 +12,5 @@ public class Main {
     public static void main(String[] args) {
         GameBoard game = GameBoard.getInstance();
         game.startGame();
-
-
     }
 }

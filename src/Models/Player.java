@@ -28,7 +28,6 @@ public class Player {
         this.isBroke = false;
         this.currentPosition = 0;
         this.JailCard = false;
-
     }
 
     public String getName() {

@@ -26,6 +26,8 @@ public class GameBoard {
 
     private static final GameBoard Instans = new GameBoard();
     private static Board FI = new Board();
+
+    private static ChanceCardDeck CD;
     private GUI_FieldFactory fc = new GUI_FieldFactory();
     public GUI gui;
     private Dice die;
@@ -48,7 +50,7 @@ public class GameBoard {
         players = setPlayers();
         guiArray = new GUI_Player[players];
         playerArray = new Player[players];
-
+        CD = new ChanceCardDeck(gui);
     }
 
 
@@ -158,9 +160,6 @@ public class GameBoard {
      */
 
     public void playerTurn() {
-
-
-
         gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
         die.roll();
         gui.setDie(die.getValue());
@@ -300,6 +299,13 @@ public class GameBoard {
      * Getters for the other classes to use when they refer to the board.
      * - comment by Gustav
      */
+    public static ChanceCardDeck getCD() {
+        return CD;
+    }
+
+    public static void setCD(ChanceCardDeck CD) {
+        GameBoard.CD = CD;
+    }
     public GUI_Player getCurrentGUIPlayer() { return currentGUIPlayer; }
 
     public Player getCurrentPlayer() { return currentPlayer; }

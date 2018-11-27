@@ -109,7 +109,7 @@ public class ChanceCardDeck {
                         answerTo6 = 11;
                         break;
                 }
-                getGb().getPlayer().setPayNothing(true);
+                getGb().getCurrentPlayer().setPayNothing(true);
                 getGb().getFI().getField(answerTo6).FieldFunctionality();
                 break;
             case 5:
@@ -153,7 +153,7 @@ public class ChanceCardDeck {
                         answerTo7 = 20;
                         break;
                 }
-                getGb().getPlayer().setPayNothing(true);
+                getGb().getCurrentPlayer().setPayNothing(true);
                 getGb().getFI().getField(answerTo7).FieldFunctionality();
                 break;
             case 9:
@@ -171,7 +171,7 @@ public class ChanceCardDeck {
                         answerTo5 = 5;
                         break;
                 }
-                getGb().getPlayer().setPayNothing(true);
+                getGb().getCurrentPlayer().setPayNothing(true);
                 getGb().getFI().getField(answerTo5).FieldFunctionality();
                 break;
             case 10:
@@ -219,7 +219,7 @@ public class ChanceCardDeck {
                         answerTo = 23;
                         break;
                 }
-                getGb().getPlayer().setPayNothing(true);
+                getGb().getCurrentPlayer().setPayNothing(true);
                 getGb().getFI().getField(answerTo).FieldFunctionality();
                 break;
             case 16:
@@ -241,13 +241,13 @@ public class ChanceCardDeck {
                         answerTo2 = 14;
                         break;
                 }
-                getGb().getPlayer().setPayNothing(true);
+                getGb().getCurrentPlayer().setPayNothing(true);
                 getGb().getFI().getField(answerTo2).FieldFunctionality();
                 break;
             case 18:
                 // Move to the skate park to do the perfect grind! If no one owns it you get it for free, otherwise pay the owner rent
                 move1(10);
-                getGb().getPlayer().setPayNothing(true);
+                getGb().getCurrentPlayer().setPayNothing(true);
                 getGb().getFI().getField(10).FieldFunctionality();
                 break;
             case 19:
@@ -276,7 +276,7 @@ public class ChanceCardDeck {
                         answerTo3 = 5;
                         break;
                 }
-                getGb().getPlayer().setPayNothing(true);
+                getGb().getCurrentPlayer().setPayNothing(true);
                 getGb().getFI().getField(answerTo3).FieldFunctionality();
                 break;
             case 20:
@@ -305,7 +305,7 @@ public class ChanceCardDeck {
                         answerTo4 = 11;
                         break;
                 }
-                getGb().getPlayer().setPayNothing(true);
+                getGb().getCurrentPlayer().setPayNothing(true);
                 getGb().getFI().getField(answerTo4).FieldFunctionality();
                 break;
         }
@@ -324,10 +324,8 @@ public class ChanceCardDeck {
     }*/
 
     public void move1(int i) {
-
-
-        getGb().gui.getFields()[getGb().getPlayer().getCurrentPosition()].setCar(getGb().getCurrentGUIPlayer(), false);
-        getGb().getPlayer().setCurrentPosition(i);
+        getGb().gui.getFields()[getGb().getCurrentPlayer().getCurrentPosition()].setCar(getGb().getCurrentGUIPlayer(), false);
+        getGb().getCurrentPlayer().setCurrentPosition(i);
         getGb().gui.getFields()[i].setCar(getGb().getCurrentGUIPlayer(), true);
     }
 
