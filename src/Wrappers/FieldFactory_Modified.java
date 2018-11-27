@@ -34,7 +34,7 @@ public class FieldFactory_Modified {
         fields[i++] = new GUI_Street(" ZOO", "M4", "ZOO", "Leje:  1", new Color(30, 100, 0), Color.BLACK);
         fields[i++] = new GUI_Chance("?", "Try your luck", "Take a chancecard", new Color(204, 204, 204), Color.BLACK);
         fields[i++] = new GUI_Street("VANDLANDET", "M5", "VANDLANDET", "Leje:  1", new Color(10, 1, 225), Color.BLACK);
-        fields[i++] = new GUI_Street(" STRANDPROMENADEN", "M5", "STRANDPROMENADEN", "Leje:  1", new Color(10, 1, 225), Color.BLACK);
+        fields[i++] = new GUI_Street("STRANDPROMENADEN", "M5", "STRANDPROMENADEN", "Leje:  1", new Color(10, 1, 225), Color.BLACK);
         return fields;
     }
     }

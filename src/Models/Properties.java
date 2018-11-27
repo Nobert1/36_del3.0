@@ -26,9 +26,6 @@ public class Properties extends Fields {
     this.price = price;
     this.sisterIndex = sisterIndex;
     this.owned = false;
-
-
-
 }
     public GameBoard getGb(){
         return GameBoard.getInstance();

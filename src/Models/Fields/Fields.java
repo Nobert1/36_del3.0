@@ -55,7 +55,7 @@ public abstract class Fields  {
         fields = new Fields[24];
         fields[0] = new FunctionlessSquare(0, "start");
         fields[1] = new Properties(1, "GATEKJØKKENET \n BURGERBAREN", 1, 1);
-        fields[2] = new Properties(2, "Pizzahuset \n Pizzeriaet", 1, 2);
+        fields[2] = new Properties(2, "Pizzahuset \n Pizzariaet", 1, 2);
         fields[3] = new Chance_Square(3, "Chancen");
         fields[4] = new Properties(4, "Godtebutikken \n Slikbutikken", 1, 2);
         fields[5] = new Properties(5, "ISKIOSKEN \n ISKIOSKEN", 1, 2);

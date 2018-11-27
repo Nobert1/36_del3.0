@@ -16,6 +16,7 @@ public class ChanceCardDeck {
 
     private GUI_Player gui_player;
     private final int maxValue = 20;
+    private int position = 0;
 
     public ChanceCardDeck(GUI gui) {
 
@@ -65,22 +66,20 @@ public class ChanceCardDeck {
 
     public void drawCard() {
         ChanceCards[] korttemp = this.deck;
-        ChanceCards firstCardKort = this.deck[0];
+        ChanceCards firstCardKort = this.deck[7];
 
         for (int i = 0; i < deck.length; i++) {
             this.deck[i] = korttemp[(i + 1) % 20];
         }
 
-        deck[19] = firstCardKort;
+        deck[7] = firstCardKort;
         getGb().gui.displayChanceCard(firstCardKort.getDescription());
         UseChancecard();
 
     }
-        public void UseChancecard() {
-            int Position = 0;
-            String Userinput;
-            switch (deck[19].getNumber()) {
-
+    public void UseChancecard() {
+        String Userinput;
+        switch (deck[7].getNumber()) {
             case 1:
                 // Give this card to the CAR and draw one more chancecard. CAR: On your next turn you have to move to any free square, and buy it. If none of the squares are free you have to buy one from another player
                 break;
@@ -89,44 +88,37 @@ public class ChanceCardDeck {
                 setPlayer(0);
                 getGb().getCurrentPlayer().getAccount().deposit(2);
                 // Gotta check if this doesnt give 4.
-
                 break;
             case 3:
                 //Move up to 5 fields forward
                 move2();
                 break;
-
             case 4:
                 // Move to an orange square, if the field is not owned you get it for free, otherwise you have to pay the owner rent
-                String oField[] = {getGb().getFI().getField(10).getName(), getGb().getFI().getField(11).getName()};
-                System.out.println(getGb().getFI().getField(10).getName());
-                System.out.println(getGb().getFI().getField(11).getName());
-
+                String oField[] = {"skateparken", "swimmingpoolen"};
                 Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
-                        getGb().getFI().getField(10).getName() +
-                        " eller " + getGb().getFI().getField(11).getName(), oField);
-
-                Position = 0;
+                                                             "skateparken eller swimmingpoolen", oField);
+                position = 0;
                 switch (Userinput) {
-                    case "Rullebretparken \n Skateparken":
-                        Position = 10;
+                    case "skateparken":
+                        position += 10;
                         break;
-                    case "Svømmebassenget \n Swimmingpoolen":
-                        Position = 11;
+                    case "swimmingpoolen":
+                        position += 11;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
-                setPlayer(Position);
+                setPlayer(position);
                 break;
 
             case 5:
                 // Move 1 square forward or take another card
+                position = 0;
                 String arr2[] = {"Move", "Draw"};
                 Userinput = getGb().gui.getUserButtonPressed("Choose one: move one field forward or draw another card", arr2);
-                if (Userinput.equals("move")) {
-                    getGb().getHandler().removeplayer();
-                    getGb().getCurrentPlayer().setCurrentPosition(getGb().getCurrentPlayer().getCurrentPosition() + 1);
-                    getGb().getHandler().movePlayer();
+                if (Userinput.equals(arr2[0])) {
+                    position += 1;
+                    movePlayer(position);
                 } else {
                     drawCard();
                 }
@@ -140,51 +132,45 @@ public class ChanceCardDeck {
                 break;
             case 8:
                 // Move to an orange or green square. If no one owns it you get it for free, else you have to play rent to the owner
-                String ogField[] = {getGb().getFI().getField(10).getName(),
-                        getGb().getFI().getField(11).getName()};
+                String ogField[] = {"skateparken", "swimmingpoolen", "bowlinghallen", "zoologisk have" };
                 Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
-                        getGb().getFI().getField(10).getName() +
-                        " eller " + getGb().getFI().getField(11).getName(), ogField);
-
-                 Position = 0;
+                        "skateparken, swimmingpoolen, bowlinghallen eller zoologisk have", ogField);
+                 position = 0;
                 switch (Userinput) {
-                    case "Rullebretparken \n Skateparken":
-                        Position = 10;
+                    case "skateparken":
+                        position += 10;
                         break;
-                    case "Svømmebassenget \n Swimmingpoolen":
-                        Position = 11;
+                    case "swimmingpoolen":
+                        position += 11;
                         break;
-                    case "Bowlinghallen \n Bowlinghallen":
-                        Position = 19;
+                    case "bowlinghallen":
+                        position += 19;
                         break;
-                    case "Zoologisk have \n Zoo":
-                        Position = 20;
+                    case "zoologisk have":
+                        position += 20;
                         break;
                 }
-
                 getGb().getCurrentPlayer().setPayNothing(true);
-                setPlayer(Position);
-
+                setPlayer(position);
                 break;
-
             case 9:
                 // Move to an lightblue square, if no one owns it you get it for free! otherwise you have to pay rent to the owner
-                String lbField[] = {getGb().getFI().getField(4).getName(), getGb().getFI().getField(5).getName()};
+                String lbField[] = {"slikbutikken", "iskiosken"};
                 Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
-                        getGb().getFI().getField(4).getName() +
-                        " eller " + getGb().getFI().getField(5).getName(), lbField);
+                                                             "slikbutikken eller iskiosken");
                 switch (Userinput) {
-                    case "Godtebutikken \n Slikbutikken":
-                        Position = 4;
+                    case "slikbutikken":
+                        position += 4;
                         break;
-                    case "ISKIOSKEN \n ISKIOSKEN":
-                        Position = 5;
+                    case "iskiosken":
+                        position += 5;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
-                setPlayer(Position);
+                setPlayer(position);
                 break;
             case 10:
+                // You are released without any cost, keep this card until you need it.
                 getGb().getCurrentPlayer().setJailCard(true);
                 break;
             case 11:
@@ -200,64 +186,56 @@ public class ChanceCardDeck {
             case 14:
                 // It's your birthday! Everyone gives you 1$
                 //burde bare at være at gå igennem players array og for hver spiller minus 1. derefter + 1 til currentplayer. er skide træt orker ikke mere nu.
-
-                /*for(player : players)*/
+                for(int i = 0; i < getGb().getPlayerArray().length; i++ ) {
+                    getGb().getPlayerArray()[i].getAccount().withdraw(2);
+                    getGb().getCurrentPlayer().getAccount().deposit(2 * getGb().getPlayerArray().length + 1);
+                }
+                //burde virke nu, men ikke testet
                 break;
             case 15:
                 // Move to a pink or darkblue square, if no one owns the square you get it for free! Otherwise you have to pay the owner rent
-                String pdField[] = {getGb().getFI().getField(7).getName(),
-                        getGb().getFI().getField(8).getName(),
-                        getGb().getFI().getField(22).getName(),
-                        getGb().getFI().getField(23).getName()};
+                String pdField[] = {"museet", "bibloteket", "vandlandet", "strandpromenaden"};
                 Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
-                        getGb().getFI().getField(7).getName() +
-                        " , " + getGb().getFI().getField(8).getName() +
-                        " , " + getGb().getFI().getField(22).getName() +
-                        " eller " + getGb().getFI().getField(23).getName(), pdField);
-
+                                                             "museet, bibloteket, vandlandet eller strandpromenaden", pdField);
                 switch (Userinput) {
-                    case "Spillehallen \n Spillehallen":
-                        Position = 7;
+                    case "museet":
+                        position += 7;
                         break;
-                    case "Kinoen \n Biografen":
-                        Position = 8;
+                    case "bibloteket":
+                        position += 8;
                         break;
-                    case "Godtebutikken \n Slikbutikken":
-                        Position = 22;
+                    case "vandlandet":
+                        position += 22;
                         break;
-                    case "ISKIOSKEN \n ISKIOSKEN":
-                        Position = 23;
+                    case "strandpromenaden":
+                        position += 23;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
-                setPlayer(Position);
+                setPlayer(position);
                 break;
-
             case 16:
                 // You have made all of your homework, recive 2$ from the bank
                 getGb().getCurrentPlayer().getAccount().deposit(2);
                 break;
-
             case 17:
                 // Move to a red square, if no one owns it you get it for free! Otherwise you have to pay the owner rent.
-                String redField[] = {getGb().getFI().getField(13).getName(),
-                        getGb().getFI().getField(14).getName()};
+                String redField[] = {"spillehallen", "biografen"};
 
                 Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
-                        getGb().getFI().getField(13).getName() +
-                        " eller " + getGb().getFI().getField(14).getName(), redField);
+                                                             "spillehallen eller biografen", redField);
 
-                Position = 0;
+                position = 0;
                 switch (Userinput) {
-                    case "Spillehallen \n Spillehallen":
-                        Position = 13;
+                    case "spillehallen":
+                        position += 13;
                         break;
-                    case "Kinoen \n Biografen":
-                        Position = 14;
+                    case "biografen":
+                        position += 14;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
-                setPlayer(Position);
+                setPlayer(position);
                 break;
 
             case 18:
@@ -268,97 +246,75 @@ public class ChanceCardDeck {
 
             case 19:
                 // Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.
-                String lbrField[] = {getGb().getFI().getField(13).getName(),
-                        getGb().getFI().getField(14).getName(),
-                        getGb().getFI().getField(4).getName(),
-                        getGb().getFI().getField(5).getName()};
-
+                String lbrField[] = {"spillehallen", "biografen", "slikbutikken", "iskiosken"};
                 String UserInteger = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
-                        getGb().getFI().getField(13).getName() +
-                        " , " + getGb().getFI().getField(14).getName() +
-                        " , " + getGb().getFI().getField(4).getName() +
-                        " eller " + getGb().getFI().getField(5).getName(), lbrField);
+                                        "spillehallen, biografen, slikbutikken eller iskiosken", lbrField);
 
                 switch (UserInteger) {
-                    case "Spillehallen \n Spillehallen":
-                        Position = 13;
+                    case "spillehallen":
+                        position += 13;
                         break;
-                    case "Kinoen \n Biografen":
-                        Position = 14;
+                    case "biografen":
+                        position += 14;
                         break;
-                    case "Godtebutikken \n Slikbutikken":
-                        Position = 4;
+                    case "slikbutikken":
+                        position += 4;
                         break;
-                    case "ISKIOSKEN \n ISKIOSKEN":
-                        Position = 5;
+                    case "iskiosken":
+                        position += 5;
                         break;
                 }
-
                 getGb().getCurrentPlayer().setPayNothing(true);
-                setPlayer(Position);
+                setPlayer(position);
                 break;
             case 20:
                 // Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay the owner rent.
-                String byField[] = {getGb().getFI().getField(1).getName(),
-                        getGb().getFI().getField(2).getName(),
-                        getGb().getFI().getField(10).getName(),
-                        getGb().getFI().getField(11).getName()};
+                String byField[] = {"burgerbaren", "pizzariaet", "legetøjsbutikken", "dyrehandlen"};
                 String UserInteger1 = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
-                        getGb().getFI().getField(1).getName() +
-                        " , " + getGb().getFI().getField(2).getName() +
-                        " , " + getGb().getFI().getField(10).getName() +
-                        " eller " + getGb().getFI().getField(11).getName(), byField);
-                Position = 0;
+                        "burgerbaren, pizzariaet, legetøjsbutikken eller dyrehandlen", byField);
+                position = 0;
                 switch (UserInteger1) {
-                    case "GATEKJØKKENET \n BURGERBAREN":
-                        Position = 1;
+                    case "burgerbaren":
+                        position = 1;
                         break;
-                    case "Pizzahuset \n Pizzeriaet":
-                        Position = 2;
+                    case "pizzariaet":
+                        position = 2;
                         break;
-                    case "Rullebretparken \n Skateparken":
-                        Position = 10;
+                    case "legetøjsbutikken":
+                        position = 16;
                         break;
-                    case "Svømmebassenget \n Swimmingpoolen":
-                        Position = 11;
+                    case "dyrehandlen":
+                        position = 17;
                         break;
                 }
-
                 getGb().getCurrentPlayer().setPayNothing(true);
-                setPlayer(Position);
+                setPlayer(position);
                 break;
         }
     }
-
-
-
-
     public void move2() {
         // Move up to 5 fields forward
         String arr1[] = {"1","2","3","4","5"};
         String userIn = getGb().gui.getUserButtonPressed("How many fields do you want to move forward?", arr1);
-        int move = 0;
+        position = 0;
         switch (userIn) {
             case "1":
-                move = 1;
+                position += 1;
                 break;
             case "2":
-                move = 2;
+                position += 2;
                 break;
             case "3":
-                move = 3;
+                position += 3;
                 break;
             case "4":
-                move = 4;
+                position += 4;
                 break;
             case "5":
-                move = 5;
+                position += 5;
                 break;
         }
-        getGb().getHandler().removeplayer();
-        getGb().getCurrentPlayer().setCurrentPosition(getGb().getCurrentPlayer().getCurrentPosition() + move);
-        getGb().getLogic().checkforStart();
-        getGb().getHandler().movePlayer();
+        movePlayer(position);
 
         // CANNOT USE THE SETPLAYER FUNCTION SINCE IT DOESNT SET A PLAYER, IT MOVES HIM.
         }
@@ -372,15 +328,20 @@ public class ChanceCardDeck {
         return output;
     }
 
-    public void setPlayer(int position) {
+    public void movePlayer(int position) {
+        getGb().getHandler().removeplayer();
+        getGb().getCurrentPlayer().setCurrentPosition(getGb().getCurrentPlayer().getCurrentPosition() + position);
+        getGb().getLogic().checkforStart();
+        getGb().getHandler().movePlayer();
+    }
 
+    public void setPlayer(int position) {
         getGb().getHandler().removeplayer();
         getGb().getCurrentPlayer().setCurrentPosition(position);
         getGb().getHandler().movePlayer();
         getGb().getFI().getField(position).FieldFunctionality();
 
     }
-
     private GameBoard getGb() { return GameBoard.getInstance(); }
 
 }
