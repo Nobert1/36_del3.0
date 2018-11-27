@@ -18,9 +18,6 @@ public class Properties extends Fields {
     private Player owner;
     private GameBoard gb = GameBoard.getInstance();
 
-
-
-
     public Properties(int position, String name, int price, int sisterIndex) {
         super(position, name);
 
@@ -48,8 +45,11 @@ public class Properties extends Fields {
 
     public void setOwner(){
         this.owner = gb.getPlayer();
-        gb.getPlayer().getAccount().withdraw(getPrice());
-
+        if(!gb.getCurrentGUIPlayer().isPayNothing()) {
+            gb.getPlayer().getAccount().withdraw(getPrice());
+        } else {
+            gb.getCurrentGUIPlayer().setPayNothing(false);
+        }
     }
 
     public Player getOwner(){
@@ -72,17 +72,17 @@ public class Properties extends Fields {
          * og jeg tror heller ikke den kommer til at kunne gøre noget fedt.
          */
         /*for (int i = 0; i < 24; i++) {
-            if (gb.getFIELDSINSTANS().getField(i).getClass().isInstance(Properties.class)) {
-                //if ((Object) gb.getFIELDSINSTANS().getField(i).getClass() instanceof Properties) {
+            if (gb.getFI().getField(i).getClass().isInstance(Properties.class)) {
+                //if ((Object) gb.getFI().getField(i).getClass() instanceof Properties) {
 
-                    propArray[counter] = (Properties) gb.getFIELDSINSTANS().getField(i);
+                    propArray[counter] = (Properties) gb.getFI().getField(i);
                 counter++;
 
             }
             int propArrayPlayerPos = gb.getPlayer().getCurrentPosition() - gb.getPlayer().getCurrentPosition()/3;
             for (int j = 0; j < propArray.length; j++) {
                 if (propArray[j].getSisterIndex() ==
-                        ((Properties) gb.getFIELDSINSTANS().getField(gb.getPlayer().getCurrentPosition())).getSisterIndex()) {
+                        ((Properties) gb.getFI().getField(gb.getPlayer().getCurrentPosition())).getSisterIndex()) {
                     if (propArray[j].getOwner() == propArray[propArrayPlayerPos].getOwner()) {
                         priceCounter++;
                     }
@@ -100,19 +100,13 @@ public class Properties extends Fields {
 
     }
 
-
-
-
     @Override
     public void FieldFunctionality() {
-
-
         if (!this.owned) {
             setOwned(true);
         } else {
             payRent();
         }
-
     }
 
     public int getSisterIndex() {

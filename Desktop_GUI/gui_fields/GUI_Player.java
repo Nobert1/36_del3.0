@@ -17,6 +17,8 @@ public class GUI_Player extends Observable{
 	private static int nextId = 0;
     private int id;
     private int placement;
+
+	private boolean payNothing;
 	
 	public static final int ICON_WIDTH = 41;
 	public static final int ICON_HEIGHT = 22;
@@ -111,6 +113,12 @@ public class GUI_Player extends Observable{
             + balance + ", car=" + car + "]";
     }
 
+	public boolean isPayNothing() {
+		return payNothing;
+	}
 
+	public void setPayNothing(boolean payNothing) {
+		this.payNothing = payNothing;
+	}
 
 }

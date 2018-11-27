@@ -15,8 +15,6 @@ public abstract class Fields  {
     private Fields[] fields;
     //private Fields[] FIELDINSTANS = GameBoard.getFIELDINSTANS();
 
-
-
     public Fields(int position, String name) {
 
         this.position = position;
@@ -24,13 +22,11 @@ public abstract class Fields  {
 
     }
 
-
-
     public Fields[] getFields() {
         return fields;
     }
 
-@Override
+    @Override
     public String toString() {
         String o = "";
         for (int i = 0; i < fields.length; i++) {
@@ -51,8 +47,6 @@ public abstract class Fields  {
     public abstract void FieldFunctionality();
 
     public abstract void OutputToGUI();
-
-
 
     public Fields[] makeFields() {
 
@@ -84,7 +78,6 @@ public abstract class Fields  {
         return fields;
 
     }
-
 
     public void setFields(Fields[] fields) {
         this.fields = fields;
