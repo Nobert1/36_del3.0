@@ -20,7 +20,7 @@ public final class GUI_Street extends GUI_Ownable {
     public GUI_Street(String title, String subText, String description, String rent, Color bgColor, Color fgColor) {
         super(bgColor, fgColor, title, subText, description, rent);
         title = title.replace("\n", "<BR>");
-        
+
         super.subTextLabel = makeSubTextLabel();
         this.houseLabel = makeHouseLabel();
         
@@ -40,12 +40,15 @@ public final class GUI_Street extends GUI_Ownable {
         this.subTextLabel.setForeground(textColor);
         return this;
     }
+
     private JLabel makeSubTextLabel() {
         JLabel l = makeLabel(SUBTEXTHEIGHT);
         l.setHorizontalTextPosition(SwingConstants.CENTER);
         l.setText(super.subText);
         return l;
     }
+
+
     private JLabel makeHouseLabel() {
         JLabel l = makeLabel(TITLEHEIGHT);
         l.setOpaque(false);

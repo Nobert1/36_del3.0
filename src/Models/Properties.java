@@ -1,6 +1,6 @@
 package Models;
 import Controllers.GameBoard;
-import gui_fields.GUI_Player;
+import gui_main.GUI;
 
 
 /**
@@ -17,6 +17,8 @@ public class Properties extends Fields {
     public boolean owned;
     private Player owner;
     private GameBoard gb = GameBoard.getInstance();
+    private GUI gui;
+
 
     public Properties(int position, String name, int price, int sisterIndex) {
         super(position, name);
@@ -40,17 +42,19 @@ public class Properties extends Fields {
 
         this.owned = true;
         setOwner();
-
     }
 
-    public void setOwner(){
-        this.owner = gb.getPlayer();
-        if(!gb.getCurrentGUIPlayer().isPayNothing()) {
-            gb.getPlayer().getAccount().withdraw(getPrice());
+    public void setOwner() {
+
+        this.owner = gb.getCurrentPlayer();
+        if (!gb.getCurrentGUIPlayer().isPayNothing()) {
+            gb.getCurrentPlayer().getAccount().withdraw(getPrice());
         } else {
             gb.getCurrentGUIPlayer().setPayNothing(false);
         }
     }
+
+
 
     public Player getOwner(){
         return owner;
@@ -79,10 +83,10 @@ public class Properties extends Fields {
                 counter++;
 
             }
-            int propArrayPlayerPos = gb.getPlayer().getCurrentPosition() - gb.getPlayer().getCurrentPosition()/3;
+            int propArrayPlayerPos = gb.getCurrentPlayer().getCurrentPosition() - gb.getCurrentPlayer().getCurrentPosition()/3;
             for (int j = 0; j < propArray.length; j++) {
                 if (propArray[j].getSisterIndex() ==
-                        ((Properties) gb.getFI().getField(gb.getPlayer().getCurrentPosition())).getSisterIndex()) {
+                        ((Properties) gb.getFI().getField(gb.getCurrentPlayer().getCurrentPosition())).getSisterIndex()) {
                     if (propArray[j].getOwner() == propArray[propArrayPlayerPos].getOwner()) {
                         priceCounter++;
                     }
@@ -96,7 +100,7 @@ public class Properties extends Fields {
 
         owner.getAccount().deposit((ownsAll ? 2 * getPrice() : getPrice()));
 
-        gb.getPlayer().getAccount().withdraw(ownsAll ? 2 * getPrice() : getPrice());
+        gb.getCurrentPlayer().getAccount().withdraw(ownsAll ? 2 * getPrice() : getPrice());
 
     }
 
@@ -104,6 +108,7 @@ public class Properties extends Fields {
     public void FieldFunctionality() {
         if (!this.owned) {
             setOwned(true);
+
         } else {
             payRent();
         }

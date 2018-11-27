@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.*;
+import gui_codebehind.GUI_FieldFactory;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
@@ -25,13 +26,14 @@ public class GameBoard {
 
     private static final GameBoard Instans = new GameBoard();
     private static Board FI = new Board();
+    private GUI_FieldFactory fc = new GUI_FieldFactory();
     public GUI gui;
     private Dice die;
     private int players;
     public GUI_Player[] guiArray;
     private Player[] playerArray;
     private GUI_Player currentGUIPlayer;
-    private Player player;
+    private Player currentPlayer;
 
 // Board skal være statisk ellers får vi en exception der hedder Initalization. Dvs at det board er ikke oprettet når programmet gerne
     // Vil benytte sig af det, der er muligvis et fix.
@@ -73,42 +75,82 @@ public class GameBoard {
         return players;
     }
 
+    /**
+     * Have updated method so that it removes colour possibilities after being chosen by anther currentPlayer
+     * -Alex
+     */
 
     public void setPlayerNames() {
+        String[] arr = {"CAR", "RACECAR", "UFO", "TRACTOR"};
+        String[] arr1 = {"White", "Black", "Red", "Blue"};
         for (int i = 0; i < players; i++) {
             String name = gui.getUserString("What would you like your name to be?");
             playerArray[i] = new Player(name);
-            String[] arr = {"CAR", "RACECAR", "UFO", "TRACTOR"};
             String a = gui.getUserButtonPressed("Which icon would you like to have?", arr);
-            String[] arr1 = {"White", "Black", "Red", "Blue"};
             String color = gui.getUserButtonPressed("Which colour would you like?", arr1);
             Color c;
+            String[] arrTemp = new String[arr1.length-1];
+
             switch (color) {
                 case "White":
                     c = Color.WHITE;
+                    int z = 0;
+                    for(int j = 0; j <arr1.length; j++){
+                        if(arr1[j] != "White"){
+                            arrTemp[z] = arr1[j];
+                            z++;
+                        }
+                    }
+
                     break;
                 case "Black":
                     c = Color.BLACK;
+                    int z1 = 0;
+                    for(int k = 0; k <arr1.length; k++){
+                        if(arr1[k] != "Black"){
+                            arrTemp[z1] = arr1[k];
+                            z1++;
+                        }
+                    }
                     break;
                 case "Red":
                     c = Color.RED;
+                    int z2 = 0;
+                    for(int l = 0; l <arr1.length; l++){
+                        if(arr1[l] != "Red"){
+                            arrTemp[z2] = arr1[l];
+                            z2++;
+                        }
+                    }
                     break;
                 case "Blue":
                     c = Color.BLUE;
+                    int z3 = 0;
+                    for(int m = 0; m <arr1.length; m++){
+                        if(arr1[m] != "Blue"){
+                            arrTemp[z3] = arr1[m];
+                            z3++;
+                        }
+                    }
                     break;
                     default:
                         c = Color.BLACK;
                         break;
             }
+
             GUI_Car Car = new GUI_Car(c, c, GUI_Car.Type.getTypeFromString(a), GUI_Car.Pattern.DOTTED);
             GUI_Player spiller = new GUI_Player(name, 24 - 2 * players, Car, 0);
             guiArray[i] = spiller;
             gui.getFields()[0].setCar(guiArray[i], true);
             gui.addPlayer(spiller);
+            arr1 = new String[arrTemp.length];
+            for(int z = 0; z < arrTemp.length; z++){
+                arr1[z] = arrTemp[z];
+            }
 
         }
         currentGUIPlayer = guiArray[0];
-        player = playerArray[0];
+        currentPlayer = playerArray[0];
     }
 
     /** Initalizes the players turn
@@ -119,22 +161,22 @@ public class GameBoard {
 
 
 
-        gui.showMessage("It is " + player.getName() + "'s turn. Press enter to roll the dice.");
+        gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
         die.roll();
         gui.setDie(die.getValue());
         movePlayer();
 
     }
 
-    /** Simple move function that also checks if the player is jailed, can perhaps be made more sophisticated
+    /** Simple move function that also checks if the currentPlayer is jailed, can perhaps be made more sophisticated
      * - comment by Gustav
      */
     public void movePlayer() {
 
-        gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, false);
-        player.setCurrentPosition(player.getCurrentPosition() + die.getValue());
+        gui.getFields()[currentPlayer.getCurrentPosition()].setCar(currentGUIPlayer, false);
+        currentPlayer.setCurrentPosition(currentPlayer.getCurrentPosition() + die.getValue());
         checkforStart();
-        gui.getFields()[player.getCurrentPosition()].setCar(currentGUIPlayer, true);
+        gui.getFields()[currentPlayer.getCurrentPosition()].setCar(currentGUIPlayer, true);
         applySquareLogic();
 
     }
@@ -144,7 +186,7 @@ public class GameBoard {
      */
     public void applySquareLogic() {
 
-        int i = player.getCurrentPosition();
+        int i = currentPlayer.getCurrentPosition();
 
         FI.getField(i).OutputToGUI();
         FI.getField(i).FieldFunctionality();
@@ -157,25 +199,25 @@ public class GameBoard {
 
     }
 
-    /** Sets the current player object to a new player, so we can switch turns
+    /** Sets the current currentPlayer object to a new currentPlayer, so we can switch turns
      * - comment by Gustav
      */
     public void getPlayerTurn() {
         if (currentGUIPlayer == guiArray[0]) {
             currentGUIPlayer = guiArray[1];
-            player = playerArray[1];
+            currentPlayer = playerArray[1];
 
         } else if (currentGUIPlayer == guiArray[1]) {
             currentGUIPlayer = guiArray[2 % guiArray.length];
-            player = playerArray[2 % playerArray.length];
+            currentPlayer = playerArray[2 % playerArray.length];
 
         } else if (currentGUIPlayer == guiArray[2]) {
             currentGUIPlayer = guiArray[3 % guiArray.length];
-            player = playerArray[3 % playerArray.length];
+            currentPlayer = playerArray[3 % playerArray.length];
 
         } else if (currentGUIPlayer == guiArray[3]) {
             currentGUIPlayer = guiArray[0];
-            player = playerArray[0];
+            currentPlayer = playerArray[0];
         }
         playerTurn();
     }
@@ -189,16 +231,16 @@ public class GameBoard {
             guiArray[i].setBalance(playerArray[i].getAccount().getBalance());
     }
 
-    /** Method to check if the player passed start
+    /** Method to check if the currentPlayer passed start
      * - comment by Gustav
      * Updated so it shows message and does it if you pass or are on go.
      * - Alex
      */
     public void checkforStart() {
-        if (player.getCurrentPosition() > 23) {
-            player.getAccount().deposit(2);
-            player.setCurrentPosition(player.getCurrentPosition() % 24);
-            if(player.getCurrentPosition() == 0){
+        if (currentPlayer.getCurrentPosition() > 23) {
+            currentPlayer.getAccount().deposit(2);
+            currentPlayer.setCurrentPosition(currentPlayer.getCurrentPosition() % 24);
+            if(currentPlayer.getCurrentPosition() == 0){
                 gui.showMessage("You are landing on go. Collect 2 dollars.");
             } else {
                 gui.showMessage("You are passing go. Collect 2 dollars.");
@@ -207,7 +249,7 @@ public class GameBoard {
     }
     /** Looks for a winner.
      * - comment by Gustav
-     * Have added that if player 1 is the winner it can find his name
+     * Have added that if currentPlayer 1 is the winner it can find his name
      * - Alex
      */
     public void CheckforBroke() {
@@ -241,15 +283,15 @@ public class GameBoard {
      * - Alex
      */
     public void checkforInJail() {
-        if (player.getInJail() == true && player.getJailCard() == true) {
+        if (currentPlayer.getInJail() == true && currentPlayer.getJailCard() == true) {
             gui.showMessage("You use your get out jail free card and are released next turn!");
-            player.setJailCard(false);
+            currentPlayer.setJailCard(false);
         }
-        else if (player.getInJail() == true) {
-            player.setInJail(false);
+        else if (currentPlayer.getInJail() == true) {
+            currentPlayer.setInJail(false);
             gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment\n" +
                                   "You will be released next turn and it will cost you 1 dollar.");
-            getPlayer().getAccount().withdraw(1);
+            getCurrentPlayer().getAccount().withdraw(1);
             getPlayerTurn();
         }
     }
@@ -260,13 +302,17 @@ public class GameBoard {
      */
     public GUI_Player getCurrentGUIPlayer() { return currentGUIPlayer; }
 
-    public Player getPlayer() { return player; }
+    public Player getCurrentPlayer() { return currentPlayer; }
 
     public int getPlayers() { return players; }
 
     public Board getFI() { return FI; }
 
     public static GameBoard getInstance() { return Instans; }
+
+    public GUI_FieldFactory getFc() {
+        return fc;
+    }
 
     public GUI_Player[] getGuiArray() { return guiArray; }
 }

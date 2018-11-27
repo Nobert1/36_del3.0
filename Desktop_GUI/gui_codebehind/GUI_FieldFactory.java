@@ -97,4 +97,6 @@ public final class GUI_FieldFactory {
         fields[i++] = new GUI_Street(" STRANDPROMENADEN", "M5", "STRANDPROMENADEN", "Leje:  1", new Color(10, 1, 225), Color.BLACK);
 return fields;
     }
+
+
 }
