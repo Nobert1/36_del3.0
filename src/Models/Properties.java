@@ -1,8 +1,8 @@
 package Models;
 import Controllers.GameBoard;
+import Models.Fields.Fields;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Ownable;
-import gui_main.GUI;
 
 
 /**
@@ -18,8 +18,6 @@ public class Properties extends Fields {
     int sisterIndex;
     public boolean owned;
     private Player owner;
-    private GameBoard gb = GameBoard.getInstance();
-    private GUI gui;
 
 
     public Properties(int position, String name, int price, int sisterIndex) {
@@ -30,12 +28,16 @@ public class Properties extends Fields {
     this.owned = false;
 
 
+
 }
-//behøver vi fortælle spilleren hvilken farve de har landet på? selv en som mig der er farveblind kan godt se om de hører sammen eller ey
+    public GameBoard getGb(){
+        return GameBoard.getInstance();
+    }
+
     @Override
     public String toString() {
         if(this.owned){
-            if(this.owner == gb.getCurrentPlayer()){
+            if(this.owner == getGb().getCurrentPlayer()){
                 return "You landed on square " + this.position + " which is owned by you!";
             }
             return "You landed on square " + this.position + " which is owned by " + this.owner.getName() +
@@ -52,16 +54,16 @@ public class Properties extends Fields {
 
     public void setOwner() {
 
-        this.owner = gb.getCurrentPlayer();
-        if (!gb.getCurrentGUIPlayer().isPayNothing()) {
-            gb.getCurrentPlayer().getAccount().withdraw(getPrice());
+        this.owner = getGb().getCurrentPlayer();
+        if (!getGb().getCurrentGUIPlayer().isPayNothing()) {
+            getGb().getCurrentPlayer().getAccount().withdraw(getPrice());
         } else {
-            gb.getCurrentGUIPlayer().setPayNothing(false);
+            getGb().getCurrentGUIPlayer().setPayNothing(false);
         }
-        GUI_Field f = gb.gui.getFields()[gb.getCurrentPlayer().getCurrentPosition()];
+        GUI_Field f = getGb().gui.getFields()[getGb().getCurrentPlayer().getCurrentPosition()];
         if (f instanceof GUI_Ownable){
             GUI_Ownable o = (GUI_Ownable)f;
-            o.setBorder(gb.getCurrentGUIPlayer().getPrimaryColor(), gb.getCurrentGUIPlayer().getSecondaryColor());
+            o.setBorder(getGb().getCurrentGUIPlayer().getPrimaryColor(), getGb().getCurrentGUIPlayer().getSecondaryColor());
         }
     }
 
@@ -111,7 +113,7 @@ public class Properties extends Fields {
 
         owner.getAccount().deposit((ownsAll ? 2 * getPrice() : getPrice()));
 
-        gb.getCurrentPlayer().getAccount().withdraw(ownsAll ? 2 * getPrice() : getPrice());
+        getGb().getCurrentPlayer().getAccount().withdraw(ownsAll ? 2 * getPrice() : getPrice());
 
     }
 
@@ -131,7 +133,7 @@ public class Properties extends Fields {
 
     @Override
     public void OutputToGUI(){
-    gb.gui.showMessage(toString());
+        getGb().gui.showMessage(toString());
 
 
     }

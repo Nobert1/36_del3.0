@@ -1,5 +1,11 @@
 
-package Models;
+package Wrappers;
+
+import Models.*;
+import Models.Fields.Fields;
+import Models.Fields.FunctionlessSquare;
+import Models.Fields.Go_to_jail;
+import Models.Fields.Chance_Square;
 
 /**
  * Only way i could figure out how to pass a board instance to the Gameboard class was by making this class and making the call static.

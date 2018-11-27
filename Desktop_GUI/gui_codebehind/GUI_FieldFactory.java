@@ -67,7 +67,7 @@ public final class GUI_FieldFactory {
         fields[i++] = new GUI_Street("Rådhuspladsen", "Pris:  400", "Rådhuspladsen", "Leje:  150", new Color(150, 60, 150), Color.WHITE);
         return fields;
     }
-
+/*
     public static GUI_Field[] makeFieldsJuniorMatador() {
         GUI_Field[] fields = new GUI_Field[24];
         int i = 0;
@@ -96,7 +96,7 @@ public final class GUI_FieldFactory {
         fields[i++] = new GUI_Street("VANDLANDET", "M5", "VANDLANDET", "Leje:  1", new Color(10, 1, 225), Color.BLACK);
         fields[i++] = new GUI_Street(" STRANDPROMENADEN", "M5", "STRANDPROMENADEN", "Leje:  1", new Color(10, 1, 225), Color.BLACK);
 return fields;
-    }
+    }*/
 
 
 }

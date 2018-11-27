@@ -5,8 +5,10 @@ import gui_codebehind.GUI_FieldFactory;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
+import Wrappers.Board;
 
 import java.awt.*;
+import java.util.logging.Handler;
 
 /**
  * Method that creates the gameboard and everything in it. It is static because that makes it referable in the other classes.
@@ -26,19 +28,23 @@ public class GameBoard {
 
     private static final GameBoard Instans = new GameBoard();
     private static Board FI = new Board();
-
+    private GUI_Handler handler = new GUI_Handler();
     private static ChanceCardDeck CD;
     private GUI_FieldFactory fc = new GUI_FieldFactory();
+    private Logic logic = new Logic();
     public GUI gui;
     private Dice die;
     private int players;
-    public GUI_Player[] guiArray;
+    private GUI_Player[] guiArray;
     private Player[] playerArray;
     private GUI_Player currentGUIPlayer;
     private Player currentPlayer;
 
 // Board skal være statisk ellers får vi en exception der hedder Initalization. Dvs at det board er ikke oprettet når programmet gerne
     // Vil benytte sig af det, der er muligvis et fix.
+
+
+
 
     /**
      * Creates the gameboard instance.
@@ -47,7 +53,7 @@ public class GameBoard {
     public GameBoard() {
         gui = new GUI();
         die = new Dice();
-        players = setPlayers();
+        players = setPlayers(); // Is NOT a setter :))
         guiArray = new GUI_Player[players];
         playerArray = new Player[players];
         CD = new ChanceCardDeck(gui);
@@ -57,7 +63,40 @@ public class GameBoard {
     public void startGame() {
 
         setPlayerNames();
+        movePlayer();
+
+    }
+
+    /** Initalizes the players turn
+     * - comment by Gustav
+     */
+
+    public void playerTurn() {
+
+        gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
+        die.roll();
+        gui.setDie(die.getValue());
+
+    }
+
+    /** Simple move function that also checks if the currentPlayer is jailed, can perhaps be made more sophisticated
+     * - comment by Gustav
+     */
+
+    public void movePlayer() {
+
+        logic.checkforInJail();
         playerTurn();
+        handler.removeplayer();
+        currentPlayer.setCurrentPosition(currentPlayer.getCurrentPosition() + die.getValue());
+        logic.checkforStart();
+        handler.movePlayer();
+        logic.applySquareLogic();
+        logic.CheckforBroke();
+        handler.updatePlayerBalances();
+        logic.getPlayerTurn();
+
+
     }
 
     /** Two methods to set up the game.
@@ -135,9 +174,9 @@ public class GameBoard {
                         }
                     }
                     break;
-                    default:
-                        c = Color.BLACK;
-                        break;
+                default:
+                    c = Color.BLACK;
+                    break;
             }
 
             GUI_Car Car = new GUI_Car(c, c, GUI_Car.Type.getTypeFromString(a), GUI_Car.Pattern.DOTTED);
@@ -155,157 +194,16 @@ public class GameBoard {
         currentPlayer = playerArray[0];
     }
 
-    /** Initalizes the players turn
-     * - comment by Gustav
-     */
 
-    public void playerTurn() {
-        gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
-        die.roll();
-        gui.setDie(die.getValue());
-        movePlayer();
-
-    }
-
-    /** Simple move function that also checks if the currentPlayer is jailed, can perhaps be made more sophisticated
-     * - comment by Gustav
-     */
-    public void movePlayer() {
-
-        gui.getFields()[currentPlayer.getCurrentPosition()].setCar(currentGUIPlayer, false);
-        currentPlayer.setCurrentPosition(currentPlayer.getCurrentPosition() + die.getValue());
-        checkforStart();
-        gui.getFields()[currentPlayer.getCurrentPosition()].setCar(currentGUIPlayer, true);
-        applySquareLogic();
-
-    }
-
-    /** Calls polymorphic methods based on the Square
-     * - comment by Gustav
-     */
-    public void applySquareLogic() {
-
-        int i = currentPlayer.getCurrentPosition();
-
-        FI.getField(i).OutputToGUI();
-        FI.getField(i).FieldFunctionality();
-
-
-        updatePlayerBalances();
-        CheckforBroke();
-        checkforInJail();
-        getPlayerTurn();
-
-    }
-
-    /** Sets the current currentPlayer object to a new currentPlayer, so we can switch turns
-     * - comment by Gustav
-     */
-    public void getPlayerTurn() {
-        if (currentGUIPlayer == guiArray[0]) {
-            currentGUIPlayer = guiArray[1];
-            currentPlayer = playerArray[1];
-
-        } else if (currentGUIPlayer == guiArray[1]) {
-            currentGUIPlayer = guiArray[2 % guiArray.length];
-            currentPlayer = playerArray[2 % playerArray.length];
-
-        } else if (currentGUIPlayer == guiArray[2]) {
-            currentGUIPlayer = guiArray[3 % guiArray.length];
-            currentPlayer = playerArray[3 % playerArray.length];
-
-        } else if (currentGUIPlayer == guiArray[3]) {
-            currentGUIPlayer = guiArray[0];
-            currentPlayer = playerArray[0];
-        }
-        playerTurn();
-    }
-
-    /** Method to sync the balance in the GUI with the actual players balance.
-     * - comment by Gustav
-     */
-    public void updatePlayerBalances() {
-
-        for (int i = 0; i < playerArray.length; i++)
-            guiArray[i].setBalance(playerArray[i].getAccount().getBalance());
-    }
-
-    /** Method to check if the currentPlayer passed start
-     * - comment by Gustav
-     * Updated so it shows message and does it if you pass or are on go.
-     * - Alex
-     */
-    public void checkforStart() {
-        if (currentPlayer.getCurrentPosition() > 23) {
-            currentPlayer.getAccount().deposit(2);
-            currentPlayer.setCurrentPosition(currentPlayer.getCurrentPosition() % 24);
-            if(currentPlayer.getCurrentPosition() == 0){
-                gui.showMessage("You are landing on go. Collect 2 dollars.");
-            } else {
-                gui.showMessage("You are passing go. Collect 2 dollars.");
-            }
-        }
-    }
-    /** Looks for a winner.
-     * - comment by Gustav
-     * Have added that if currentPlayer 1 is the winner it can find his name
-     * - Alex
-     */
-    public void CheckforBroke() {
-        String Winner = "";
-        String Loser = "";
-        Boolean loserfound = false;
-        for (int j = 0; j < playerArray.length; j++) {
-            if (playerArray[j].getBroke() == true) {
-                Loser = playerArray[j].getName();
-                loserfound = true;
-            }
-            if (loserfound == true) {
-                for (int i = 1; i < playerArray.length; i++) {
-                    if (playerArray[i].getAccount().getBalance() > playerArray[i - 1].getAccount().getBalance()) {
-                        Winner = playerArray[i].getName();
-                    } else Winner = playerArray[0].getName();
-                }
-
-                gui.showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner + "! HUGE CONGRATS PERSON");
-
-                // Closes GUI then terminates the program.
-
-                gui.close();
-                System.exit(0);
-
-                } } }
-
-    /** Checks for in Jail, setup so it's ready for the chancecard.
-     * - comment by Gustav
-     * Have added messages and that it costs 1 dollar to get out of jail
-     * - Alex
-     */
-    public void checkforInJail() {
-        if (currentPlayer.getInJail() == true && currentPlayer.getJailCard() == true) {
-            gui.showMessage("You use your get out jail free card and are released next turn!");
-            currentPlayer.setJailCard(false);
-        }
-        else if (currentPlayer.getInJail() == true) {
-            currentPlayer.setInJail(false);
-            gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment\n" +
-                                  "You will be released next turn and it will cost you 1 dollar.");
-            getCurrentPlayer().getAccount().withdraw(1);
-            getPlayerTurn();
-        }
-    }
 
     /**
      * Getters for the other classes to use when they refer to the board.
      * - comment by Gustav
      */
-    public static ChanceCardDeck getCD() {
-        return CD;
-    }
+    public static ChanceCardDeck getCD() { return CD; }
 
-    public static void setCD(ChanceCardDeck CD) {
-        GameBoard.CD = CD;
-    }
+    public static void setCD(ChanceCardDeck CD) { GameBoard.CD = CD; }
+
     public GUI_Player getCurrentGUIPlayer() { return currentGUIPlayer; }
 
     public Player getCurrentPlayer() { return currentPlayer; }
@@ -316,11 +214,19 @@ public class GameBoard {
 
     public static GameBoard getInstance() { return Instans; }
 
-    public GUI_FieldFactory getFc() {
-        return fc;
-    }
+    public GUI_FieldFactory getFc() { return fc; }
 
     public GUI_Player[] getGuiArray() { return guiArray; }
+
+    public void setCurrentPlayer(Player currentPlayer) { this.currentPlayer = currentPlayer; }
+
+    public Player[] getPlayerArray() { return playerArray; }
+
+    public GUI_Handler getHandler() { return handler; }
+
+    public Logic getLogic() { return logic; }
+
+    public void setCurrentGUIPlayer(GUI_Player currentGUIPlayer) { this.currentGUIPlayer = currentGUIPlayer; }
 }
 
 

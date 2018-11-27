@@ -1,5 +1,7 @@
-package Models;
+package Models.Fields;
 import Controllers.GameBoard;
+import Models.Fields.Fields;
+import Models.Player;
 import gui_fields.GUI_Player;
 
 /**

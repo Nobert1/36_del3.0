@@ -1,5 +1,7 @@
-package Models;
+package Models.Fields;
 
+
+import Models.Properties;
 
 /**
  * Currently abstract and working as nice as it feels to wipe your ass with silk.

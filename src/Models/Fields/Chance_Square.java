@@ -1,4 +1,4 @@
-package Models;
+package Models.Fields;
 import Controllers.GameBoard;
 
 /**

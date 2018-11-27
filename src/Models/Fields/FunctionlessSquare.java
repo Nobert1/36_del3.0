@@ -1,5 +1,6 @@
-package Models;
+package Models.Fields;
 import Controllers.GameBoard;
+import Models.Fields.Fields;
 
 /**
  * Class dumb as fuck and isn't subject for change. Perhaps it is if Jail_visting ends up being obsolete as well,
