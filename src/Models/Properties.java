@@ -1,5 +1,7 @@
 package Models;
 import Controllers.GameBoard;
+import gui_fields.GUI_Field;
+import gui_fields.GUI_Ownable;
 import gui_main.GUI;
 
 
@@ -33,11 +35,15 @@ public class Properties extends Fields {
     @Override
     public String toString() {
         if(this.owned){
+            if(this.owner == gb.getCurrentPlayer()){
+                return "You landed on square " + this.position + " which is owned by you!";
+            }
             return "You landed on square " + this.position + " which is owned by " + this.owner.getName() +
                     " the rent is " + this.price + " dollar(s).";
         } else
         return "You landed on square " + this.position + " the price is " + this.price + " dollar(s).";
     }
+
     public void setOwned(boolean owned) {
 
         this.owned = true;
@@ -51,6 +57,11 @@ public class Properties extends Fields {
             gb.getCurrentPlayer().getAccount().withdraw(getPrice());
         } else {
             gb.getCurrentGUIPlayer().setPayNothing(false);
+        }
+        GUI_Field f = gb.gui.getFields()[gb.getCurrentPlayer().getCurrentPosition()];
+        if (f instanceof GUI_Ownable){
+            GUI_Ownable o = (GUI_Ownable)f;
+            o.setBorder(gb.getCurrentGUIPlayer().getPrimaryColor(), gb.getCurrentGUIPlayer().getSecondaryColor());
         }
     }
 

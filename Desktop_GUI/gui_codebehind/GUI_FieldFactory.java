@@ -19,7 +19,7 @@ import Controllers.GameBoard;
  */
 public final class GUI_FieldFactory {
 
-    private GUI_FieldFactory() {
+    public GUI_FieldFactory() {
 
     }
     public static GUI_Field[] makeFields() {
