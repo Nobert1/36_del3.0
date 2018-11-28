@@ -63,7 +63,6 @@ public class GameBoard {
     public void startGame() {
 
         setPlayerNames();
-        handler.setupBoard();
         movePlayer();
 
     }
@@ -95,7 +94,6 @@ public class GameBoard {
         handler.UpdateBoard();
         logic.CheckforBroke();
         logic.getPlayerTurn();
-        movePlayer();
 
 
     }
@@ -186,9 +184,10 @@ public class GameBoard {
             arr1 = new String[arrTemp.length];
             for(int z = 0; z < arrTemp.length; z++){
                 arr1[z] = arrTemp[z];
-                gui.getFields()[0].setCar(spiller, true);
-            }
 
+            }
+            gui.getFields()[0].setCar(spiller, true);
+            gui.addPlayer(spiller);
         }
         currentGUIPlayer = guiArray[0];
         currentPlayer = playerArray[0];
