@@ -1,8 +1,6 @@
 package Models.Fields;
 
 
-import Models.Properties;
-
 /**
  * Currently abstract and working as nice as it feels to wipe your ass with silk.
  * The to String method is probably not needed and perhaps the getFields method, since they are actually rarely used.

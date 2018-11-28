@@ -8,7 +8,9 @@ import Controllers.GameBoard;
 public class Chance_Square extends Fields {
 
 
-    private GameBoard gb = GameBoard.getInstance();
+    public GameBoard getGb(){
+        return GameBoard.getInstance();
+    }
 
 
     public Chance_Square(int position, String name) {
@@ -17,12 +19,15 @@ public class Chance_Square extends Fields {
 
     @Override
     public void FieldFunctionality() {
-        gb.getCD().drawCard();
+
+        getGb().getCD().drawCard();
+        getGb().getCD().UseChancecard();
+
     }
 
     @Override
     public void OutputToGUI(){
-        gb.gui.showMessage(toString());
+        getGb().gui.showMessage(toString());
 
 
     }

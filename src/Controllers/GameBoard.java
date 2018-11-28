@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.*;
+import View.GUI_Handler;
 import gui_codebehind.GUI_FieldFactory;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
@@ -8,7 +9,6 @@ import gui_main.GUI;
 import Wrappers.Board;
 
 import java.awt.*;
-import java.util.logging.Handler;
 
 /**
  * Method that creates the gameboard and everything in it. It is static because that makes it referable in the other classes.
@@ -63,6 +63,7 @@ public class GameBoard {
     public void startGame() {
 
         setPlayerNames();
+        handler.setupBoard();
         movePlayer();
 
     }
@@ -75,7 +76,7 @@ public class GameBoard {
 
         gui.showMessage("It is " + currentPlayer.getName() + "'s turn. Press enter to roll the dice.");
         die.roll();
-        gui.setDie(die.getValue());
+        handler.setDice();
 
     }
 
@@ -87,13 +88,12 @@ public class GameBoard {
 
         logic.checkforInJail();
         playerTurn();
-        handler.removeplayer();
         currentPlayer.setCurrentPosition(currentPlayer.getCurrentPosition() + die.getValue());
         logic.checkforStart();
-        handler.movePlayer();
+        handler.UpdateBoard();
         logic.applySquareLogic();
+        handler.UpdateBoard();
         logic.CheckforBroke();
-        handler.updatePlayerBalances();
         logic.getPlayerTurn();
         movePlayer();
 
@@ -183,8 +183,7 @@ public class GameBoard {
             GUI_Car Car = new GUI_Car(c, c, GUI_Car.Type.getTypeFromString(a), GUI_Car.Pattern.DOTTED);
             GUI_Player spiller = new GUI_Player(name, 24 - 2 * players, Car, 0);
             guiArray[i] = spiller;
-            gui.getFields()[0].setCar(guiArray[i], true);
-            gui.addPlayer(spiller);
+
             arr1 = new String[arrTemp.length];
             for(int z = 0; z < arrTemp.length; z++){
                 arr1[z] = arrTemp[z];
@@ -228,6 +227,8 @@ public class GameBoard {
     public Logic getLogic() { return logic; }
 
     public void setCurrentGUIPlayer(GUI_Player currentGUIPlayer) { this.currentGUIPlayer = currentGUIPlayer; }
+
+    public Dice getDie() { return die; }
 }
 
 

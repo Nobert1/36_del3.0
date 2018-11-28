@@ -1,6 +1,6 @@
-package Models;
+package Models.Fields;
 import Controllers.GameBoard;
-import Models.Fields.Fields;
+import Models.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Ownable;
 
@@ -57,11 +57,7 @@ public class Properties extends Fields {
         } else {
             getGb().getCurrentGUIPlayer().setPayNothing(false);
         }
-        GUI_Field f = getGb().gui.getFields()[getGb().getCurrentPlayer().getCurrentPosition()];
-        if (f instanceof GUI_Ownable){
-            GUI_Ownable o = (GUI_Ownable)f;
-            o.setBorder(getGb().getCurrentGUIPlayer().getPrimaryColor(), getGb().getCurrentGUIPlayer().getSecondaryColor());
-        }
+        //Moved to the GUI handler.
     }
 
 

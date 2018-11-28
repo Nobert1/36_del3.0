@@ -98,7 +98,7 @@ public class Logic {
             getGb().setCurrentPlayer(getGb().getPlayerArray()[0]);
             getGb().setCurrentGUIPlayer(getGb().getGuiArray()[0]);
         }
-        getGb().playerTurn();
+        getGb().movePlayer();
     }
 
     /** Calls polymorphic methods based on the Square
@@ -111,8 +111,6 @@ public class Logic {
 
         getGb().getFI().getField(i).OutputToGUI();
         getGb().getFI().getField(i).FieldFunctionality();
-
-        CheckforBroke();
 
 
     }
