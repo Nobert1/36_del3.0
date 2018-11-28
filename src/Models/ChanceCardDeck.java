@@ -172,24 +172,10 @@ public class ChanceCardDeck {
 
             case 9:
                 // It's your birthday! Everyone gives you 1$
-                //burde bare at være at gå igennem players array og for hver spiller minus 1. derefter + 1 til currentplayer. er skide træt orker ikke mere nu.
-                for(int i = 0; i < getGb().getPlayerArray().length; i++ ) {
-                    getGb().getPlayerArray()[i].getAccount().withdraw(2);
-                    getGb().getCurrentPlayer().getAccount().deposit(2 * getGb().getPlayerArray().length + 1);
-
-                    /**
-                    This method is going to add a really high amont of money to the current player since it's inside the for loop
-                    The amount is also 1 buck not two, i propose we do:
-                    for loop {
+                for(int i = 0; i < getGb().getPlayerArray().length; i++) {
                     getGb().getPlayerArray()[i].getAccount().withdraw(1);
-                    getGb().getCurrentPlayer().getAccount.deposit(1);
-                     }
-                    Will add one buck everytime it loops, and he will pay himself, but that is not a problem since it evens out.
-                     - Gustav
-                     */
-
+                    getGb().getCurrentPlayer().getAccount().deposit(1);
                 }
-                //burde virke nu, men ikke testet
                 break;
             case 10:
                 // Move to a pink or darkblue square, if no one owns the square you get it for free! Otherwise you have to pay the owner rent
@@ -198,7 +184,7 @@ public class ChanceCardDeck {
                                                              "museet, bibloteket, vandlandet eller strandpromenaden", pdField);
                 switch (Userinput) {
                     case "museet":
-                        position = +7;
+                        position += +7;
                         break;
                     case "bibloteket":
                         position += 8;
@@ -209,7 +195,6 @@ public class ChanceCardDeck {
                     case "strandpromenaden":
                         position += 23;
                         break;
-                        // Why += ?. He is getting placed on a spot it just needs to be =.
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
                 setPlayer(position);
@@ -224,8 +209,6 @@ public class ChanceCardDeck {
 
                 Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
                                                              "spillehallen eller biografen", redField);
-
-
                 switch (Userinput) {
                     case "spillehallen":
                         position += 13;
@@ -243,7 +226,6 @@ public class ChanceCardDeck {
                 getGb().getCurrentPlayer().setPayNothing(true);
                 setPlayer(10);
                 break;
-
             case 14:
                 // Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.
                 String lbrField[] = {"spillehallen", "biografen", "slikbutikken", "iskiosken"};
