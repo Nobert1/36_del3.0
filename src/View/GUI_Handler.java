@@ -14,44 +14,34 @@ public class GUI_Handler {
 
             getGb().gui.getFields()[counter].removeAllCars();
 
-        for (int i = 0; i < getGb().getPlayerArray().length; i++)
+            for (int i = 0; i < getGb().getPlayerArray().length; i++)
 
-            getGb().gui.getFields()[getGb().getPlayerArray()[i].getCurrentPosition()].setCar(getGb().getGuiArray()[i], true);
+                getGb().gui.getFields()[getGb().getPlayerArray()[i].getCurrentPosition()].setCar(getGb().getGuiArray()[i], true);
 
-        for (int j = 0; j < getGb().getPlayerArray().length; j++)
+            for (int j = 0; j < getGb().getPlayerArray().length; j++)
 
-            getGb().getGuiArray()[j].setBalance(getGb().getPlayerArray()[j].getAccount().getBalance());
+                getGb().getGuiArray()[j].setBalance(getGb().getPlayerArray()[j].getAccount().getBalance());
 
-        for (int x = 0; x < getGb().gui.getFields().length; x++) {
-
-            GUI_Field f = getGb().gui.getFields()[getGb().getCurrentPlayer().getCurrentPosition()];
-            if (f instanceof GUI_Ownable){
-                GUI_Ownable o = (GUI_Ownable)f;
-                o.setBorder(getGb().getCurrentGUIPlayer().getPrimaryColor(), getGb().getCurrentGUIPlayer().getSecondaryColor());
-            }
 
         }
-        // Why can't i use the same value for i in all of the loops?
-        }
+        // Why can't i use the same value for i in all of the loops? -Gullefar
+        // I couldnt either when chosing colour - Alex
     }
 
+public void setOwnerGUI() {
+
+        GUI_Field f = getGb().gui.getFields()[getGb().getCurrentPlayer().getCurrentPosition()];
+        if (f instanceof GUI_Ownable) {
+            GUI_Ownable o = (GUI_Ownable) f;
+            o.setBorder(getGb().getCurrentGUIPlayer().getPrimaryColor(), getGb().getCurrentGUIPlayer().getSecondaryColor());
+
+    }
+}
 
     public GameBoard getGb(){
         return GameBoard.getInstance();
     }
 
-    public void removeplayer() {
-
-        getGb().gui.getFields()[getGb().getCurrentPlayer().getCurrentPosition()].setCar(getGb().getCurrentGUIPlayer(), false);
-
-    }
-
-
-    public void movePlayer() {
-
-        getGb().gui.getFields()[getGb().getCurrentPlayer().getCurrentPosition()].setCar(getGb().getCurrentGUIPlayer(), true);
-
-    }
 
     public void setupBoard() {
 

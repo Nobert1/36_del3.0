@@ -292,6 +292,7 @@ public class ChanceCardDeck {
                 setPlayer(position);
                 break;
         }
+
     }
 
     public void move2() {
