@@ -81,27 +81,39 @@ public class Properties extends Fields {
          * der hvor vi skal lægge vores tid. Den .getclass funktion vi kalder ved vi i bund og grund ikke hvad gør
          * og jeg tror heller ikke den kommer til at kunne gøre noget fedt.
          */
+        try {
+
+                if (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
+                        ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() - 1)).getOwner() ||
+                (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
+                        ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() + 1)).getOwner()))
+                {
+                    ownsAll = true;
+                }
+
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
+
         /*for (int i = 0; i < 24; i++) {
-            if (gb.getFI().getField(i).getClass().isInstance(Properties.class)) {
+            if (getGb().getFI().getField(i).getClass().isInstance(Properties.class)) {
                 //if ((Object) gb.getFI().getField(i).getClass() instanceof Properties) {
-
-                    propArray[counter] = (Properties) gb.getFI().getField(i);
-                counter++;
-
+                    propArray[counter] = (Properties) getGb().getFI().getField(i);
+                    counter++;
             }
-            int propArrayPlayerPos = gb.getCurrentPlayer().getCurrentPosition() - gb.getCurrentPlayer().getCurrentPosition()/3;
+
+            int propArrayPlayerPos = getGb().getCurrentPlayer().getCurrentPosition() - getGb().getCurrentPlayer().getCurrentPosition()/3;
             for (int j = 0; j < propArray.length; j++) {
                 if (propArray[j].getSisterIndex() ==
-                        ((Properties) gb.getFI().getField(gb.getCurrentPlayer().getCurrentPosition())).getSisterIndex()) {
-                    if (propArray[j].getOwner() == propArray[propArrayPlayerPos].getOwner()) {
+                        propArray[propArrayPlayerPos].getSisterIndex()
+                       && propArray[j].getOwner() == propArray[propArrayPlayerPos].getOwner()) {
                         priceCounter++;
                     }
                 }
             }
-        }
         if (priceCounter == 2) {
             ownsAll = true;
-            gb.gui.showMessage("Because " + getOwner() + " owns both properties the rent is doubled");
+            getGb().gui.showMessage("Because " + getOwner() + " owns both properties the rent is doubled");
         }*/
 
         owner.getAccount().deposit((ownsAll ? 2 * getPrice() : getPrice()));

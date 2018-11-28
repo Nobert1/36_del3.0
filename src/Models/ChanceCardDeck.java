@@ -14,12 +14,12 @@ import java.util.Random;
 public class ChanceCardDeck {
     private ChanceCards[] deck;
 
-    private final int maxValue = 20;
+    private final int maxValue = 16;
     private int position = 0;
 
     public ChanceCardDeck(GUI gui) {
 
-        deck = new ChanceCards[20];
+        deck = new ChanceCards[16];
         deck[0] = new ChanceCards("Move to START and recive 2$", "CHANCE", 0);
         deck[1] = new ChanceCards("Move up to 5 fields forward", "CHANCE", 1);
         deck[2] = new ChanceCards("Move to an orange square, if the field is not owned you get it for free, otherwise you have to pay the owner rent", "CHANCE", 2);
@@ -44,12 +44,12 @@ public class ChanceCardDeck {
 
 
     public void Shufflecards() {
-        ChanceCards Cardtemp[] = new ChanceCards[20];
+        ChanceCards Cardtemp[] = new ChanceCards[16];
 
         Random random = new Random();
         int shifts = 0;
         int pos;
-        while (shifts < 20) {
+        while (shifts < 16) {
             pos = random.nextInt(maxValue);
 
             if (Cardtemp[pos] == null) {
@@ -69,9 +69,10 @@ public class ChanceCardDeck {
         }
 
         deck[15] = firstCardKort;
-        getGb().gui.displayChanceCard(firstCardKort.getDescription());
+        getGb().gui.displayChanceCard(deck[15].getDescription());
 
     }
+
     public void UseChancecard() {
         String Userinput;
         position = 0;
