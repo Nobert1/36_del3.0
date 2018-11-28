@@ -42,9 +42,7 @@ public class ChanceCardDeck {
         deck[18] = new ChanceCards("Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE", 19);
         deck[19] = new ChanceCards("Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE", 20);
 
-       // Shufflecards();
-
-        //Konstruktøren skal muligvis have fjernet sit navn og tilføjet en int værdi i stedet som vi kan bruge i case systemmet.
+        Shufflecards();
     }
 
     public void Shufflecards() {
@@ -66,20 +64,20 @@ public class ChanceCardDeck {
 
     public void drawCard() {
         ChanceCards[] korttemp = this.deck;
-        ChanceCards firstCardKort = this.deck[7];
+        ChanceCards firstCardKort = this.deck[19];
 
         for (int i = 0; i < deck.length; i++) {
             this.deck[i] = korttemp[(i + 1) % 20];
         }
 
-        deck[7] = firstCardKort;
+        deck[19] = firstCardKort;
         getGb().gui.displayChanceCard(firstCardKort.getDescription());
         UseChancecard();
 
     }
     public void UseChancecard() {
         String Userinput;
-        switch (deck[7].getNumber()) {
+        switch (deck[19].getNumber()) {
             case 1:
                 // Give this card to the CAR and draw one more chancecard. CAR: On your next turn you have to move to any free square, and buy it. If none of the squares are free you have to buy one from another player
                 break;
