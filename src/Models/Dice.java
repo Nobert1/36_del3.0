@@ -23,6 +23,6 @@ public class Dice {
         return this.value; }
 
     public int getValue() {
-        return value;
+        return 1;
     }
 }

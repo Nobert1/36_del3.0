@@ -1,6 +1,7 @@
 package Models.Fields;
 import Controllers.GameBoard;
 import Models.Player;
+import View.GUI_Handler;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Ownable;
 
@@ -18,6 +19,7 @@ public class Properties extends Fields {
     int sisterIndex;
     public boolean owned;
     private Player owner;
+    private GUI_Handler handler = new GUI_Handler();
 
 
     public Properties(int position, String name, int price, int sisterIndex) {
@@ -47,6 +49,7 @@ public class Properties extends Fields {
 
         this.owned = true;
         setOwner();
+
     }
 
     public void setOwner() {
@@ -57,7 +60,7 @@ public class Properties extends Fields {
         } else {
             getGb().getCurrentGUIPlayer().setPayNothing(false);
         }
-        //Moved to the GUI handler.
+        handler.setOwnerGUI();
     }
 
 
@@ -81,28 +84,22 @@ public class Properties extends Fields {
          * der hvor vi skal lægge vores tid. Den .getclass funktion vi kalder ved vi i bund og grund ikke hvad gør
          * og jeg tror heller ikke den kommer til at kunne gøre noget fedt.
          */
-        /*for (int i = 0; i < 24; i++) {
-            if (gb.getFI().getField(i).getClass().isInstance(Properties.class)) {
-                //if ((Object) gb.getFI().getField(i).getClass() instanceof Properties) {
+        try {
 
-                    propArray[counter] = (Properties) gb.getFI().getField(i);
-                counter++;
-
-            }
-            int propArrayPlayerPos = gb.getCurrentPlayer().getCurrentPosition() - gb.getCurrentPlayer().getCurrentPosition()/3;
-            for (int j = 0; j < propArray.length; j++) {
-                if (propArray[j].getSisterIndex() ==
-                        ((Properties) gb.getFI().getField(gb.getCurrentPlayer().getCurrentPosition())).getSisterIndex()) {
-                    if (propArray[j].getOwner() == propArray[propArrayPlayerPos].getOwner()) {
-                        priceCounter++;
-                    }
+                if (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
+                        ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() - 1)).getOwner() ||
+                (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
+                        ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() + 1)).getOwner()))
+                {
+                    ownsAll = true;
                 }
-            }
+
+        } catch (ClassCastException e) {
+            e.printStackTrace();
         }
-        if (priceCounter == 2) {
-            ownsAll = true;
-            gb.gui.showMessage("Because " + getOwner() + " owns both properties the rent is doubled");
-        }*/
+        if (ownsAll == true){
+            getGb().gui.showMessage("Because " + this.owner.getName() + "owns both properties the rent is doubled");
+        }
 
         owner.getAccount().deposit((ownsAll ? 2 * getPrice() : getPrice()));
 
