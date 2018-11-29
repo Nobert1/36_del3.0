@@ -13,12 +13,12 @@ public class Logic {
 
     public void checkforInJail() {
         if (getGb().getCurrentPlayer().getInJail() == true && getGb().getCurrentPlayer().getJailCard() == true) {
-            getGb().gui.showMessage("You use your get out jail free card and are released next turn!");
+            getGb().getGui().showMessage("You use your get out jail free card and are released next turn!");
             getGb().getCurrentPlayer().setJailCard(false);
         }
         else if (getGb().getCurrentPlayer().getInJail() == true) {
             getGb().getCurrentPlayer().setInJail(false);
-            getGb().gui.showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment\n" +
+            getGb().getGui().showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment\n" +
                     "You will be released next turn and it will cost you 1 dollar.");
             getGb().getCurrentPlayer().getAccount().withdraw(1);
             getPlayerTurn();
@@ -50,11 +50,11 @@ public class Logic {
                     } else Winner = getGb().getPlayerArray()[0].getName();
                 }
 
-                getGb().gui.showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner + "! HUGE CONGRATS PERSON");
+                getGb().getGui().showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner + "! HUGE CONGRATS PERSON");
 
                 // Closes GUI then terminates the program.
 
-                getGb().gui.close();
+                getGb().getGui().close();
                 System.exit(0);
 
             } } }
@@ -70,9 +70,9 @@ public class Logic {
             getGb().getCurrentPlayer().getAccount().deposit(2);
             getGb().getCurrentPlayer().setCurrentPosition(getGb().getCurrentPlayer().getCurrentPosition() % 24);
             if(getGb().getCurrentPlayer().getCurrentPosition() == 0){
-                getGb().gui.showMessage("You are landing on go. Collect 2 dollars.");
+                getGb().getGui().showMessage("You are landing on go. Collect 2 dollars.");
             } else {
-                getGb().gui.showMessage("You are passing go. Collect 2 dollars.");
+                getGb().getGui().showMessage("You are passing go. Collect 2 dollars.");
             }
         }
     }

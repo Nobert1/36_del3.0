@@ -21,7 +21,7 @@ public class FunctionlessSquare extends Fields {
 
     @Override
     public void OutputToGUI(){
-        gb.gui.showMessage(toString());
+        gb.getGui().showMessage(toString());
     }
 
     @Override

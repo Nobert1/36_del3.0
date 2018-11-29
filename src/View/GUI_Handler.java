@@ -10,13 +10,13 @@ public class GUI_Handler {
 
     public void UpdateBoard() {
 
-        for (int counter = 0; counter < getGb().gui.getFields().length; counter++) {
+        for (int counter = 0; counter < getGb().getGui().getFields().length; counter++) {
 
-            getGb().gui.getFields()[counter].removeAllCars();
+            getGb().getGui().getFields()[counter].removeAllCars();
 
             for (int i = 0; i < getGb().getPlayerArray().length; i++)
 
-                getGb().gui.getFields()[getGb().getPlayerArray()[i].getCurrentPosition()].setCar(getGb().getGuiArray()[i], true);
+                getGb().getGui().getFields()[getGb().getPlayerArray()[i].getCurrentPosition()].setCar(getGb().getGuiArray()[i], true);
 
             for (int j = 0; j < getGb().getPlayerArray().length; j++)
 
@@ -30,7 +30,7 @@ public class GUI_Handler {
 
 public void setOwnerGUI() {
 
-        GUI_Field f = getGb().gui.getFields()[getGb().getCurrentPlayer().getCurrentPosition()];
+        GUI_Field f = getGb().getGui().getFields()[getGb().getCurrentPlayer().getCurrentPosition()];
         if (f instanceof GUI_Ownable) {
             GUI_Ownable o = (GUI_Ownable) f;
             o.setBorder(getGb().getCurrentGUIPlayer().getPrimaryColor(), getGb().getCurrentGUIPlayer().getSecondaryColor());
@@ -42,20 +42,9 @@ public void setOwnerGUI() {
         return GameBoard.getInstance();
     }
 
-
-    public void setupBoard() {
-
-        for (int i = 0; i < getGb().getGuiArray().length; i++) {
-
-            getGb().gui.addPlayer(getGb().getGuiArray()[i]);
-
-        }
-
-
-    }
     public void setDice() {
 
-        getGb().gui.setDie(getGb().getDie().getValue());
+        getGb().getGui().setDie(getGb().getDie().getValue());
 
     }
 

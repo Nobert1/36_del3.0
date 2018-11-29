@@ -44,6 +44,7 @@ public class Player {
     public int getCurrentPosition(){
         return currentPosition;
     }
+
     public boolean getInJail() {
         return this.inJail;
     }
@@ -59,11 +60,13 @@ public class Player {
     public void setBroke(boolean broke) {
         isBroke = broke;
     }
+
     public boolean getBroke() {
         return this.isBroke;
     }
 
     public void setJailCard(boolean jailCard) { JailCard = jailCard; }
+
     public boolean getJailCard() {
         return this.JailCard;
     }

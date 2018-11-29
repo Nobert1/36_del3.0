@@ -28,10 +28,10 @@ public class Go_to_jail extends Fields {
     public void FieldFunctionality() {
 
 
-        gb.gui.getFields()[18].setCar(gb.getCurrentGUIPlayer(), false);
+        gb.getGui().getFields()[18].setCar(gb.getCurrentGUIPlayer(), false);
         gb.getCurrentPlayer().setCurrentPosition(6);
         gb.getCurrentGUIPlayer().setPlacement(6);
-        gb.gui.getFields()[6].setCar(gb.getCurrentGUIPlayer(), true);
+        gb.getGui().getFields()[6].setCar(gb.getCurrentGUIPlayer(), true);
         gb.getCurrentPlayer().setInJail(true);
 
 
@@ -41,7 +41,7 @@ public class Go_to_jail extends Fields {
     @Override
     public void OutputToGUI() {
 
-        gb.gui.showMessage(toString());
+        gb.getGui().showMessage(toString());
 
     }
 

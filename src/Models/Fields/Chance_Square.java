@@ -27,7 +27,7 @@ public class Chance_Square extends Fields {
 
     @Override
     public void OutputToGUI(){
-        getGb().gui.showMessage(toString());
+        getGb().getGui().showMessage(toString());
 
 
     }

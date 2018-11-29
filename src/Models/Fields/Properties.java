@@ -98,7 +98,7 @@ public class Properties extends Fields {
             e.printStackTrace();
         }
         if (ownsAll == true){
-            getGb().gui.showMessage("Because " + this.owner.getName() + "owns both properties the rent is doubled");
+            getGb().getGui().showMessage("Because " + this.owner.getName() + "owns both properties the rent is doubled");
         }
 
         owner.getAccount().deposit((ownsAll ? 2 * getPrice() : getPrice()));
@@ -123,7 +123,7 @@ public class Properties extends Fields {
 
     @Override
     public void OutputToGUI(){
-        getGb().gui.showMessage(toString());
+        getGb().getGui().showMessage(toString());
 
 
     }

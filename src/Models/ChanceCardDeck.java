@@ -69,7 +69,7 @@ public class ChanceCardDeck {
         }
 
         deck[15] = firstCardKort;
-        getGb().gui.displayChanceCard(deck[15].getDescription());
+        getGb().getGui().displayChanceCard(deck[15].getDescription());
 
     }
 
@@ -91,7 +91,7 @@ public class ChanceCardDeck {
             case 2:
                 // Move to an orange square, if the field is not owned you get it for free, otherwise you have to pay the owner rent
                 String oField[] = {"skateparken", "swimmingpoolen"};
-                Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
+                Userinput = getGb().getGui().getUserButtonPressed("Choose a field to land on: " +
                                                              "skateparken eller swimmingpoolen", oField);
 
                 switch (Userinput) {
@@ -110,7 +110,7 @@ public class ChanceCardDeck {
                 // Move 1 square forward or take another card
 
                 String arr2[] = {"Move", "Draw"};
-                Userinput = getGb().gui.getUserButtonPressed("Choose one: move one field forward or draw another card", arr2);
+                Userinput = getGb().getGui().getUserButtonPressed("Choose one: move one field forward or draw another card", arr2);
                 if (Userinput.equals(arr2[0])) {
                     position += 1;
                     movePlayer(position);
@@ -126,7 +126,7 @@ public class ChanceCardDeck {
             case 5:
                 // Move to an orange or green square. If no one owns it you get it for free, else you have to play rent to the owner
                 String ogField[] = {"skateparken", "swimmingpoolen", "bowlinghallen", "zoologisk have" };
-                Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
+                Userinput = getGb().getGui().getUserButtonPressed("Choose a field to land on: " +
                         "skateparken, swimmingpoolen, bowlinghallen eller zoologisk have", ogField);
 
                 switch (Userinput) {
@@ -149,7 +149,7 @@ public class ChanceCardDeck {
             case 6:
                 // Move to an lightblue square, if no one owns it you get it for free! otherwise you have to pay rent to the owner
                 String lbField[] = {"slikbutikken", "iskiosken"};
-                Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
+                Userinput = getGb().getGui().getUserButtonPressed("Choose a field to land on: " +
                                                              "slikbutikken eller iskiosken", lbField);
                 switch (Userinput) {
                     case "slikbutikken":
@@ -181,7 +181,7 @@ public class ChanceCardDeck {
             case 10:
                 // Move to a pink or darkblue square, if no one owns the square you get it for free! Otherwise you have to pay the owner rent
                 String pdField[] = {"museet", "bibloteket", "vandlandet", "strandpromenaden"};
-                Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
+                Userinput = getGb().getGui().getUserButtonPressed("Choose a field to land on: " +
                                                              "museet, bibloteket, vandlandet eller strandpromenaden", pdField);
                 switch (Userinput) {
                     case "museet":
@@ -208,7 +208,7 @@ public class ChanceCardDeck {
                 // Move to a red square, if no one owns it you get it for free! Otherwise you have to pay the owner rent.
                 String redField[] = {"spillehallen", "biografen"};
 
-                Userinput = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
+                Userinput = getGb().getGui().getUserButtonPressed("Choose a field to land on: " +
                                                              "spillehallen eller biografen", redField);
                 switch (Userinput) {
                     case "spillehallen":
@@ -230,7 +230,7 @@ public class ChanceCardDeck {
             case 14:
                 // Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.
                 String lbrField[] = {"spillehallen", "biografen", "slikbutikken", "iskiosken"};
-                String UserInteger = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
+                String UserInteger = getGb().getGui().getUserButtonPressed("Choose a field to land on: " +
                                         "spillehallen, biografen, slikbutikken eller iskiosken", lbrField);
 
                 switch (UserInteger) {
@@ -253,7 +253,7 @@ public class ChanceCardDeck {
             case 15:
                 // Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay the owner rent.
                 String byField[] = {"burgerbaren", "pizzariaet", "legetøjsbutikken", "dyrehandlen"};
-                String UserInteger1 = getGb().gui.getUserButtonPressed("Choose a field to land on: " +
+                String UserInteger1 = getGb().getGui().getUserButtonPressed("Choose a field to land on: " +
                         "burgerbaren, pizzariaet, legetøjsbutikken eller dyrehandlen", byField);
 
                 switch (UserInteger1) {
@@ -280,7 +280,7 @@ public class ChanceCardDeck {
     public void move2() {
         // Move up to 5 fields forward
         String arr1[] = {"1","2","3","4","5"};
-        String userIn = getGb().gui.getUserButtonPressed("How many fields do you want to move forward?", arr1);
+        String userIn = getGb().getGui().getUserButtonPressed("How many fields do you want to move forward?", arr1);
 
         switch (userIn) {
             case "1":
@@ -323,12 +323,12 @@ public class ChanceCardDeck {
     public void setPlayer(int position) {
         if (getGb().getCurrentPlayer().getCurrentPosition() == 0) {
             getGb().getCurrentPlayer().getAccount().deposit(2);
-            getGb().gui.showMessage("You are landing on go. Collect 2 dollars.");
+            getGb().getGui().showMessage("You are landing on go. Collect 2 dollars.");
 
         }
         if (getGb().getCurrentPlayer().getCurrentPosition() > position) {
             getGb().getCurrentPlayer().getAccount().deposit(2);
-            getGb().gui.showMessage("You are passing go. Collect 2 dollars.");
+            getGb().getGui().showMessage("You are passing go. Collect 2 dollars.");
         }
 
         getGb().getCurrentPlayer().setCurrentPosition(position);

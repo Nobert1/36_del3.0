@@ -32,7 +32,7 @@ public class GameBoard {
     private static ChanceCardDeck CD;
     private GUI_FieldFactory fc = new GUI_FieldFactory();
     private Logic logic = new Logic();
-    public GUI gui;
+    private GUI gui;
     private Dice die;
     private int players;
     private GUI_Player[] guiArray;
@@ -42,8 +42,6 @@ public class GameBoard {
 
 // Board skal være statisk ellers får vi en exception der hedder Initalization. Dvs at det board er ikke oprettet når programmet gerne
     // Vil benytte sig af det, der er muligvis et fix.
-
-
 
 
     /**
@@ -201,6 +199,10 @@ public class GameBoard {
      * - comment by Gustav
      */
     public static ChanceCardDeck getCD() { return CD; }
+
+    public GUI getGui() {
+        return gui;
+    }
 
     public static void setCD(ChanceCardDeck CD) { GameBoard.CD = CD; }
 
