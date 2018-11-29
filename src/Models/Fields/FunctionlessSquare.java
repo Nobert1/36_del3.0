@@ -10,7 +10,9 @@ import Models.Fields.Fields;
 
 public class FunctionlessSquare extends Fields {
 
-    private GameBoard gb = GameBoard.getInstance();
+    public GameBoard getGb(){
+        return GameBoard.getInstance();
+    }
 
     public FunctionlessSquare(int position, String name) {
         super(position, name);
@@ -21,19 +23,19 @@ public class FunctionlessSquare extends Fields {
 
     @Override
     public void OutputToGUI(){
-        gb.getGui().showMessage(toString());
+        getGb().getGui().showMessage(toString());
     }
 
     @Override
     public String toString() {
-        if (gb.getCurrentPlayer().getCurrentPosition() == 0) {
-        return "You landed on " + gb.getCurrentPlayer().getCurrentPosition()+ ", the start square."; }
+        if (getGb().getCurrentPlayer().getCurrentPosition() == 0) {
+        return "You landed on " + getGb().getCurrentPlayer().getCurrentPosition()+ ", the start square."; }
 
-        else if (gb.getCurrentPlayer().getCurrentPosition() == 6){
-            return "You landed on " + gb.getCurrentPlayer().getCurrentPosition() + " which is the visiting jail square, and it does literally nowt"; }
+        else if (getGb().getCurrentPlayer().getCurrentPosition() == 6){
+            return "You landed on " + getGb().getCurrentPlayer().getCurrentPosition() + " which is the visiting jail square, and it does literally nowt"; }
 
         else {
-            return "You landed on " + gb.getCurrentPlayer().getCurrentPosition() + " which is the parking square, and it also does literally nowt"; }
+            return "You landed on " + getGb().getCurrentPlayer().getCurrentPosition() + " which is the parking square, and it also does literally nowt"; }
 
     }
 }

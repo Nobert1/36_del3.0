@@ -12,10 +12,10 @@ import gui_fields.GUI_Player;
 public class Go_to_jail extends Fields {
 
 
-    private GameBoard gb = GameBoard.getInstance();
+
     int jailtime;
-    private Player player = gb.getCurrentPlayer();
-    private GUI_Player currentGUIPlayer = gb.getCurrentGUIPlayer();
+    private Player player = getGb().getCurrentPlayer();
+    private GUI_Player currentGUIPlayer = getGb().getCurrentGUIPlayer();
 
 
 
@@ -23,16 +23,19 @@ public class Go_to_jail extends Fields {
         super(position, name);
     }
 
+    public GameBoard getGb(){
+        return GameBoard.getInstance();
+    }
 
     @Override
     public void FieldFunctionality() {
 
 
-        gb.getGui().getFields()[18].setCar(gb.getCurrentGUIPlayer(), false);
-        gb.getCurrentPlayer().setCurrentPosition(6);
-        gb.getCurrentGUIPlayer().setPlacement(6);
-        gb.getGui().getFields()[6].setCar(gb.getCurrentGUIPlayer(), true);
-        gb.getCurrentPlayer().setInJail(true);
+        getGb().getGui().getFields()[18].setCar(getGb().getCurrentGUIPlayer(), false);
+        getGb().getCurrentPlayer().setCurrentPosition(6);
+        getGb().getCurrentGUIPlayer().setPlacement(6);
+        getGb().getGui().getFields()[6].setCar(getGb().getCurrentGUIPlayer(), true);
+        getGb().getCurrentPlayer().setInJail(true);
 
 
     }
@@ -41,7 +44,7 @@ public class Go_to_jail extends Fields {
     @Override
     public void OutputToGUI() {
 
-        gb.getGui().showMessage(toString());
+        getGb().getGui().showMessage(toString());
 
     }
 
@@ -50,3 +53,4 @@ public class Go_to_jail extends Fields {
         return "You landed on number " + getPosition() + "· You are going to jail :/";
     }
 }
+

@@ -5,7 +5,7 @@ import Controllers.GameBoard;
 public class BankAccount {
 
     private int balance;
-    private GameBoard gb = GameBoard.getInstance();
+
     // Constructor, for a simple class
 
     public BankAccount(int balance) {
@@ -14,6 +14,9 @@ public class BankAccount {
 
     }
 
+    public GameBoard getGb() {
+        return GameBoard.getInstance();
+    }
 
     // Method for depositing money
     public int deposit(int amount) {
@@ -29,7 +32,7 @@ public class BankAccount {
 
         this.balance -= amount;
         if (balance < 1) {
-            gb.getCurrentPlayer().setBroke(true);
+            getGb().getCurrentPlayer().setBroke(true);
             return balance;
 
         } else {
@@ -38,9 +41,8 @@ public class BankAccount {
     }
 
     // standard method for returning balance.
-    public int getBalance() { return this.balance; }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
+    public int getBalance() {
+        return this.balance;
     }
 }
+

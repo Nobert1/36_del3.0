@@ -16,7 +16,6 @@ public class Player {
     private boolean inJail;
     private boolean isBroke;
     private int currentPosition;
-    private GameBoard gb = GameBoard.getInstance();
     private boolean JailCard;
     private boolean payNothing;
 
@@ -24,11 +23,15 @@ public class Player {
     public Player(String name) {
 
         this.name = name;
-        this.account = new BankAccount(24-2*gb.getPlayers());
+        this.account = new BankAccount(24-2*getGb().getPlayers());
         this.inJail = false;
         this.isBroke = false;
         this.currentPosition = 0;
         this.JailCard = false;
+    }
+
+    public GameBoard getGb(){
+        return GameBoard.getInstance();
     }
 
     public String getName() {
