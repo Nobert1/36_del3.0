@@ -11,8 +11,6 @@ import gui_fields.GUI_Player;
  */
 public class Go_to_jail extends Fields {
 
-
-
     int jailtime;
     private Player player = getGb().getCurrentPlayer();
     private GUI_Player currentGUIPlayer = getGb().getCurrentGUIPlayer();

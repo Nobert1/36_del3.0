@@ -26,6 +26,7 @@ public class GUI_Handler {
         }
         // Why can't i use the same value for i in all of the loops? -Gullefar
         // I couldnt either when chosing colour - Alex
+        // cute comments <3 - Anders
     }
 
 public void setOwnerGUI() {

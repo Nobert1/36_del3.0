@@ -15,8 +15,8 @@ import gui_fields.GUI_Ownable;
 public class Properties extends Fields {
 
 
-    int price;
-    int sisterIndex;
+    private int price;
+    private int sisterIndex;
     public boolean owned;
     private Player owner;
     private GUI_Handler handler = new GUI_Handler();
@@ -124,11 +124,7 @@ public class Properties extends Fields {
     @Override
     public void OutputToGUI(){
         getGb().getGui().showMessage(toString());
-
-
     }
-
-
 }
 
 
