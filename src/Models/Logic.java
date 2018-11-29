@@ -15,11 +15,12 @@ public class Logic {
         if (getGb().getCurrentPlayer().getInJail() == true && getGb().getCurrentPlayer().getJailCard() == true) {
             getGb().getGui().showMessage("You use your get out jail free card and are released next turn!");
             getGb().getCurrentPlayer().setJailCard(false);
+            getGb().getCurrentPlayer().setInJail(false);
         }
         else if (getGb().getCurrentPlayer().getInJail() == true) {
             getGb().getCurrentPlayer().setInJail(false);
-            getGb().getGui().showMessage("You were jailed for attempting to apply to RUC, you are being skipped this turn as a punishment\n" +
-                    "You will be released next turn and it will cost you 1 dollar.");
+            getGb().getGui().showMessage(getGb().getCurrentPlayer().getName() + " you were jailed last turn, therefore" +
+                    " you are being skipped this turn, 1M is also gonna be withdrawn from your account");
             getGb().getCurrentPlayer().getAccount().withdraw(1);
             getPlayerTurn();
         }
@@ -76,6 +77,7 @@ public class Logic {
             }
         }
     }
+
     public void getPlayerTurn() {
         if (getGb().getCurrentPlayer() == getGb().getPlayerArray()[0]) {
             getGb().setCurrentPlayer(getGb().getPlayerArray()[1]);
@@ -98,7 +100,7 @@ public class Logic {
             getGb().setCurrentPlayer(getGb().getPlayerArray()[0]);
             getGb().setCurrentGUIPlayer(getGb().getGuiArray()[0]);
         }
-        getGb().movePlayer();
+
     }
 
     /** Calls polymorphic methods based on the Square

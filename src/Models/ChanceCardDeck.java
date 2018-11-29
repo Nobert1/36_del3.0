@@ -1,6 +1,5 @@
 package Models;
 import Controllers.GameBoard;
-import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.util.Random;
@@ -69,7 +68,6 @@ public class ChanceCardDeck {
         }
 
         deck[15] = firstCardKort;
-        getGb().getGui().displayChanceCard(deck[15].getDescription());
 
     }
 
@@ -116,6 +114,7 @@ public class ChanceCardDeck {
                     movePlayer(position);
                 } else {
                     drawCard();
+                    UseChancecard();
                 }
                 break;
 
@@ -301,9 +300,8 @@ public class ChanceCardDeck {
         }
         movePlayer(position);
 
-        // CANNOT USE THE SETPLAYER FUNCTION SINCE IT DOESNT SET A PLAYER, IT MOVES HIM.
+ // CANNOT USE THE SETPLAYER FUNCTION SINCE IT DOESNT SET A PLAYER, IT MOVES HIM.
         }
-
     public String toString() {
         String output = "";
         for (int i = 0; i < this.deck.length; i++) {
@@ -316,6 +314,8 @@ public class ChanceCardDeck {
     public void movePlayer(int position) {
 
         getGb().getCurrentPlayer().setCurrentPosition(getGb().getCurrentPlayer().getCurrentPosition() + position);
+        getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition()).OutputToGUI();
+        getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition()).FieldFunctionality();
         getGb().getLogic().checkforStart();
 
     }
@@ -332,10 +332,14 @@ public class ChanceCardDeck {
         }
 
         getGb().getCurrentPlayer().setCurrentPosition(position);
+        getGb().getFI().getField(position).OutputToGUI();
         getGb().getFI().getField(position).FieldFunctionality();
 
     }
     private GameBoard getGb() { return GameBoard.getInstance(); }
 
+    public ChanceCards getIndex(int card) {
+        return deck[card];
+    }
 }
 

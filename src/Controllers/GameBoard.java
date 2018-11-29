@@ -51,7 +51,7 @@ public class GameBoard {
     public GameBoard() {
         gui = new GUI();
         die = new Dice();
-        players = setPlayers(); // Is NOT a setter :))
+        players = askforPlayers();
         guiArray = new GUI_Player[players];
         playerArray = new Player[players];
         CD = new ChanceCardDeck(gui);
@@ -60,7 +60,7 @@ public class GameBoard {
 
     public void startGame() {
 
-        setPlayerNames();
+        createPlayers();
         movePlayer();
 
     }
@@ -92,6 +92,7 @@ public class GameBoard {
         handler.UpdateBoard();
         logic.CheckforBroke();
         logic.getPlayerTurn();
+        movePlayer();
 
 
     }
@@ -100,7 +101,7 @@ public class GameBoard {
      * - comment by Gustav
      *
      */
-    public int setPlayers() {
+    public int askforPlayers() {
         while (true) {
             players = gui.getUserInteger(" How many players? Max 4 players ");
             if (players > 1 && players < 5) {
@@ -109,7 +110,6 @@ public class GameBoard {
                 gui.showMessage("Not a valid number");
             }
         }
-
         return players;
     }
 
@@ -118,7 +118,7 @@ public class GameBoard {
      * -Alex
      */
 
-    public void setPlayerNames() {
+    public void createPlayers() {
         String[] arr = {"CAR", "RACECAR", "UFO", "TRACTOR"};
         String[] arr1 = {"White", "Black", "Red", "Blue"};
         for (int i = 0; i < players; i++) {
@@ -231,6 +231,14 @@ public class GameBoard {
     public void setCurrentGUIPlayer(GUI_Player currentGUIPlayer) { this.currentGUIPlayer = currentGUIPlayer; }
 
     public Dice getDie() { return die; }
+
+    public void setPlayers(int players) {
+        this.players = players;
+    }
+
+    public void setPlayerArray(Player[] playerArray) {
+        this.playerArray = playerArray;
+    }
 }
 
 

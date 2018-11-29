@@ -21,6 +21,7 @@ public class Chance_Square extends Fields {
     public void FieldFunctionality() {
 
         getGb().getCD().drawCard();
+        getGb().getGui().displayChanceCard(getGb().getCD().getIndex(15).getDescription());
         getGb().getCD().UseChancecard();
 
     }

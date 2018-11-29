@@ -2,8 +2,6 @@ package Models.Fields;
 import Controllers.GameBoard;
 import Models.Player;
 import View.GUI_Handler;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Ownable;
 
 
 /**
@@ -47,20 +45,16 @@ public class Properties extends Fields {
 
     public void setOwned(boolean owned) {
 
-        this.owned = true;
-        setOwner();
-
+        this.owned = owned;
     }
 
-    public void setOwner() {
+    public void newOwner() {
 
-        this.owner = getGb().getCurrentPlayer();
-        if (!getGb().getCurrentGUIPlayer().isPayNothing()) {
-            getGb().getCurrentPlayer().getAccount().withdraw(getPrice());
+        if (getOwner().isPayNothing() == false) {
+            getOwner().getAccount().withdraw(getPrice());
         } else {
-            getGb().getCurrentGUIPlayer().setPayNothing(false);
+            getOwner().setPayNothing(false);
         }
-        handler.setOwnerGUI();
     }
 
 
@@ -75,27 +69,35 @@ public class Properties extends Fields {
 
     //man skal betale dobblet hvis man ejer to af samme farve
     public void payRent(){
+
         boolean ownsAll = false;
-        int counter = 0;
-        Properties[] propArray = new Properties[16];
-        int priceCounter = 0;
+
         /**
-         * Den her fremgangsmåde virker ikke og det kommer den nok hellere ikke til. For nu tror jeg ikke det er
-         * der hvor vi skal lægge vores tid. Den .getclass funktion vi kalder ved vi i bund og grund ikke hvad gør
-         * og jeg tror heller ikke den kommer til at kunne gøre noget fedt.
+         * The first if checkments check it the player position is 24, if that is the case the other method will check
+         * for a position wich is out of bounds. We can take modolus to 25 and then it will check the start position instead
+         * but this way we know it doesnt provide us with any error. The second if statement checks for the fields
+         * right next to the players position. If they arent properties it will throw an exception but we catch that
+         * so that the system keeps running.
          */
         try {
-
-                if (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
-                        ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() - 1)).getOwner() ||
-                (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
-                        ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() + 1)).getOwner()))
-                {
-                    ownsAll = true;
+if (getGb().getCurrentPlayer().getCurrentPosition() == 23 && ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer()
+        .getCurrentPosition())).getOwner() ==
+        ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() - 1)).getOwner()) {
+            ownsAll = true;
+        }
+                if (getGb().getCurrentPlayer().getCurrentPosition() != 23) {
+                //This statement makes it so that it's only stepped into if the player position isn't 23. If it is 23 it will
+                    //cast an outofbounds exception.
+                    if (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
+                            ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() - 1)).getOwner() ||
+                            (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
+                                    ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() + 1)).getOwner())) {
+                        ownsAll = true;
+                    }
                 }
 
         } catch (ClassCastException e) {
-            e.printStackTrace();
+
         }
         if (ownsAll == true){
             getGb().getGui().showMessage("Because " + this.owner.getName() + "owns both properties the rent is doubled");
@@ -111,15 +113,14 @@ public class Properties extends Fields {
     public void FieldFunctionality() {
         if (!this.owned) {
             setOwned(true);
-
+            setOwner(getGb().getCurrentPlayer());
+            newOwner();
+            handler.setOwnerGUI();
         } else {
             payRent();
         }
     }
 
-    public int getSisterIndex() {
-        return sisterIndex;
-    }
 
     @Override
     public void OutputToGUI(){
@@ -128,7 +129,9 @@ public class Properties extends Fields {
 
     }
 
+    public void setOwner(Player owner) { this.owner = owner; }
 
+    public boolean getOwned() {return this.owned;}
 }
 
 

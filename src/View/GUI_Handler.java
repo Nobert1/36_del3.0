@@ -23,6 +23,7 @@ public class GUI_Handler {
                 getGb().getGuiArray()[j].setBalance(getGb().getPlayerArray()[j].getAccount().getBalance());
 
 
+
         }
         // Why can't i use the same value for i in all of the loops? -Gullefar
         // I couldnt either when chosing colour - Alex
@@ -31,6 +32,7 @@ public class GUI_Handler {
 public void setOwnerGUI() {
 
         GUI_Field f = getGb().getGui().getFields()[getGb().getCurrentPlayer().getCurrentPosition()];
+
         if (f instanceof GUI_Ownable) {
             GUI_Ownable o = (GUI_Ownable) f;
             o.setBorder(getGb().getCurrentGUIPlayer().getPrimaryColor(), getGb().getCurrentGUIPlayer().getSecondaryColor());
