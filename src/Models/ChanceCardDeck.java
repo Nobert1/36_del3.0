@@ -13,7 +13,7 @@ import java.util.Random;
 public class ChanceCardDeck {
     private ChanceCards[] deck;
 
-    private final int maxValue = 16;
+    private final int MAX_VALUE = 16;
     private int position = 0;
 
     public ChanceCardDeck(GUI gui) {
@@ -49,7 +49,7 @@ public class ChanceCardDeck {
         int shifts = 0;
         int pos;
         while (shifts < 16) {
-            pos = random.nextInt(maxValue);
+            pos = random.nextInt(MAX_VALUE);
 
             if (Cardtemp[pos] == null) {
                 Cardtemp[pos] = this.deck[shifts];
@@ -117,7 +117,6 @@ public class ChanceCardDeck {
                     UseChancecard();
                 }
                 break;
-
             case 4:
                 // You ate too much candy, pay 2$ to the bank
                 getGb().getCurrentPlayer().getAccount().withdraw(2);
@@ -273,7 +272,6 @@ public class ChanceCardDeck {
                 setPlayer(position);
                 break;
         }
-
     }
 
     public void move2() {
