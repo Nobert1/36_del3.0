@@ -19,26 +19,26 @@ public class ChanceCardDeck {
     public ChanceCardDeck(GUI gui) {
 
         deck = new ChanceCards[16];
-        deck[0] = new ChanceCards("Move to START and recive 2$", "CHANCE", 0);
+        deck[0] = new ChanceCards("Move to START and receive 2$", "CHANCE", 0);
         deck[1] = new ChanceCards("Move up to 5 fields forward", "CHANCE", 1);
-        deck[2] = new ChanceCards("Move to an orange square, if the field is not owned you get it for free, otherwise you have to pay the owner rent", "CHANCE", 2);
+        deck[2] = new ChanceCards("Move to an orange square, if the field is not owned you get it for free, otherwise you have to pay rent to the owner", "CHANCE", 2);
         deck[3] = new ChanceCards("Move 1 square forward or take another card", "CHANCE", 3);
         deck[4] = new ChanceCards("You ate too much candy, pay 2$ to the bank", "CHANCE", 4);
-        deck[5] = new ChanceCards("Move to an orange or green square. If no one owns it you get it for free, else you have to play rent to the owner", "CHANCE", 5);
-        deck[6] = new ChanceCards("Move to an lightblue square, if no one owns it you get it for free! otherwise you have to pay rent to the owner", "CHANCE", 6);
+        deck[5] = new ChanceCards("Move to an orange or green square. If no one owns it you get it for free, else you have to pay rent to the owner", "CHANCE", 5);
+        deck[6] = new ChanceCards("Move to an lightblue square, if no one owns it you get it for free! Otherwise you have to pay rent to the owner", "CHANCE", 6);
         deck[7] = new ChanceCards("You are released without any cost, keep this card until you need it.", "CHANCE", 7);
         deck[8] = new ChanceCards("Move to Strandpromenaden", "CHANCE", 8);
         deck[9] = new ChanceCards("It's your birthday! Everyone gives you 1$", "CHANCE", 9);
-        deck[10] = new ChanceCards("Move to a pink or darkblue square, if no one owns the square you get it for free! Otherwise you have to pay the owner rent", "CHANCE", 10);
-        deck[11] = new ChanceCards("You have made all of your homework, recive 2$ from the bank", "CHANCE", 11);
-        deck[12] = new ChanceCards("Move to a red square, if no one owns it you get it for free! Otherwise you have to pay the owner rent.", "CHANCE", 12);
-        deck[13] = new ChanceCards("Move to the skate park to do the perfect grind! If no one owns it you get it for free, otherwise pay the owner rent", "CHANCE", 13);
-        deck[14] = new ChanceCards("Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE", 14);
-        deck[15] = new ChanceCards("Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay the owner rent.", "CHANCE", 15);
+        deck[10] = new ChanceCards("Move to a pink or darkblue square, if no one owns the square you get it for free! Otherwise you have to pay rent to the owner", "CHANCE", 10);
+        deck[11] = new ChanceCards("You have made all of your homework, receive 2$ from the bank", "CHANCE", 11);
+        deck[12] = new ChanceCards("Move to a red square, if no one owns it you get it for free! Otherwise you have to pay rent to the owner", "CHANCE", 12);
+        deck[13] = new ChanceCards("Move to the skate park to do the perfect grind! If no one owns it you get it for free, otherwise pay rent to the owner", "CHANCE", 13);
+        deck[14] = new ChanceCards("Move to a lightblue or red square, if no one owns it you get it for free, otherwise pay rent to the owner", "CHANCE", 14);
+        deck[15] = new ChanceCards("Move to a brown or yellow square, if no one owns it you get it for free, otherwise pay rent to the owner", "CHANCE", 15);
 
        Shufflecards();
 
-        //Konstruktøren skal muligvis have fjernet sit navn og tilføjet en int værdi i stedet som vi kan bruge i case systemmet.
+        //Konstruktøren skal muligvis have fjernet sit navn og tilføjet en int værdi i stedet som vi kan bruge i case systemet.
     }
 
 
@@ -178,9 +178,9 @@ public class ChanceCardDeck {
                 break;
             case 10:
                 // Move to a pink or darkblue square, if no one owns the square you get it for free! Otherwise you have to pay the owner rent
-                String pdField[] = {"museet", "bibloteket", "vandlandet", "strandpromenaden"};
+                String pdField[] = {"museet", "biblioteket", "vandlandet", "strandpromenaden"};
                 Userinput = getGb().getGui().getUserButtonPressed("Choose a field to land on: " +
-                                                             "museet, bibloteket, vandlandet eller strandpromenaden", pdField);
+                                                             "museet, biblioteket, vandlandet eller strandpromenaden", pdField);
                 switch (Userinput) {
                     case "museet":
                         position = 7;

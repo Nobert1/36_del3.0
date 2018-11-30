@@ -51,7 +51,7 @@ public class Logic {
                     }
                 }
 
-                getGb().getGui().showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner.getName() + "! HUGE CONGRATS PERSON");
+                getGb().getGui().showMessage("Ladies and gentlemen... " + Loser + " is broke! Therefore the winner is " + Winner.getName() + "! HUGE CONGRATS PERSON");
 
                 // Closes GUI then terminates the program.
 

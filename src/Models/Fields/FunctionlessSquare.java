@@ -32,10 +32,10 @@ public class FunctionlessSquare extends Fields {
         return "You landed on " + getGb().getCurrentPlayer().getCurrentPosition()+ ", the start square."; }
 
         else if (getGb().getCurrentPlayer().getCurrentPosition() == 6){
-            return "You landed on " + getGb().getCurrentPlayer().getCurrentPosition() + " which is the visiting jail square, and it does literally nowt"; }
+            return "You landed on " + getGb().getCurrentPlayer().getCurrentPosition() + " which is the visiting jail square, and it does nothing"; }
 
         else {
-            return "You landed on " + getGb().getCurrentPlayer().getCurrentPosition() + " which is the parking square, and it also does literally nowt"; }
+            return "You landed on " + getGb().getCurrentPlayer().getCurrentPosition() + " which is the parking square, and it does nothing"; }
 
     }
 }

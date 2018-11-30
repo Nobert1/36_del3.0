@@ -35,7 +35,7 @@ public class Chance_Square extends Fields {
 
     @Override
     public String toString() {
-        return "You landed on field " + getPosition() + " wich is a change square, you are now going to draw a chance card";
+        return "You landed on field " + getPosition() + " which is a chance square, you are now going to draw a chance card";
     }
 
     @Override
