@@ -51,7 +51,7 @@ public class GameBoard {
     public GameBoard() {
         gui = new GUI();
         die = new Dice();
-        players = askforPlayers();
+        players = askForPlayers();
         guiArray = new GUI_Player[players];
         playerArray = new Player[players];
         CD = new ChanceCardDeck(gui);
@@ -101,15 +101,15 @@ public class GameBoard {
      * - comment by Gustav
      *
      */
-    public int askforPlayers() {
-        while (true) {
+    public int askForPlayers() {
+        do {
             players = gui.getUserInteger(" How many players? Max 4 players ");
             if (players > 1 && players < 5) {
                 break;
             } else {
                 gui.showMessage("Not a valid number");
             }
-        }
+        } while (players > 1 && players < 5 );
         return players;
     }
 
