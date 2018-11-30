@@ -13,9 +13,9 @@ import View.GUI_Handler;
 public class Properties extends Fields {
 
 
-    int price;
-    int sisterIndex;
-    public boolean owned;
+    private int price;
+    private int sisterIndex;
+    private boolean owned;
     private Player owner;
     private GUI_Handler handler = new GUI_Handler();
 
@@ -74,7 +74,7 @@ public class Properties extends Fields {
 
         /**
          * The first if checkments check it the player position is 24, if that is the case the other method will check
-         * for a position wich is out of bounds. We can take modolus to 25 and then it will check the start position instead
+         * for a position which is out of bounds. We can take modolus to 25 and then it will check the start position instead
          * but this way we know it doesnt provide us with any error. The second if statement checks for the fields
          * right next to the players position. If they arent properties it will throw an exception but we catch that
          * so that the system keeps running.
@@ -97,6 +97,7 @@ if (getGb().getCurrentPlayer().getCurrentPosition() == 23 && ((Properties) getGb
                 }
 
         } catch (ClassCastException e) {
+
 
         }
         if (ownsAll == true){
