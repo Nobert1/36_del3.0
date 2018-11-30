@@ -23,7 +23,7 @@ public class Player {
     public Player(String name) {
 
         this.name = name;
-        this.account = new BankAccount(16-2*getGb().getPlayers());
+        this.account = new BankAccount(24-2*getGb().getPlayers());
         this.inJail = false;
         this.isBroke = false;
         this.currentPosition = 0;

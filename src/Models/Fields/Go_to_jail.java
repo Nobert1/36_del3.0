@@ -31,7 +31,6 @@ public class Go_to_jail extends Fields {
 
         getGb().getGui().getFields()[18].setCar(getGb().getCurrentGUIPlayer(), false);
         getGb().getCurrentPlayer().setCurrentPosition(6);
-        getGb().getCurrentGUIPlayer().setPlacement(6);
         getGb().getGui().getFields()[6].setCar(getGb().getCurrentGUIPlayer(), true);
         getGb().getCurrentPlayer().setInJail(true);
 

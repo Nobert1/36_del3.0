@@ -176,7 +176,7 @@ public class GameBoard {
             }
 
             GUI_Car Car = new GUI_Car(c, c, GUI_Car.Type.getTypeFromString(a), GUI_Car.Pattern.DOTTED);
-            GUI_Player spiller = new GUI_Player(name, 24 - 2 * players, Car, 0);
+            GUI_Player spiller = new GUI_Player(name, 24 - 2 * players, Car);
             guiArray[i] = spiller;
 
             arr1 = new String[arrTemp.length];
@@ -204,8 +204,6 @@ public class GameBoard {
         return gui;
     }
 
-    public static void setCD(ChanceCardDeck CD) { GameBoard.CD = CD; }
-
     public GUI_Player getCurrentGUIPlayer() { return currentGUIPlayer; }
 
     public Player getCurrentPlayer() { return currentPlayer; }
@@ -215,8 +213,6 @@ public class GameBoard {
     public Board getFI() { return FI; }
 
     public static GameBoard getInstance() { return Instans; }
-
-    public GUI_FieldFactory getFc() { return fc; }
 
     public GUI_Player[] getGuiArray() { return guiArray; }
 
@@ -231,10 +227,6 @@ public class GameBoard {
     public void setCurrentGUIPlayer(GUI_Player currentGUIPlayer) { this.currentGUIPlayer = currentGUIPlayer; }
 
     public Dice getDie() { return die; }
-
-    public void setPlayers(int players) {
-        this.players = players;
-    }
 
     public void setPlayerArray(Player[] playerArray) {
         this.playerArray = playerArray;

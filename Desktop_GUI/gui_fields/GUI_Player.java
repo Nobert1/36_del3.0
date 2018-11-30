@@ -16,31 +16,26 @@ public class GUI_Player extends Observable{
 	private GUI_Car car;
 	private static int nextId = 0;
 	private boolean payNothing;
-	public int placement;
     private int id;
 	
 	public static final int ICON_WIDTH = 41;
 	public static final int ICON_HEIGHT = 22;
 
 	public GUI_Player(String name){
-	    this(name, 1000, new GUI_Car(),0);
+	    this(name, 1000, new GUI_Car());
 	}
 	public GUI_Player(String name, int balance){
-	    this(name, balance, new GUI_Car(),0);
+	    this(name, balance, new GUI_Car());
 	}
-	public GUI_Player(String name, int balance, GUI_Car car, int placement){
+	public GUI_Player(String name, int balance, GUI_Car car){
 		this.name = name;
 		this.balance = balance;
 		this.car = car;
 		this.id = nextId++;
-		this.placement = placement;
 	}
 
 
 	//Getters
-	public boolean isPayNothing() {
-		return payNothing;
-	}
 	public int getNumber(){ return this.number; }
 	public String getName(){ return this.name; }
 	public int getBalance(){ return this.balance; }
@@ -49,16 +44,10 @@ public class GUI_Player extends Observable{
 	protected BufferedImage getImage() { return this.car.getImage(); }
     public GUI_Car getCar() { return car; }
     protected int getId(){ return id; }
-	public int getPlacement() {
-		return placement;
-	}
 
 	//Setters
 	public void setPayNothing(boolean payNothing) {
 		this.payNothing = payNothing;
-	}
-	public void setPlacement(int placement) {
-		this.placement = placement;
 	}
     protected void setNumber(int number) { this.number = number; }
     public boolean setName(String name){

@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PropertiesTest {
 
-    Properties Testprop1 = new Properties(1, "test prop1", 1, 1);
-    Properties Testprop2 = new Properties(2, "test prop2", 1, 1);
+    Properties Testprop1 = new Properties(1, "test prop1", 1);
+    Properties Testprop2 = new Properties(2, "test prop2", 1);
     Player testPlayer1 = new Player("TestPlayer1");
     Player testPlayer2 = new Player("TestPlayer2");
 

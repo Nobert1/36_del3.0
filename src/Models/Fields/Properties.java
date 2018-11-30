@@ -1,7 +1,6 @@
 package Models.Fields;
 import Controllers.GameBoard;
 import Models.Player;
-import View.GUI_Handler;
 
 
 /**
@@ -14,22 +13,19 @@ public class Properties extends Fields {
 
 
     private int price;
-    private int sisterIndex;
     private boolean owned;
     private Player owner;
-    private GUI_Handler handler = new GUI_Handler();
 
-
-    public Properties(int position, String name, int price, int sisterIndex) {
+    public Properties(int position, String name, int price) {
         super(position, name);
 
     this.price = price;
-    this.sisterIndex = sisterIndex;
     this.owned = false;
 }
     public GameBoard getGb(){
         return GameBoard.getInstance();
     }
+
 
     @Override
     public String toString() {
@@ -116,7 +112,7 @@ if (getGb().getCurrentPlayer().getCurrentPosition() == 23 && ((Properties) getGb
             setOwned(true);
             setOwner(getGb().getCurrentPlayer());
             newOwner();
-            handler.setOwnerGUI();
+            getGb().getHandler().setOwnerGUI();
         } else {
             payRent();
         }
