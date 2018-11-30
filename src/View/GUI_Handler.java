@@ -4,6 +4,10 @@ import Controllers.GameBoard;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Ownable;
 
+/**
+ * A class which is called to update the gui every turn.
+ */
+
 
 public class GUI_Handler {
 
@@ -30,7 +34,7 @@ public class GUI_Handler {
         // cute comments <3 - Anders
     }
 
-public void setOwnerGUI() {
+    public void setOwnerGUI() {
 
         GUI_Field f = getGb().getGui().getFields()[getGb().getCurrentPlayer().getCurrentPosition()];
 

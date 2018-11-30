@@ -5,10 +5,9 @@ import Controllers.GameBoard;
 public class Logic {
 
 
-    /** Checks for in Jail, setup so it's ready for the chancecard.
-     * - comment by Gustav
-     * Have added messages and that it costs 1 dollar to get out of jail
-     * - Alex
+    /**
+     * Logic class which contains the relevant game logic in the rules. Class is used to check if a player is
+     * in jail, passed or on start or broke.
      */
 
     public void checkforInJail() {
@@ -30,11 +29,6 @@ public class Logic {
         return GameBoard.getInstance();
     }
 
-    /** Looks for a winner.
-     * - comment by Gustav
-     * Have added that if currentPlayer 1 is the winner it can find his name
-     * - Alex
-     */
     public void CheckforBroke() {
         Player Winner = getGb().getPlayerArray()[0];
         String Loser = "";
@@ -60,12 +54,6 @@ public class Logic {
 
             } } }
 
-
-    /** Method to check if the currentPlayer passed start
-     * - comment by Gustav
-     * Updated so it shows message and does it if you pass or are on go.
-     * - Alex
-     */
     public void checkforStart() {
         if (getGb().getCurrentPlayer().getCurrentPosition() > 23) {
             getGb().getCurrentPlayer().getAccount().deposit(2);
@@ -103,10 +91,10 @@ public class Logic {
 
     }
 
-    /** Calls polymorphic methods based on the Square
-     * - comment by Gustav
+    /**
+     * Each field has the polymorphic method OutputtoGui and FieldFunctionality. This method is called once a player
+     * has rolled and been moved.
      */
-
     public void applySquareLogic() {
 
         int i = getGb().getCurrentPlayer().getCurrentPosition();

@@ -5,9 +5,7 @@ import Models.Player;
 import gui_fields.GUI_Player;
 
 /**
- * Very simple class since it only takes the attributes from Field. It is it's own class because it has a unique polymorphic call.
- * Currently having some problems with actually jailling people, seems like Java is a free language.
- * - comment by Gustav
+ * Class for go to jail field, which sends a player to jail
  */
 public class Go_to_jail extends Fields {
 

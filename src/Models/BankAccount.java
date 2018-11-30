@@ -6,7 +6,6 @@ public class BankAccount {
 
     private int balance;
 
-    // Constructor, for a simple class
 
     public BankAccount(int balance) {
 
@@ -26,7 +25,7 @@ public class BankAccount {
 
     }
 
-    // Method for withdrawel, the withdraw method can't put balance below 0.
+    // Method for withdrawing, the withdraw method can't put balance below 0.
 
     public int withdraw(int amount) {
 

@@ -2,10 +2,8 @@ package Models.Fields;
 
 
 /**
- * Currently abstract and working as nice as it feels to wipe your ass with silk.
- * The to String method is probably not needed and perhaps the getFields method, since they are actually rarely used.
- * They are actually only used in the method that tries to double the rent, and that is not really working to hot.
- * - comment by Gustav
+ * The Superclass for all fields. Is abstract so we can use polymorphic methods.
+ * These are toString, FieldFunctionality and OutputToGUI
  */
 
 public abstract class Fields  {
@@ -13,7 +11,6 @@ public abstract class Fields  {
     protected int position;
     protected String name;
     private Fields[] fields;
-    //private Fields[] FIELDINSTANS = GameBoard.getFIELDINSTANS();
 
     public Fields(int position, String name) {
 
@@ -26,6 +23,7 @@ public abstract class Fields  {
         return fields;
     }
 
+    //toString which prints the array of fields out.
     @Override
     public String toString() {
         String o = "";

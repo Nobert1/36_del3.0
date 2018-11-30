@@ -5,9 +5,8 @@ import gui_main.GUI;
 import java.util.Random;
 
 /**
- * Currently still needs some work, how we implement it in the Gameboard also needs some looking at before we
- * continue with writing methods. We may need to make the instance static like we did with the Board instance of the Fields class.
- * - comment by Gustav
+ * Class which creates the Chance card deck and all the different chance cards.
+ * This class also shuffles, draws and does the functionality of the chance card drawn
  */
 
 public class ChanceCardDeck {
@@ -16,6 +15,7 @@ public class ChanceCardDeck {
     private final int MAX_VALUE = 16;
     private int position = 0;
 
+    // Creates the deck
     public ChanceCardDeck(GUI gui) {
 
         deck = new ChanceCards[16];
@@ -41,7 +41,7 @@ public class ChanceCardDeck {
         //Konstruktøren skal muligvis have fjernet sit navn og tilføjet en int værdi i stedet som vi kan bruge i case systemet.
     }
 
-
+    // Shuffles cards
     public void Shufflecards() {
         ChanceCards Cardtemp[] = new ChanceCards[16];
 
@@ -58,7 +58,7 @@ public class ChanceCardDeck {
         }
         this.deck = Cardtemp;
     }
-
+    //Draws card
     public void drawCard() {
         ChanceCards[] korttemp = this.deck;
         ChanceCards firstCardKort = this.deck[0];
@@ -71,6 +71,7 @@ public class ChanceCardDeck {
 
     }
 
+    // Switch case which takes the reference number of the card drawn and does the corresponding action
     public void UseChancecard() {
         String Userinput;
 
@@ -79,8 +80,6 @@ public class ChanceCardDeck {
             case 0:
                 //Move to START and recive 2$
                 setPlayer(0);
-                // Changed the method, this will give him the two bucks, i just changed it in general since
-                // everytime someone passes start on the other functions they need 2$ as well.
                 break;
             case 1:
                 //Move up to 5 fields forward
@@ -274,6 +273,7 @@ public class ChanceCardDeck {
         }
     }
 
+    // Method for one of the card 2 (case 1)
     public void move2() {
         // Move up to 5 fields forward
         String arr1[] = {"1","2","3","4","5"};
@@ -298,8 +298,9 @@ public class ChanceCardDeck {
         }
         movePlayer(position%24);
 
- // CANNOT USE THE SETPLAYER FUNCTION SINCE IT DOESNT SET A PLAYER, IT MOVES HIM.
         }
+
+     //toString which prints the deck
     public String toString() {
         String output = "";
         for (int i = 0; i < this.deck.length; i++) {

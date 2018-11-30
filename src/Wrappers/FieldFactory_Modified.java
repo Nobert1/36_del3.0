@@ -4,6 +4,11 @@ import gui_fields.*;
 
 import java.awt.*;
 
+
+/**
+ * Wrapper class for the FieldFactory with the Junior Monopoly modification
+ */
+
 public class FieldFactory_Modified {
 
     public FieldFactory_Modified() {

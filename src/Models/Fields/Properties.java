@@ -4,9 +4,7 @@ import Models.Player;
 
 
 /**
- * Atm this class is a litle bit messy, it needs some cleaning up after we figure out what to do with double rent.
- * Everything else is working like a german machine.
- * - comment by Gustav
+ * Property class which handles with owners and rent
  */
 
 public class Properties extends Fields {
@@ -39,11 +37,13 @@ public class Properties extends Fields {
         return "You landed on square " + this.position + " the price is " + this.price + " dollar(s).";
     }
 
+    //Setd Property to owned
     public void setOwned(boolean owned) {
 
         this.owned = owned;
     }
 
+    //defines owner
     public void newOwner() {
 
         if (getOwner().isPayNothing() == false) {
@@ -63,16 +63,15 @@ public class Properties extends Fields {
         return this.price;
     }
 
-    //man skal betale dobblet hvis man ejer to af samme farve
+    //Method to pay rent, which checks if the player owns both properties of the same colour.
     public void payRent(){
 
         boolean ownsAll = false;
 
         /**
-         * The first if checkments check it the player position is 24, if that is the case the other method will check
-         * for a position which is out of bounds. We can take modolus to 25 and then it will check the start position instead
-         * but this way we know it doesnt provide us with any error. The second if statement checks for the fields
-         * right next to the players position. If they arent properties it will throw an exception but we catch that
+         * The first if checks if the player position is 24, if that is the case the other method will check
+         * for a position which is out of bounds. The second if statement checks for the fields
+         * right next to the players position. If they aren't properties it will throw an exception but we catch that
          * so that the system keeps running.
          */
         try {

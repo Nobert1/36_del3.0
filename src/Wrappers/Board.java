@@ -4,9 +4,7 @@ package Wrappers;
 import Models.Fields.*;
 
 /**
- * Only way i could figure out how to pass a board instance to the Gameboard class was by making this class and making the call static.
- * Took me three fucking hours so no messing around.
- * - comment by Gustav
+ * Wrapper class for the board
  */
 
 public class Board {

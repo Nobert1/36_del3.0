@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PropertiesTest {
 
-    Properties Testprop1 = new Properties(1, "test prop1", 1, 1);
-    Properties Testprop2 = new Properties(2, "test prop2", 1, 1);
-    Properties Testprop3 = new Properties(3, "test prop3", 1, 1);
+    Properties Testprop1 = new Properties(1, "test prop1", 1);
+    Properties Testprop2 = new Properties(2, "test prop2", 1);
+    Properties Testprop3 = new Properties(3, "test prop3", 1);
     Player testPlayer1 = new Player("TestPlayer1");
     Player testPlayer2 = new Player("TestPlayer2");
 
@@ -21,9 +21,9 @@ class PropertiesTest {
 
     @org.junit.jupiter.api.Test
     void setOwned() {
-        Properties Testprop1 = new Properties(1, "test prop1", 1, 1);
-        Properties Testprop2 = new Properties(2, "test prop2", 1, 1);
-        Properties Testprop3 = new Properties(3, "test prop3", 1, 1);
+        Properties Testprop1 = new Properties(1, "test prop1", 1);
+        Properties Testprop2 = new Properties(2, "test prop2", 1);
+        Properties Testprop3 = new Properties(3, "test prop3", 1);
         Player testPlayer1 = new Player("TestPlayer1");
         Player testPlayer2 = new Player("TestPlayer2");
        Testprop1.setOwned(true);
@@ -55,8 +55,8 @@ class PropertiesTest {
     void payDoubleRent() {
 
 
-        Properties Testprop4 = new Properties(1, "test prop4", 1, 1);
-        Properties Testprop5 = new Properties(2, "test prop5", 1, 1);
+        Properties Testprop4 = new Properties(1, "test prop4", 1);
+        Properties Testprop5 = new Properties(2, "test prop5", 1);
         Player testPlayer4 = new Player("TestPlayer4");
         Player testPlayer5 = new Player("TestPlayer5");
 

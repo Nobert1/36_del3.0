@@ -11,22 +11,12 @@ import Wrappers.Board;
 import java.awt.*;
 
 /**
- * Method that creates the gameboard and everything in it. It is static because that makes it referable in the other classes.
- * Since it's static it takes no arguments other than those from the program and is there always the same, and referable
- * by using simple getters and setters. The gameboard then contains objects from all the classes.
- *
- * I don't like having the Gameboard instans being final, we don't know enough about final.
- * I don't like it being static either but i think it has too be.
- *
- * It is very possible we can do something to get the code more sophisticated by splitting it up in respect to GRASP patterns.
- * Splitting up the GUI controller and the gameboard should be the first thing. Make GameBoard a controller and then be the
- * information Expert for GUI since it will contain all the logic.
- *
- * - comment by Gustav
+ * There is an instans of gameboard so we can refer to the objects and their variables from this class, in other classes
+ * without having to make new instanes of the Gameboard every time.
  */
 public class GameBoard {
 
-    private static final GameBoard Instans = new GameBoard();
+    private static final GameBoard INSTANS = new GameBoard();
     private static Board FI = new Board();
     private GUI_Handler handler = new GUI_Handler();
     private static ChanceCardDeck CD;
@@ -40,13 +30,8 @@ public class GameBoard {
     private Dice die;
     private GUI gui;
 
-// Board skal være statisk ellers får vi en exception der hedder Initalization. Dvs at det board er ikke oprettet når programmet gerne
-    // Vil benytte sig af det, der er muligvis et fix.
-
-
     /**
      * Creates the gameboard instance.
-     * - comment by Gustav
      */
     public GameBoard() {
         gui = new GUI();
@@ -57,6 +42,10 @@ public class GameBoard {
         CD = new ChanceCardDeck(gui);
     }
 
+    /**
+     * Creates the player array from user input. Then starts the loop of turns which terminates once a player is broke.
+     * More in method.
+     */
 
     public void startGame() {
 
@@ -65,8 +54,8 @@ public class GameBoard {
 
     }
 
-    /** Initalizes the players turn
-     * - comment by Gustav
+    /**
+     * Initalizes the players turn
      */
 
     public void playerTurn() {
@@ -77,10 +66,10 @@ public class GameBoard {
 
     }
 
-    /** Simple move function that also checks if the currentPlayer is jailed, can perhaps be made more sophisticated
-     * - comment by Gustav
+    /**
+     * Method that is basically the whole games logic on a loop. Until the method CheckforBroke breaks it
+     * once a player has a balance of 0.
      */
-
     public void movePlayer() {
 
         logic.checkforInJail();
@@ -97,13 +86,12 @@ public class GameBoard {
 
     }
 
-    /** Two methods to set up the game.
-     * - comment by Gustav
-     *
+    /**
+     * The method which is called at the start of the game to define the amount of players.
      */
     public int askForPlayers() {
         do {
-            players = gui.getUserInteger(" How many players? Max 4 players ");
+            players = gui.getUserInteger(" How many players? Max 4 players. \n Remember youngest goes first!");
             if (players > 1 && players < 5) {
                 break;
             } else {
@@ -114,8 +102,7 @@ public class GameBoard {
     }
 
     /**
-     * Have updated method so that it removes colour possibilities after being chosen by anther currentPlayer
-     * -Alex
+     * Creates players name and icon, which they choose themselves
      */
 
     public void createPlayers() {
@@ -192,11 +179,8 @@ public class GameBoard {
 
     }
 
-
-
     /**
-     * Getters for the other classes to use when they refer to the board.
-     * - comment by Gustav
+     * Getters and setters for the other classes to use when they refer to the board.
      */
     public static ChanceCardDeck getCD() { return CD; }
 
@@ -212,7 +196,7 @@ public class GameBoard {
 
     public Board getFI() { return FI; }
 
-    public static GameBoard getInstance() { return Instans; }
+    public static GameBoard getInstance() { return INSTANS; }
 
     public GUI_Player[] getGuiArray() { return guiArray; }
 

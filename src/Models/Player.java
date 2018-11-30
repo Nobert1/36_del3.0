@@ -1,12 +1,9 @@
 package Models;
 
 import Controllers.GameBoard;
-import gui_fields.GUI_Player;
 
 /**
- * Player class is working very well at the moment. All of the logic GUI_Player used to have is passed on to this class.
- * GUI_Player now uses Player as it's information expert.
- * - comment by Gustav
+ * Player class with the logic behind the GUI.
  */
 
 public class Player {
@@ -38,11 +35,9 @@ public class Player {
         return this.name;
     }
 
-
     public BankAccount getAccount() {
         return account;
     }
-
 
     public int getCurrentPosition(){
         return currentPosition;

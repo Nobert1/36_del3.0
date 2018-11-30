@@ -1,8 +1,7 @@
 package Models;
 
 /**
- * Very simple class, probably finished
- * - comment by Gustav
+ * Base class for Chance cards.
  */
 public class ChanceCards {
     private String Description;

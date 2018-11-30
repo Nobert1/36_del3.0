@@ -3,9 +3,7 @@ import Controllers.GameBoard;
 import Models.Fields.Fields;
 
 /**
- * Class dumb as fuck and isn't subject for change. Perhaps it is if Jail_visting ends up being obsolete as well,
- * then the toString method needs another output, but that's no bigge.
- * - comment by Gustav
+ * Class for all the squares which have no greater function that a message
  */
 
 public class FunctionlessSquare extends Fields {
