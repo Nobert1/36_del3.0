@@ -2,8 +2,7 @@ package Models;
 import java.util.Random;
 
 /**
- * Finished class, nothing needed here
- * - comment by Gustav
+ * Dice class
  */
 
 public class Dice {

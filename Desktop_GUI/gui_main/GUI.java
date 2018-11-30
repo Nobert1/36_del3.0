@@ -1,6 +1,9 @@
 package gui_main;
 
 import java.awt.Color;
+import java.sql.Wrapper;
+
+import Wrappers.FieldFactory_Modified;
 import gui_codebehind.GUI_BoardController;
 import gui_codebehind.GUI_FieldFactory;
 import gui_fields.GUI_Board;
@@ -67,7 +70,7 @@ public final class GUI {
      * @param fields
      */
     public GUI(){
-        GUI_Field[] fields = GUI_FieldFactory.makeFieldsJuniorMatador();
+        GUI_Field[] fields = FieldFactory_Modified.makeFieldsJuniorMatador();
         for(int i = 0; i < fields.length; i++){
             fields[i] = fields[i];
         }
