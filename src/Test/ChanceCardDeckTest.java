@@ -34,7 +34,7 @@ class ChanceCardDeckTest {
 
     }
     @org.junit.jupiter.api.Test
-    void setplayer() {
+    void moveFunction() {
 
             ChanceCardDeck deck1 = new ChanceCardDeck(getGb().getGui());
             Player testplayer = new Player("Testplayer");
@@ -45,7 +45,7 @@ class ChanceCardDeckTest {
             // This test will also test for start, the test is only passed if you click on the "Burgerbar" though.
         try {
             deck1.UseChancecard();
-        } catch (NullPointerException e) { }
+        } catch (NullPointerException e) {e.printStackTrace(); }
         assertEquals(testplayer.getCurrentPosition(), 1);
         //Since the use card method takes the bottom card (the one that is prevoiusly drawn) the number for card 15 is set.
         //Setting the number on the card let's us test it without changing the code since it has a shuffle function.

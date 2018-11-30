@@ -10,6 +10,7 @@ class PropertiesTest {
 
     Properties Testprop1 = new Properties(1, "test prop1", 1, 1);
     Properties Testprop2 = new Properties(2, "test prop2", 1, 1);
+    Properties Testprop3 = new Properties(3, "test prop3", 1, 1);
     Player testPlayer1 = new Player("TestPlayer1");
     Player testPlayer2 = new Player("TestPlayer2");
 
@@ -20,8 +21,14 @@ class PropertiesTest {
 
     @org.junit.jupiter.api.Test
     void setOwned() {
+        Properties Testprop1 = new Properties(1, "test prop1", 1, 1);
+        Properties Testprop2 = new Properties(2, "test prop2", 1, 1);
+        Properties Testprop3 = new Properties(3, "test prop3", 1, 1);
+        Player testPlayer1 = new Player("TestPlayer1");
+        Player testPlayer2 = new Player("TestPlayer2");
        Testprop1.setOwned(true);
        assertTrue(Testprop1.getOwned() == true);
+
     }
 
     @org.junit.jupiter.api.Test
@@ -45,18 +52,26 @@ class PropertiesTest {
     }
 
     @org.junit.jupiter.api.Test
-    void payRent() {
+    void payDoubleRent() {
 
-        Testprop1.setOwned(true);
-        Testprop2.setOwned(true);
-        Testprop2.setOwner(testPlayer1);
-        Testprop1.setOwner(testPlayer1);
 
-        testPlayer2.setCurrentPosition(2);
-        getGb().setCurrentPlayer(testPlayer2);
-        Testprop2.FieldFunctionality();
+        Properties Testprop4 = new Properties(1, "test prop4", 1, 1);
+        Properties Testprop5 = new Properties(2, "test prop5", 1, 1);
+        Player testPlayer4 = new Player("TestPlayer4");
+        Player testPlayer5 = new Player("TestPlayer5");
 
-        assertEquals(18, testPlayer2.getAccount().getBalance(), "Since this tests double rent, the test is passed");
+        Testprop4.setOwned(true);
+        Testprop5.setOwned(true);
+
+
+        Testprop4.setOwner(testPlayer4);
+        Testprop5.setOwner(testPlayer4);
+
+        testPlayer5.setCurrentPosition(2);
+        getGb().setCurrentPlayer(testPlayer5);
+        Testprop5.payRent();
+
+        assertEquals(18, testPlayer5.getAccount().getBalance(), "Since this tests double rent, the test is passed");
 
 
         //This test will open the GUI since the player balance is based on what is typed in at the GUI. This test will be passed

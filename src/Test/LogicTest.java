@@ -42,11 +42,11 @@ class LogicTest {
 
     @Test
     void checkforStart() {
-// Stack flow error?!?!?!?!?
+//
 
         getGb().setCurrentPlayer(testplayer);
-        testplayer.setCurrentPosition(18);
-        checkforStart();
+        testplayer.setCurrentPosition(26);
+        getGb().getLogic().checkforStart();
 
         assertEquals(22, getGb().getCurrentPlayer().getAccount().getBalance());
     }
@@ -57,7 +57,7 @@ class LogicTest {
         Player[] arr = {testplayer2, testplayer};
         getGb().setPlayerArray(arr);
         getGb().setCurrentPlayer(testplayer2);
-        getPlayerTurn();
+        getGb().getLogic().getPlayerTurn();
         assertEquals(getGb().getCurrentPlayer(), testplayer);
     }
 

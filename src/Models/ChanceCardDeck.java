@@ -73,7 +73,7 @@ public class ChanceCardDeck {
 
     public void UseChancecard() {
         String Userinput;
-        position = 0;
+
         switch (deck[15].getNumber()) {
 
             case 0:
