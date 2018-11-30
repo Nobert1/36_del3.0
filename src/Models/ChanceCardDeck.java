@@ -94,10 +94,10 @@ public class ChanceCardDeck {
 
                 switch (Userinput) {
                     case "skateparken":
-                        position += 10;
+                        position = 10;
                         break;
                     case "swimmingpoolen":
-                        position += 11;
+                        position = 11;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
@@ -110,7 +110,7 @@ public class ChanceCardDeck {
                 String arr2[] = {"Move", "Draw"};
                 Userinput = getGb().getGui().getUserButtonPressed("Choose one: move one field forward or draw another card", arr2);
                 if (Userinput.equals(arr2[0])) {
-                    position += 1;
+                    position = 1;
                     movePlayer(position);
                 } else {
                     drawCard();
@@ -129,16 +129,16 @@ public class ChanceCardDeck {
 
                 switch (Userinput) {
                     case "skateparken":
-                        position += 10;
+                        position = 10;
                         break;
                     case "swimmingpoolen":
-                        position += 11;
+                        position = 11;
                         break;
                     case "bowlinghallen":
-                        position += 19;
+                        position = 19;
                         break;
                     case "zoologisk have":
-                        position += 20;
+                        position = 20;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
@@ -151,10 +151,10 @@ public class ChanceCardDeck {
                                                              "slikbutikken eller iskiosken", lbField);
                 switch (Userinput) {
                     case "slikbutikken":
-                        position += 4;
+                        position = 4;
                         break;
                     case "iskiosken":
-                        position += 5;
+                        position = 5;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
@@ -183,16 +183,16 @@ public class ChanceCardDeck {
                                                              "museet, bibloteket, vandlandet eller strandpromenaden", pdField);
                 switch (Userinput) {
                     case "museet":
-                        position += +7;
+                        position = 7;
                         break;
                     case "bibloteket":
-                        position += 8;
+                        position = 8;
                         break;
                     case "vandlandet":
-                        position += 22;
+                        position = 22;
                         break;
                     case "strandpromenaden":
-                        position += 23;
+                        position = 23;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
@@ -210,10 +210,10 @@ public class ChanceCardDeck {
                                                              "spillehallen eller biografen", redField);
                 switch (Userinput) {
                     case "spillehallen":
-                        position += 13;
+                        position = 13;
                         break;
                     case "biografen":
-                        position += 14;
+                        position = 14;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
@@ -233,16 +233,16 @@ public class ChanceCardDeck {
 
                 switch (UserInteger) {
                     case "spillehallen":
-                        position += 13;
+                        position = 13;
                         break;
                     case "biografen":
-                        position += 14;
+                        position = 14;
                         break;
                     case "slikbutikken":
-                        position += 4;
+                        position = 4;
                         break;
                     case "iskiosken":
-                        position += 5;
+                        position = 5;
                         break;
                 }
                 getGb().getCurrentPlayer().setPayNothing(true);
@@ -281,22 +281,22 @@ public class ChanceCardDeck {
 
         switch (userIn) {
             case "1":
-                position += 1;
+                position = 1;
                 break;
             case "2":
-                position += 2;
+                position = 2;
                 break;
             case "3":
-                position += 3;
+                position = 3;
                 break;
             case "4":
-                position += 4;
+                position = 4;
                 break;
             case "5":
-                position += 5;
+                position = 5;
                 break;
         }
-        movePlayer(position);
+        movePlayer(position%24);
 
  // CANNOT USE THE SETPLAYER FUNCTION SINCE IT DOESNT SET A PLAYER, IT MOVES HIM.
         }
@@ -311,7 +311,7 @@ public class ChanceCardDeck {
 
     public void movePlayer(int position) {
 
-        getGb().getCurrentPlayer().setCurrentPosition(getGb().getCurrentPlayer().getCurrentPosition() + position);
+        getGb().getCurrentPlayer().setCurrentPosition((getGb().getCurrentPlayer().getCurrentPosition() + position)%24);
         getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition()).OutputToGUI();
         getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition()).FieldFunctionality();
         getGb().getLogic().checkforStart();

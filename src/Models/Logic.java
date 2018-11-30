@@ -36,7 +36,7 @@ public class Logic {
      * - Alex
      */
     public void CheckforBroke() {
-        String Winner = "";
+        Player Winner = getGb().getPlayerArray()[0];
         String Loser = "";
         Boolean loserfound = false;
         for (int j = 0; j < getGb().getPlayerArray().length; j++) {
@@ -46,12 +46,12 @@ public class Logic {
             }
             if (loserfound == true) {
                 for (int i = 1; i < getGb().getPlayerArray().length; i++) {
-                    if (getGb().getPlayerArray()[i].getAccount().getBalance() > getGb().getPlayerArray()[i - 1].getAccount().getBalance()) {
-                        Winner = getGb().getPlayerArray()[i].getName();
-                    } else Winner = getGb().getPlayerArray()[0].getName();
+                    if (getGb().getPlayerArray()[i].getAccount().getBalance() > Winner.getAccount().getBalance()) {
+                        Winner = getGb().getPlayerArray()[i];
+                    }
                 }
 
-                getGb().getGui().showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner + "! HUGE CONGRATS PERSON");
+                getGb().getGui().showMessage("Ladies and gentlemen... " + Loser + " is broke! therefore the winner is " + Winner.getName() + "! HUGE CONGRATS PERSON");
 
                 // Closes GUI then terminates the program.
 
