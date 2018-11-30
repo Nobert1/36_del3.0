@@ -83,13 +83,14 @@ if (getGb().getCurrentPlayer().getCurrentPosition() == 23 && ((Properties) getGb
 
                 //This statement makes it so that it's only stepped into if the player position isn't 23. If it is 23 it will
                     //cast an outofbounds exception.
-                    if (getGb().getCurrentPlayer().getCurrentPosition() != 23 && ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
+                    if (getGb().getCurrentPlayer().getCurrentPosition() != 23){
+                        if (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
                             ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() - 1)).getOwner() ||
                             (((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition())).getOwner() ==
                                     ((Properties) getGb().getFI().getField(getGb().getCurrentPlayer().getCurrentPosition() + 1)).getOwner())) {
                         ownsAll = true;
                     }
-
+                    }
         } catch (ClassCastException e) {
 
 
