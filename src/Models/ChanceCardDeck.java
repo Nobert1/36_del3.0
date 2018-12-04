@@ -323,7 +323,6 @@ public class ChanceCardDeck {
         if (getGb().getCurrentPlayer().getCurrentPosition() == 0) {
             getGb().getCurrentPlayer().getAccount().deposit(2);
             getGb().getGui().showMessage("You are landing on go. Collect 2 dollars.");
-
         }
         if (getGb().getCurrentPlayer().getCurrentPosition() > position) {
             getGb().getCurrentPlayer().getAccount().deposit(2);
