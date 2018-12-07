@@ -26,7 +26,7 @@ public class GameBoard {
     private Player[] playerArray;
     private GUI_Player currentGUIPlayer;
     private Player currentPlayer;
-    private int players;
+    private int players = 0;
     private Dice die;
     private GUI gui;
 
@@ -94,11 +94,11 @@ public class GameBoard {
         do {
             players = gui.getUserInteger(" How many players? Max 4 players. \n Remember youngest goes first!");
             if (players > 1 && players < 5) {
-                break;
+                continue;
             } else {
                 gui.showMessage("Not a valid number");
             }
-        } while (players > 1 && players < 5 );
+        } while (players < 2 || players > 4 );
         return players;
     }
 
