@@ -92,7 +92,7 @@ if (getGb().getCurrentPlayer().getCurrentPosition() == 23 && ((Properties) getGb
                     }
                     }
         } catch (ClassCastException e) {
-
+                e.printStackTrace();
 
         }
         if (ownsAll == true){

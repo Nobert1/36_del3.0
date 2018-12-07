@@ -1,4 +1,4 @@
-package Wrappers;
+package View;
 
 import gui_fields.*;
 

@@ -6,7 +6,7 @@ import gui_codebehind.GUI_FieldFactory;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-import Wrappers.Board;
+import Models.Board;
 
 import java.awt.*;
 
@@ -53,6 +53,7 @@ public class GameBoard {
         movePlayer();
 
     }
+
 
     /**
      * Initalizes the players turn

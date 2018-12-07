@@ -1,11 +1,9 @@
 package gui_main;
 
 import java.awt.Color;
-import java.sql.Wrapper;
 
-import Wrappers.FieldFactory_Modified;
+import View.FieldFactory_Modified;
 import gui_codebehind.GUI_BoardController;
-import gui_codebehind.GUI_FieldFactory;
 import gui_fields.GUI_Board;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
